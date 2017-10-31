@@ -102,7 +102,7 @@ class App extends Component {
                 >
                   webpack-dashboard
                 </a>{' '}
-                 (must be installed)
+                  (must be installed)
               </span>
             </li>
           </ul>

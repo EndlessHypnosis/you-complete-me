@@ -4,13 +4,22 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
     "custom-react-scripts": "0.2.1",
     "express": "^4.16.2",
     "foreman": "^2.0.0",
     "nodemon": "^1.12.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "knex": "^0.13.0",
+    "pg": "^7.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.8.0",
+    "mocha": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
