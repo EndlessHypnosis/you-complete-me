@@ -1,18 +1,8 @@
 import firebase from 'firebase';
-// import { FIREBASE_CONFIG } from '../config';
-
-require('dotenv').config();
-
-let firebaseConfig = Object.assign({}, 
-  process.env.apiKey,
-  process.env.authDomain,
-  process.env.projectId
-)
-
-console.log('FIREBASE CONFIG:', firebaseConfig);
+import { FIREBASE_CONFIG } from './firebase_config';
 
 
-export const firebaseApp = firebase.initializeApp(firebaseConfig);
+export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
 export const firebaseAuth = firebaseApp.auth();
 // export const firebaseDb = firebaseApp.database();
 // export const firebaseStorage = firebaseApp.storage();
