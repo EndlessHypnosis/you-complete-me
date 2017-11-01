@@ -61,7 +61,7 @@ ReactDOM.render(
               <Route path="/logout" component={UserLogout} />
             </div>
           </div>
-          <div className='holygrail-footer'><span className='footer-span ubuntu-dark-small'>Built by Nick Svetnicka for Turing</span></div>
+          <div className='holygrail-footer'><span className='footer-span'>Built by Nick Svetnicka for Turing</span></div>
         </div>
       </div>
     </ConnectedRouter>

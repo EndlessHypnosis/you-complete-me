@@ -86,14 +86,13 @@ class Main extends Component {
       </div>
     );
 
-  } // end render
-} // end class
+  }
+}
 
 function mapStateToProps(mall) {
   return {
-    currentUser: mall.currentUser,
-    userPath: mall.userPath
+    currentUser: mall.currentUser
   };
 }
 
-export default connect(mapStateToProps, null)(HomeIndex);
+export default connect(mapStateToProps, null)(Main);
