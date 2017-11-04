@@ -5,6 +5,8 @@
   outline: none;
 }
 
+button:focus {outline:0;}
+
 body {
   font-family: sans-serif;
 }

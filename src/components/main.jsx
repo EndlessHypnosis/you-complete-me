@@ -9,6 +9,8 @@ import requireAuth from '../utils/authenticated';
 import UserLogin from './user/login';
 import UserRegister from './user/register';
 import UserProfile from './user/profile';
+import * as Blueprint from "@blueprintjs/core";
+
 // import ResetPassword from '../components/user/reset_password';
 
 // TO-DO:
@@ -44,6 +46,7 @@ class Main extends Component {
               <div>
                 <span>
                   This is the main component
+                  <button type="button" className="pt-button pt-icon-add">Button</button>
                 </span>
               </div>
             );
