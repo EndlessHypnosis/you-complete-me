@@ -16,9 +16,25 @@ body {
   margin-left: 10px;
 }
 
+.pt-text-muted {
+  margin-left: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .app-core {
-  /* font-size: 16px; */
+  font-size: 16px;
   display: flex;
   width: 100vw;
 }
