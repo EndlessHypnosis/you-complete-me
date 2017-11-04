@@ -41,28 +41,35 @@ class UserLogin extends Component {
               {this.state.message}
             </p>
           }
-          <p>Login</p>
+          <h3>Login</h3>
 
           <div>
             <p>
-              <label htmlFor="txtEmail">Email Address:</label>
-              <input
-                type="email"
-                id="txtEmail" ref="email"
-                placeholder="Enter Email" name="email"
-              />
+
+              <label className='pt-label'>
+                Email Address:
+                <input
+                  type="email"
+                  id="txtEmail" ref="email"
+                  className="pt-input"
+                  placeholder="Enter Email" name="email"
+                />
+              </label>
             </p>
 
             <p>
-              <label htmlFor="txtPass">Password:</label>
+              <label className='pt-label'>
+              Password:
               <input
                 type="password"
                 id="txtPass" ref="password"
+                className='pt-input'
                 placeholder="Password" name="password"
               />
+              </label>
             </p>
             <p>
-              <button type="submit">Login</button>
+              <button type="submit" className='pt-button pt-intent-primary'>Login</button>
             </p>
           </div>
         </form>

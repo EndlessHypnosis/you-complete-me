@@ -19,7 +19,7 @@ import UserLogout from './components/user/logout';
 import '../node_modules/normalize.css/normalize.css';
 import '../node_modules/@blueprintjs/core/dist/blueprint.css';
 import './index.css';
-import './styles/index.module.scss';
+import './styles/main.module.scss';
 
 // import App from './App';
 // import UserLogin from './components/user/login';
