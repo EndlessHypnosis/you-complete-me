@@ -1,7 +1,18 @@
+{
+
+  "note":"
+
 Scratch Pad
 --------------------------
 git fetch <remote> <sourceBranch>:<destinationBranch>
 git fetch origin master:master
+
+
+
+for topics, maybe just let the jedi use a checklist to chose all topics they can mentor
+then for any apprentice, make them chose any number of topics to filter down mentors
+once the pairing is made, take that list of topics and attach it to the training.
+
 
 
 Skill Levels
@@ -17,6 +28,7 @@ Database Structure
 --------------------
 
 Tables:
+
   users:
     id
     firebase_id (what is actual name)
@@ -30,8 +42,22 @@ Tables:
     training_as_jedi_with_jedi_success
     training_as_jedi_with_padawan_attempted
     training_as_jedi_with_padawan_success
-  training:
+
+  training: (can be cancelled any time by either person)
     id
+    appprentice_user_id: (foreign key to users table)
+    mentor_user_id: (foreign key to users table)
+    scheduled_for_date:
+    location:
+    topics: (json array of 5 topics or all?) (foreign key to topics table)
+    status: (scheduled/cancelled/in_progress/feedback/success/fail)
+      (
+        feedback is when we ask each user if the training actually happened
+        and to send feedback...but feedback is not required to indicate success/fail.
+        success is once both parties indicate the pairing happened.
+        fail is when one person indicates it didn't regardless of other person's status
+      )
+
   feedback:
     id
     from_user_id: (foreign key to users table)
@@ -41,6 +67,10 @@ Tables:
     message:
     schedule_id: (foreign key to schedules table)
 
+  topics:
+    id
+    parent
+    name
 
 
 
@@ -48,6 +78,23 @@ Tables:
 Copy
 --------
 Train to become a Jedi Master
+
+
+the Jedi Code 
+
+There is no emotion; there is peace. 
+There is no ignorance; there is knowledge. 
+There is no passion; there is serenity. 
+There is no death; there is the Force.
+
+Train to become a Jedi (Developer/Mentor/Teacher/) <get cool rotating control here>
+
+Welcome initiate. We're excited to see you interested in the ways of the Jedi.
+
+ they will spend the next ten to twenty years traing under their Jedi Master with the new title of Padawan.
+
+
+
 
 Naming Conventions
 -------------------
@@ -188,3 +235,6 @@ Professional Development (in beta)
   Resumes
   Outreach Strategies
   Interviewing (mock interviews, tech challenges)
+
+"
+}
