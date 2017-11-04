@@ -19,7 +19,7 @@ import UserLogout from './components/user/logout';
 import '../node_modules/normalize.css/normalize.css';
 import '../node_modules/@blueprintjs/core/dist/blueprint.css';
 import './index.css';
-import sassStyles from '../src/styles/index.module.scss';
+import './styles/index.module.scss';
 
 // import App from './App';
 // import UserLogin from './components/user/login';
@@ -47,7 +47,7 @@ ReactDOM.render(
 
   <Provider store={store}>
     <ConnectedRouter history={browserHistory}>
-      <div className='app-core pt-dark'>
+      <div className='app-core'>
         <div className='app-wrapper'>
           <div className='holygrail-header'>
             <h1>You Complete Me</h1>

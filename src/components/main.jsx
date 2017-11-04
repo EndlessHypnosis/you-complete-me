@@ -10,6 +10,8 @@ import UserLogin from './user/login';
 import UserRegister from './user/register';
 import UserProfile from './user/profile';
 import * as Blueprint from "@blueprintjs/core";
+import '../styles/index.module.scss';
+
 
 // import ResetPassword from '../components/user/reset_password';
 
@@ -44,10 +46,11 @@ class Main extends Component {
           <Route exact path='/' render={(props) => {
             return (
               <div>
-                <span>
-                  This is the main component
-                  <button type="button" className="pt-button pt-icon-add">Button</button>
-                </span>
+                <div className='pt-card pt-dark pt-elevation-2 welcome-splash'>
+                  <h4>This is the main component</h4>
+                  <input type='text' className='pt-input' placeholder='this is placeholder'/>
+                  <button type="button" className="pt-button pt-icon-add pt-intent-primary">Button</button>
+                </div>
               </div>
             );
           }} />

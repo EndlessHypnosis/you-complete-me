@@ -11,6 +11,14 @@ body {
   font-family: sans-serif;
 }
 
+h4 {
+    color: #5C7080;
+}
+
+.welcome-splash button {
+  margin-left: 10px;
+}
+
 .app-core {
   font-size: 16px;
   color: #727578;
