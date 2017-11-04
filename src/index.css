@@ -24,10 +24,7 @@ button:focus {
 body {
   font-family: sans-serif;
   background-color: #596A76;
-}
-
-.welcome-splash button {
-  margin-left: 10px;
+  color: rgb(205, 205, 205);
 }
 
 .pt-text-muted {

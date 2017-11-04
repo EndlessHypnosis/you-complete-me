@@ -10,7 +10,7 @@ import UserLogin from './user/login';
 import UserRegister from './user/register';
 import UserProfile from './user/profile';
 // FIXME: remove these
-// import * as Blueprint from "@blueprintjs/core";
+import * as Blueprint from "@blueprintjs/core";
 // import sassStyles from './Second.module.scss';
 
 // import ResetPassword from '../components/user/reset_password';
@@ -100,17 +100,30 @@ class Main extends Component {
                   </div>
 
                   <div className="pt-form-group pt-callout">
-                    <label className="pt-label">
-                      Start your Jedi Master training or remain a Padawan for now?
-                    </label>
-                    <label className='pt-control pt-checkbox pt-large'>
-                      <input type='checkbox'/>
-                      <span className='pt-control-indicator'></span>
-                      Start My Jedi Master Training
-                    </label>
-                    <p>This can be adjusted in your profile anytime!</p>
-                  </div>
+                    <h5>
+                      Start your Training as a Padawan or advance to Jedi Master?
+                    </h5>
+                    <p>
+                      This choice will determine if you will start your training as a Jedi Master (teacher/mentor)
+                      or as a Padawan (student/apprentice). If you are un-sure of what to choose, think about your skill
+                      level with things like HTML, JavaScript, CSS, MVC Frameworks.
+                      If you feel fairly comfortable with one or more of these areas,
+                      you're welcome to join the Jedi Masters group.
 
+                      If you're here to train on these (and many other) areas, we recommend starting as a Padawan. Don't worry,
+                      you can easily graduate to become a Jedi Master later on :)
+                    </p>
+                    <label className='pt-control pt-radio pt-large'>
+                      <input type='radio' name='radio-start-skill-level' />
+                      <span className='pt-control-indicator'></span>
+                      Start My Training at Padawan Level
+                    </label>
+                    <label className='pt-control pt-radio pt-large'>
+                      <input type='radio' name='radio-start-skill-level'/>
+                      <span className='pt-control-indicator'></span>
+                      Advance to Jedi Master Level
+                    </label>
+                  </div>
                   <button type="button" className="pt-button pt-intent-primary">Save Info</button>
                 </div>
               </div>

@@ -1,21 +1,80 @@
+Scratch Pad
+--------------------------
+git fetch <remote> <sourceBranch>:<destinationBranch>
+git fetch origin master:master
+
+
+Skill Levels
+--------------
 Padawan
-Jedi Knight
+--------------Jedi Knight
 Jedi Master
 
+
+
+
+Database Structure
+--------------------
+
+Tables:
+  users:
+    id
+    firebase_id (what is actual name)
+    email
+    slack_id
+    grade
+    skill_level
+    training_as_padawan_with_jedi_attempted
+    training_as_padawan_with_jedi_success
+    training_as_jedi_with_jedi_attempted
+    training_as_jedi_with_jedi_success
+    training_as_jedi_with_padawan_attempted
+    training_as_jedi_with_padawan_success
+  training:
+    id
+  feedback:
+    id
+    from_user_id: (foreign key to users table)
+    from_user_skill_level: ('Padawan/Jedi Master') (this is set at time of feedback...because this could change)
+    to_user_id: (foreign key to users table)
+    to_user_skill_level: ('Padawan/Jedi Master')
+    message:
+    schedule_id: (foreign key to schedules table)
+
+
+
+
+
+Copy
+--------
 Train to become a Jedi Master
 
+Naming Conventions
+-------------------
+css classnames start with: pt- (padawan training)
 
 
 Main Page for Padawan
 ----------------------
-header: Hello there young Padawan. Fear not, for you are on your path of becoming a Jedi Master. 
-section: schedule - upcoming scheduled training sessions
+header:
+  Hello there young Padawan. Fear not, for you are on your path of becoming a Jedi Master.
+  As a Padawan, you will be matched only with Jedi Masters for your training.
+  Once you feel you are ready to graduate to Jedi Master <TH>, you can click <HERE></HERE> or in your profile.
+  (NOTE: There are a few basic requirements you must complete before you can graduate, see <HERE></HERE>)
+section: schedule - upcoming scheduled training sessions (as apprentice)
 section: feedback - (give (for recent pairings) and received)
 section: train - make a selection of the topics, choose dates...
 
 
 Main Page for Jedi Master
 --------------------------
+header:
+  Hello Master Jedi. We're excited to welcome you to the group of teachers/educators/mentors for our young Padawans.
+  But fear not, we know you still have more to learn yourself. Therefore, you are able to continue scheduling training for yourself,
+  which will be with fellow Jedi Masters. (If you'd like to receive training from a Padawan, encourage them to Graduate! :) )
+section: schedule - upcoming scehduled training sessions (as mentor/apprentice)
+section: feedback - <same as for padawan?>
+section: train - <same as for padawan, but only pair with other masters></same>
 
 
 
