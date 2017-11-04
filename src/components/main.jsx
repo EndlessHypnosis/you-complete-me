@@ -65,13 +65,14 @@ class Main extends Component {
                   <p>
                     Before you get started, we'd like to collect some additional information from you.
                   </p>
-
-                  <div className="pt-form-group pt-callout pt-intent-primary">
+                  
+                  <div className="pt-form-group pt-callout">
                     <label className="pt-label" htmlFor="pt-slack-input">
                       Slack User ID
-                      <span className="pt-text-muted">( not required, but highly recommended! )</span>
+                      <span className="pt-text-muted">( optional, but recommended! )</span>
                     </label>
                     <div className="pt-form-content">
+                      <i className='icon ion-at'></i>
                       <input 
                         id="pt-slack-input"
                         className="pt-input"
@@ -98,9 +99,19 @@ class Main extends Component {
                     </div>
                   </div>
 
+                  <div className="pt-form-group pt-callout">
+                    <label className="pt-label">
+                      Start your Jedi Master training or remain a Padawan for now?
+                    </label>
+                    <label className='pt-control pt-checkbox pt-large'>
+                      <input type='checkbox'/>
+                      <span className='pt-control-indicator'></span>
+                      Start My Jedi Master Training
+                    </label>
+                    <p>This can be adjusted in your profile anytime!</p>
+                  </div>
 
-                  <input type='text' className='pt-input' placeholder='this is placeholder' />
-                  <button type="button" className="pt-button pt-icon-add pt-intent-primary">Button</button>
+                  <button type="button" className="pt-button pt-intent-primary">Save Info</button>
                 </div>
               </div>
             );
