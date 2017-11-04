@@ -9,8 +9,16 @@ button:focus {
   outline: 0;
 }
 
-input[type='checkbox']:focus {
-  outline: 0 !important;
+.pt-control-indicator {
+  outline: 0;
+}
+
+.pt-control-indicator:focus {
+  outline: 0;
+}
+
+.pt-control input:focus ~ .pt-control-indicator {
+  outline: 0;
 }
 
 body {
