@@ -41,11 +41,10 @@ class UserLogin extends Component {
               {this.state.message}
             </p>
           }
-          <h3>Login</h3>
-
-          <div>
+          
+          <div className='pt-card pt-elevation-0'>
+            <h3>Login</h3>
             <p>
-
               <label className='pt-label'>
                 Email Address:
                 <input

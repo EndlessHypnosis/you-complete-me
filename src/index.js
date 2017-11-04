@@ -47,7 +47,7 @@ ReactDOM.render(
 
   <Provider store={store}>
     <ConnectedRouter history={browserHistory}>
-      <div className='app-core'>
+      <div className='app-core pt-dark'>
         <div className='app-wrapper'>
           <div className='holygrail-header'>
             <h1>You Complete Me</h1>
