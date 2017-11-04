@@ -31,7 +31,7 @@ Tables:
 
   users:
     id
-    firebase_id (what is actual name)
+    firebase_uid (what is actual name)
     email
     slack_id
     grade
@@ -65,7 +65,7 @@ Tables:
     to_user_id: (foreign key to users table)
     to_user_skill_level: ('Padawan/Jedi Master')
     message:
-    schedule_id: (foreign key to schedules table)
+    training_id: (foreign key to schedules table)
 
   topics:
     id
@@ -137,7 +137,7 @@ List of Training Topics
 <maybe have the padawan pick top 5 techs related to the pairing></maybe>
 
 
-Core Programming Languages
+Programming Languages
   CSS (see css section for details)
   HTML (working with the DOM)
   JavaScript
@@ -156,7 +156,6 @@ Databases
   MongoDB
   Redis
   PostgreSQL
-
 
 
 Task Runners / Package Managers <gotta verify these, maybe move into seperpate catagories>
@@ -182,10 +181,6 @@ UI/MVC Frameworks
   Express
   ASP.NET
   
-
-Source Control
-  Git Workflow
-
 Editor Setup/Config (get together and share packages / setttings!)
   Sublime Text
   Atom
@@ -220,16 +215,20 @@ Testing (organize by assertion library and the other?)
   Chai
   -others?
 
-Misc
+
+Misc Web
+  Git Workflow
+  Single-Page-Web-Apps
+  Navite App Development (iOS/Android)
+  The Cloud
   Big Data (Hadoop/Spark)
+  
+Hardware
   Artificial Intelligence
   Machine Learning
   Robotics
   Internet Of Things
-  Single-Page-Web-Apps
-  Navite App Development (iOS/Android)
-  The Cloud
-
+  
 Professional Development (in beta)
   Cover Letters
   Resumes
