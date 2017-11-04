@@ -44,30 +44,35 @@ class UserProfile extends Component {
               {this.state.message}
             </p>
           }
-
-          <p>User Profile</p>
-
-          <div>
+          
+          <div className='pt-card pt-elevation-0'>
+            <h3>User Profile</h3>
             <p>
-              <label htmlFor="email">Email: </label>
-              <input
-                type="text" defaultValue={this.props.currentUser.email}
-                id="email"
-                ref="email" placeholder="Email" name="email"
-              />
+              <label className='pt-label'>
+                Email:
+                <input
+                  type="text" defaultValue={this.props.currentUser.email}
+                  id="email"
+                  className='pt-input'
+                  ref="email" placeholder="Email" name="email"
+                />
+              </label>
             </p>
 
             <p>
-              <label htmlFor="displayName">Display name: </label>
-              <input
-                type="text" defaultValue={this.props.currentUser.displayName}
-                ref="displayName"
-                id="displayName" placeholder="Display name"
-                name="displayName"
-              />
+              <label className='pt-label'>
+                Display name:
+                <input
+                  type="text" defaultValue={this.props.currentUser.displayName}
+                  ref="displayName"
+                  className='pt-input'
+                  id="displayName" placeholder="Display name"
+                  name="displayName"
+                />
+              </label>
             </p>
             <p>
-              <button type="submit">Update</button>
+              <button type="submit" className='pt-button pt-intent-primary'>Update</button>
             </p>
           </div>
         </form>

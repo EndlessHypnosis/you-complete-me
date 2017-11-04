@@ -1,0 +1,131 @@
+Padawan
+Jedi Knight
+Jedi Master
+
+Train to become a Jedi Master
+
+
+
+Main Page for Padawan
+----------------------
+header: Hello there young Padawan. Fear not, for you are on your path of becoming a Jedi Master. 
+section: schedule - upcoming scheduled training sessions
+section: feedback - (give (for recent pairings) and received)
+section: train - make a selection of the topics, choose dates...
+
+
+Main Page for Jedi Master
+--------------------------
+
+
+
+Requirements for Upgrading to Jedi Master
+------------------------------------------
+- Have Participated in at least 1 paring session
+- Sent feedback to that Jedi Master
+- <others></others>
+
+
+List of Training Topics
+------------------------
+<maybe have the padawan pick top 5 techs related to the pairing></maybe>
+
+
+Core Programming Languages
+  CSS (see css section for details)
+  HTML (working with the DOM)
+  JavaScript
+  C#.NET
+  VB.NET
+  Ruby
+  Python
+  Java
+  PHP
+  SQL
+  Rust
+  Golang
+
+Databases
+  MySQL
+  MongoDB
+  Redis
+  PostgreSQL
+
+
+
+Task Runners / Package Managers <gotta verify these, maybe move into seperpate catagories>
+  Grunt
+  Gulp
+  npm
+  Bower
+  Docker <is this one>
+  WebPack
+  Require.JS
+  Browserify
+
+
+UI/MVC Frameworks
+  Ruby
+  React (redux/router)
+  AngularJS
+  Ember.js
+  Vue (is this one?)
+  JQuery (and JQuery UI)
+  Backbone.js
+  MeteorJS
+  Express
+  ASP.NET
+  
+
+Source Control
+  Git Workflow
+
+Editor Setup/Config (get together and share packages / setttings!)
+  Sublime Text
+  Atom
+  VS Code
+  WebStorm
+  Vim
+  Emacs
+
+Dev Tooling Support
+  Firebase FireBug
+  Chrome Developer Tools
+  Debugging (get help with step into/over, setting up breakpoints)
+
+Deployment / CI
+  Heroku
+  Digitial Ocean
+  Jenkins (CI)
+  Circle (CI)
+
+CSS
+  CSS 3 (shadows!)
+  SASS
+  LESS
+  Animations/Transitions
+  Flexbox Layout System
+  Grid Layout System
+
+Testing (organize by assertion library and the other?)
+  Mocha
+  Jest
+  Jasmine
+  Chai
+  -others?
+
+Misc
+  Big Data (Hadoop/Spark)
+  Artificial Intelligence
+  Machine Learning
+  Robotics
+  Internet Of Things
+  Single-Page-Web-Apps
+  Navite App Development (iOS/Android)
+  The Cloud
+
+Professional Development (in beta)
+  Cover Letters
+  Resumes
+  Outreach Strategies
+  Interviewing (mock interviews, tech challenges)

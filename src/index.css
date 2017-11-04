@@ -5,20 +5,59 @@
   outline: none;
 }
 
+button:focus {
+  outline: 0;
+}
+
+.pt-control-indicator {
+  outline: 0;
+}
+
+.pt-control-indicator:focus {
+  outline: 0;
+}
+
+.pt-control input:focus ~ .pt-control-indicator {
+  outline: 0;
+}
+
 body {
   font-family: sans-serif;
+  background-color: #596A76;
 }
+
+.welcome-splash button {
+  margin-left: 10px;
+}
+
+.pt-text-muted {
+  margin-left: 5px;
+}
+
+.icon {
+  margin-right: 6px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .app-core {
   font-size: 16px;
-  color: #727578;
   display: flex;
   width: 100vw;
 }
 
 .app-wrapper {
-  min-width: 945px;
-  max-width: 945px;
+  min-width: 1045px;
+  max-width: 1045px;
   min-height: 100vh;
   margin: 30px auto;
   
@@ -26,17 +65,15 @@ body {
   -moz-box-shadow: 0px 0px 10px 2px rgba(119, 119, 119, 0.8);
   -webkit-box-shadow: 0px 0px 10px 2px rgba(119, 119, 119, 0.8);
 
-  border-radius: 8px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
 }
 
 
 .holygrail-header {
-  min-width: 945px;
-  min-height: 312px;
-  border-top-right-radius: 8px;
-  border-top-left-radius: 8px;
+  min-width: 1045px;
+  min-height: 50px;
   display: flex;
   flex-direction: column;
 }
@@ -44,7 +81,6 @@ body {
 .holygrail-header h1 {
   margin: 70px auto;
   font-size: 30px;
-  color: orangered;
 }
 
 .holygrail-body {
@@ -65,11 +101,9 @@ body {
 }
 
 .holygrail-footer {
-  min-width: 945px;
-  min-height: 223px;
+  min-width: 1045px;
+  min-height: 50px;
 
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
 
   display: flex;
   flex-direction: column;

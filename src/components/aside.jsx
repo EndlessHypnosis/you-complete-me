@@ -74,7 +74,7 @@ class Aside extends Component {
 
           <button onClick={() => {
             this.props.history.push('/profile');
-          }}>Profile</button>
+          }} className='pt-button'>Profile</button>
 
           <button onClick={() => {
             this.props.logoutUser().then(data => {
@@ -82,7 +82,7 @@ class Aside extends Component {
                 this.props.history.push('/logout');
               })
             });
-          }}>Logout</button>
+          }} className='pt-button'>Logout</button>
 
         </div>
       );
@@ -92,11 +92,11 @@ class Aside extends Component {
 
           <button onClick={() => {
             this.props.history.push('/login');
-          }}>Login</button>
+          }} className='pt-button'>Login</button>
 
           <button onClick={() => {
             this.props.history.push('/register');
-          }}>Register</button>
+          }} className='pt-button'>Register</button>
 
         </div>
       );
@@ -107,9 +107,11 @@ class Aside extends Component {
     return (
       <div>
 
+        
+
         <button onClick={() => {
           this.props.history.push('/');
-        }}>Home</button>
+        }} className='pt-button pt-intent-primary'>Home</button>
 
         {this.renderUserMenu()}
         <Notifications notifications={this.props.notifications}

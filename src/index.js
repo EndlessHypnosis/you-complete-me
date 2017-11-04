@@ -16,7 +16,12 @@ import Main from './components/main';
 import Aside from './components/aside';
 import UserLogout from './components/user/logout';
 
+import '../node_modules/normalize.css/normalize.css';
+import '../node_modules/@blueprintjs/core/dist/blueprint.css';
+import './styles/ionicons.css';
 import './index.css';
+import './styles/main.module.scss';
+
 // import App from './App';
 // import UserLogin from './components/user/login';
 // import UserRegister from './components/user/register';
@@ -43,7 +48,7 @@ ReactDOM.render(
 
   <Provider store={store}>
     <ConnectedRouter history={browserHistory}>
-      <div className='app-core'>
+      <div className='app-core pt-dark'>
         <div className='app-wrapper'>
           <div className='holygrail-header'>
             <h1>You Complete Me</h1>

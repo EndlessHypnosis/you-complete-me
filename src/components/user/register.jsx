@@ -47,28 +47,34 @@ class UserRegister extends Component {
             </p>
           }
 
-          <p>Register</p>
-
-          <div>
+          
+          <div className='pt-card pt-elevation-0'>
+          <h3>Register</h3>
             <p>
-              <label htmlFor="txtRegEmail">Email Address:</label>
-              <input
-                type="email"
-                ref="email" id="txtEmail"
-                placeholder="Enter Email" name="email"
-              />
+              <label className='pt-label'>
+                Email Address:
+                <input
+                  type="email"
+                  ref="email" id="txtEmail"
+                  className='pt-input'
+                  placeholder="Enter Email" name="email"
+                />
+              </label>
             </p>
 
             <p>
-              <label htmlFor="txtRegPass">Password:</label>
-              <input
-                type="password"
-                ref="password" id="txtPass"
-                placeholder="Password" name="password"
-              />
+              <label className='pt-label'>
+                Password:
+                <input
+                  type="password"
+                  ref="password" id="txtPass"
+                  className='pt-input'
+                  placeholder="Password" name="password"
+                />
+              </label>
             </p>
             <p>
-              <button type="submit">Register</button>
+              <button type="submit" className='pt-button pt-intent-primary'>Register</button>
             </p>
           </div>
 
