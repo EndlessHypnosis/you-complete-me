@@ -36,7 +36,10 @@ body {
 }
 
 
-
+.pt-intro-secondary button {
+  margin-left: 4px;
+  margin-right: 4px;
+}
 
 
 
@@ -70,13 +73,13 @@ body {
 
 .holygrail-header {
   min-width: 1045px;
-  min-height: 50px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
 }
 
 .holygrail-header h1 {
-  margin: 70px auto;
+  margin: 10px auto;
   font-size: 30px;
 }
 
@@ -99,14 +102,12 @@ body {
 
 .holygrail-footer {
   min-width: 1045px;
-  min-height: 50px;
-
-
+  min-height: 100px;
   display: flex;
   flex-direction: column;
 }
 
 .footer-span {
-  padding-top: 190px;
+  padding-top: 10px;
   padding-left: 20px;
 }
