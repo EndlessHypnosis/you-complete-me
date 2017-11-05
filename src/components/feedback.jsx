@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 // import { fetchFeedback } from '../actions/index';
 
 class Feedback extends Component {
@@ -44,8 +44,7 @@ class Feedback extends Component {
 
 function mapStateToProps(mall) {
   return {
-    currentUser: mall.currentUser,
-    feedbackb: mall.feedback
+    currentUser: mall.currentUser
   };
 }
 
