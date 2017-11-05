@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { fetchFeedback } from '../actions/index';
+import Feedback from './feedback';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -9,25 +11,34 @@ class Dashboard extends Component {
     // this.onFormSubmit = this.onFormSubmit.bind(this);
     this.state = {
       message: '',
-      feedbackList: []
+      feedbackArray: []
     };
+  }
+
+  componentDidMount() {
+    this.props.fetchFeedback()
+    .then(results => results.payload.json())
+    .then(feedback => {
+      console.log('FEEDBACK:', feedback);
+      this.setState({
+        feedbackArray: feedback
+      })
+    })
   }
 
   render() {
 
-    const feedbackCompArray = movies.map(movie =>
-      <CardContainer key={movie.movieId}
-        movie={movie}
-      />
+    const feedbackList = this.state.feedbackArray.map(feedback =>
+      <Feedback key={feedback.id} feedback={feedback} />
     )
 
-    const feedbackCompArray = Object.keys(this.state.feedbackList)
-    .map(feedback => {
-      return <Feedback key={feedback}
-        details={this.state.feedbackList[feedback]}
-        feedbackId={feedback}
-      />
-    })
+    // const feedbackCompArray = Object.keys(this.state.feedbackArray)
+    // .map(feedback => {
+    //   return <Feedback key={feedback}
+    //     details={this.state.feedbackArray[feedback]}
+    //     feedbackId={feedback}
+    //   />
+    // })
 
 
 
@@ -56,7 +67,7 @@ class Dashboard extends Component {
         <div className='pt-card pt-elevation-1'>
           <h3>Feedback</h3>
           <h5>Upcomming scheduled training sessions</h5>
-
+          { feedbackList }
 
 
 
@@ -71,12 +82,17 @@ class Dashboard extends Component {
 
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ registerUser }, dispatch);
-// }
-
-function mapStateToProps(state) {
-  return { currentUser: state.currentUser };
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    fetchFeedback
+  }, dispatch);
 }
 
-export default connect(mapStateToProps, null)(Dashboard);
+function mapStateToProps(mall) {
+  return {
+    currentUser: mall.currentUser,
+    feedback: mall.feedback
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
