@@ -30,19 +30,19 @@ let masterData = [
 
   training: [
     {
-      scheduled_for_date: Date.now(),
+      scheduled_for_date: '2017-11-04 19:17:40',
       location: 'meet outside of mod 1 classroom',
       topics: ['CSS', 'HTML'],
       status: 'success'
     },
     {
-      scheduled_for_date: Date.now(),
+      scheduled_for_date: '2017-11-04 19:17:40',
       location: 'meet in study room 1',
       topics: ['CSS', 'HTML', 'JavaScript'],
       status: 'fail'
     },
     {
-      scheduled_for_date: Date.now(),
+      scheduled_for_date: '2017-11-04 19:17:40',
       location: 'slack me',
       topics: ['JavaScript'],
       status: 'in_progress'
@@ -85,7 +85,7 @@ const createDataSet = (knex, dataSet) => {
     .then(userMentorId => {
       mentorId = userMentorId[0];
       // insert the apprentice
-      knex('users').insert({
+      return knex('users').insert({
         firebase_uid: dataSet.apprentice.firebase_uid,
         email: dataSet.apprentice.email,
         slack_id: dataSet.apprentice.slack_id,
@@ -106,21 +106,24 @@ const createDataSet = (knex, dataSet) => {
 
           dataSet.training.forEach(session => {
             // add appprentice_user_id, mentor_user_id columns
-            trainingPayload = Object.assign(session, { appprentice_user_id: apprenticeId, mentor_user_id: mentorId });
+            trainingPayload = Object.assign({}, session,
+              {
+                appprentice_user_id: apprenticeId,
+                mentor_user_id: mentorId
+              }
+            );
             // need to stringify the array so that postreSQL
             // doesn't think it's a data type array (it's really json)
             trainingPayload.topics = JSON.stringify(trainingPayload.topics);
-            trainingPromises.push(createTraining(knex, trainingPayload));
+            console.log('PUSH TRAINING:', trainingPayload)
+            trainingPromises.push(createTraining(knex, trainingPayload, dataSet));
           });
           return Promise.all(trainingPromises);
         })
-
     })
-
-    
 };
 
-const createTraining = (knex, trainingPayload) => {
+const createTraining = (knex, trainingPayload, dataSet) => {
   return knex('training').insert(trainingPayload, 'id')
     .then(trainingIds => {
 
@@ -129,35 +132,16 @@ const createTraining = (knex, trainingPayload) => {
 
       dataSet.feedback.forEach(reply => {
         // add from_user_id, to_user_id, training_id columns
-        feedbackPayload = Object.assign(reply,
+        feedbackPayload = Object.assign({}, reply,
           {
             from_user_id: trainingPayload.appprentice_user_id,
             to_user_id: trainingPayload.mentor_user_id,
             training_id: trainingIds[0]
-          });
-        // need to stringify the array so that postreSQL
-        // doesn't think it's a data type array (it's really json)
-        feedbackPayload.topics = JSON.stringify(feedbackPayload.topics);
-        feedbackPromises.push(createTraining(knex, feedbackPayload));
+          }
+        );
+        feedbackPromises.push(createFeedback(knex, feedbackPayload));
       });
       return Promise.all(feedbackPromises);
-
-
-
-      knex('users').insert({
-        firebase_uid: dataSet.apprentice.firebase_uid,
-        email: dataSet.apprentice.email,
-        slack_id: dataSet.apprentice.slack_id,
-        grade: dataSet.apprentice.grade,
-        skill_level: dataSet.apprentice.skill_level,
-        training_as_padawan_with_jedi_attempted: dataSet.apprentice.training_as_padawan_with_jedi_attempted,
-        training_as_padawan_with_jedi_success: dataSet.apprentice.training_as_padawan_with_jedi_success,
-        training_as_jedi_with_jedi_attempted: dataSet.apprentice.training_as_jedi_with_jedi_attempted,
-        training_as_jedi_with_jedi_success: dataSet.apprentice.training_as_jedi_with_jedi_success,
-        training_as_jedi_with_padawan_attempted: dataSet.apprentice.training_as_jedi_with_padawan_attempted,
-        training_as_jedi_with_padawan_success: dataSet.apprentice.training_as_jedi_with_padawan_success
-      }, 'id')
-
     })
 };
 
@@ -178,6 +162,7 @@ exports.seed = function (knex, Promise) {
       masterData.forEach(dataSet => {
         masterPromises.push(createDataSet(knex, dataSet));
       });
+      // console.log('PROMISES:', masterPromises)
       return Promise.all(masterPromises);
     })
     .catch(error => console.log('Error seeding MASTER data:', error));
