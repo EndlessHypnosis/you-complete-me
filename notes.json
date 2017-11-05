@@ -1,0 +1,239 @@
+{
+
+  "note":"
+
+Scratch Pad
+--------------------------
+git fetch <remote> <sourceBranch>:<destinationBranch>
+git fetch origin master:master
+
+
+
+for topics, maybe just let the jedi use a checklist to chose all topics they can mentor
+then for any apprentice, make them chose any number of topics to filter down mentors
+once the pairing is made, take that list of topics and attach it to the training.
+
+
+
+Skill Levels
+--------------
+Padawan
+--------------Jedi Knight
+Jedi Master
+
+
+
+
+Database Structure
+--------------------
+
+Tables:
+
+  users:
+    id
+    firebase_uid (what is actual name)
+    email
+    slack_id
+    grade
+    skill_level
+    training_as_padawan_with_jedi_attempted
+    training_as_padawan_with_jedi_success
+    training_as_jedi_with_jedi_attempted
+    training_as_jedi_with_jedi_success
+    training_as_jedi_with_padawan_attempted
+    training_as_jedi_with_padawan_success
+
+  training: (can be cancelled any time by either person)
+    id
+    appprentice_user_id: (foreign key to users table)
+    mentor_user_id: (foreign key to users table)
+    scheduled_for_date:
+    location:
+    topics: (json array of 5 topics or all?) (foreign key to topics table)
+    status: (scheduled/cancelled/in_progress/feedback/success/fail)
+      (
+        feedback is when we ask each user if the training actually happened
+        and to send feedback...but feedback is not required to indicate success/fail.
+        success is once both parties indicate the pairing happened.
+        fail is when one person indicates it didn't regardless of other person's status
+      )
+
+  feedback:
+    id
+    from_user_id: (foreign key to users table)
+    from_user_skill_level: ('Padawan/Jedi Master') (this is set at time of feedback...because this could change)
+    to_user_id: (foreign key to users table)
+    to_user_skill_level: ('Padawan/Jedi Master')
+    message:
+    training_id: (foreign key to schedules table)
+
+  topics:
+    id
+    parent
+    name
+
+
+
+
+Copy
+--------
+Train to become a Jedi Master
+
+
+the Jedi Code 
+
+There is no emotion; there is peace. 
+There is no ignorance; there is knowledge. 
+There is no passion; there is serenity. 
+There is no death; there is the Force.
+
+Train to become a Jedi (Developer/Mentor/Teacher/) <get cool rotating control here>
+
+Welcome initiate. We're excited to see you interested in the ways of the Jedi.
+
+ they will spend the next ten to twenty years traing under their Jedi Master with the new title of Padawan.
+
+
+
+
+Naming Conventions
+-------------------
+css classnames start with: pt- (padawan training)
+
+
+Main Page for Padawan
+----------------------
+header:
+  Hello there young Padawan. Fear not, for you are on your path of becoming a Jedi Master.
+  As a Padawan, you will be matched only with Jedi Masters for your training.
+  Once you feel you are ready to graduate to Jedi Master <TH>, you can click <HERE></HERE> or in your profile.
+  (NOTE: There are a few basic requirements you must complete before you can graduate, see <HERE></HERE>)
+section: schedule - upcoming scheduled training sessions (as apprentice)
+section: feedback - (give (for recent pairings) and received)
+section: train - make a selection of the topics, choose dates...
+
+
+Main Page for Jedi Master
+--------------------------
+header:
+  Hello Master Jedi. We're excited to welcome you to the group of teachers/educators/mentors for our young Padawans.
+  But fear not, we know you still have more to learn yourself. Therefore, you are able to continue scheduling training for yourself,
+  which will be with fellow Jedi Masters. (If you'd like to receive training from a Padawan, encourage them to Graduate! :) )
+section: schedule - upcoming scehduled training sessions (as mentor/apprentice)
+section: feedback - <same as for padawan?>
+section: train - <same as for padawan, but only pair with other masters></same>
+
+
+
+Requirements for Upgrading to Jedi Master
+------------------------------------------
+- Have Participated in at least 1 paring session
+- Sent feedback to that Jedi Master
+- <others></others>
+
+
+List of Training Topics
+------------------------
+<maybe have the padawan pick top 5 techs related to the pairing></maybe>
+
+
+Programming Languages
+  CSS (see css section for details)
+  HTML (working with the DOM)
+  JavaScript
+  C#.NET
+  VB.NET
+  Ruby
+  Python
+  Java
+  PHP
+  SQL
+  Rust
+  Golang
+
+Databases
+  MySQL
+  MongoDB
+  Redis
+  PostgreSQL
+
+
+Task Runners / Package Managers <gotta verify these, maybe move into seperpate catagories>
+  Grunt
+  Gulp
+  npm
+  Bower
+  Docker <is this one>
+  WebPack
+  Require.JS
+  Browserify
+
+
+UI/MVC Frameworks
+  Ruby
+  React (redux/router)
+  AngularJS
+  Ember.js
+  Vue (is this one?)
+  JQuery (and JQuery UI)
+  Backbone.js
+  MeteorJS
+  Express
+  ASP.NET
+  
+Editor Setup/Config (get together and share packages / setttings!)
+  Sublime Text
+  Atom
+  VS Code
+  WebStorm
+  Vim
+  Emacs
+
+Dev Tooling Support
+  Firebase FireBug
+  Chrome Developer Tools
+  Debugging (get help with step into/over, setting up breakpoints)
+
+Deployment / CI
+  Heroku
+  Digitial Ocean
+  Jenkins (CI)
+  Circle (CI)
+
+CSS
+  CSS 3 (shadows!)
+  SASS
+  LESS
+  Animations/Transitions
+  Flexbox Layout System
+  Grid Layout System
+
+Testing (organize by assertion library and the other?)
+  Mocha
+  Jest
+  Jasmine
+  Chai
+  -others?
+
+
+Misc Web
+  Git Workflow
+  Single-Page-Web-Apps
+  Navite App Development (iOS/Android)
+  The Cloud
+  Big Data (Hadoop/Spark)
+  
+Hardware
+  Artificial Intelligence
+  Machine Learning
+  Robotics
+  Internet Of Things
+  
+Professional Development (in beta)
+  Cover Letters
+  Resumes
+  Outreach Strategies
+  Interviewing (mock interviews, tech challenges)
+
+"
+}

@@ -25,7 +25,7 @@ class UserLogin extends Component {
         this.setState({ message: data.payload.errorMessage });
       } else {
         // where do you want to push on successful login?
-        this.props.history.push('/')
+        this.props.history.push('/dashboard')
       }
     }
     );
