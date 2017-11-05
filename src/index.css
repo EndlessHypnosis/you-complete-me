@@ -92,8 +92,12 @@ body {
   flex: 1;
 }
 
-.holygrail-left, .holygrail-right {
-  flex: 0 0 12em;
+.holygrail-left {
+  flex: 0 0 10em;
+}
+
+.holygrail-right {
+  flex: 0 0 2em;
 }
 
 .holygrail-left {

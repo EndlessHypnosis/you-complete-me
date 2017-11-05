@@ -89,10 +89,10 @@ class Main extends Component {
                 Hello, {this.props.currentUser.displayName}
               </p>
             : <div className='pt-callout pt-intent-primary pt-intro-secondary'>
-                Display Name can bet set in profile
-                <button className='pt-button pt-small' onClick={() => {
+                Display Name can bet set in
+                <button className='pt-button pt-small pt-intent-primary' onClick={() => {
                   this.props.history.push('/profile');
-                }}>go there now</button>
+                }}>profile</button>
               </div>
           }
 

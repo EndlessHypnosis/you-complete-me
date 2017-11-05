@@ -9,10 +9,29 @@ class Dashboard extends Component {
     // this.onFormSubmit = this.onFormSubmit.bind(this);
     this.state = {
       message: '',
+      feedbackList: []
     };
   }
 
   render() {
+
+    const feedbackCompArray = movies.map(movie =>
+      <CardContainer key={movie.movieId}
+        movie={movie}
+      />
+    )
+
+    const feedbackCompArray = Object.keys(this.state.feedbackList)
+    .map(feedback => {
+      return <Feedback key={feedback}
+        details={this.state.feedbackList[feedback]}
+        feedbackId={feedback}
+      />
+    })
+
+
+
+
     return (
       <div>
         <h2>Dashboard</h2>
@@ -29,6 +48,22 @@ class Dashboard extends Component {
             }}>profile</button>
             to start the graduation process!
           </p>
+        </div>
+        <div className='pt-card pt-elevation-1'>
+          <h3>Schedule</h3>
+          <h5>Upcomming scheduled training sessions</h5>
+        </div>
+        <div className='pt-card pt-elevation-1'>
+          <h3>Feedback</h3>
+          <h5>Upcomming scheduled training sessions</h5>
+
+
+
+
+        </div>
+        <div className='pt-card pt-elevation-1'>
+          <h3>Training</h3>
+          <h5>Seek out a Jedi Master for training</h5>
         </div>
       </div>
     );
