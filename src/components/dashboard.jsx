@@ -14,8 +14,8 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
-        dashboard
+      <div className='pt-card pt-elevation-0'>
+        <h3>Dashboard</h3>
       </div>
     );
   }
