@@ -110,7 +110,7 @@ class Aside extends Component {
         
 
         <button onClick={() => {
-          this.props.history.push('/');
+          this.props.history.push('/dashboard');
         }} className='pt-button pt-intent-primary'>Home</button>
 
         {this.renderUserMenu()}

@@ -115,7 +115,6 @@ const createDataSet = (knex, dataSet) => {
             // need to stringify the array so that postreSQL
             // doesn't think it's a data type array (it's really json)
             trainingPayload.topics = JSON.stringify(trainingPayload.topics);
-            console.log('PUSH TRAINING:', trainingPayload)
             trainingPromises.push(createTraining(knex, trainingPayload, dataSet));
           });
           return Promise.all(trainingPromises);
@@ -162,7 +161,6 @@ exports.seed = function (knex, Promise) {
       masterData.forEach(dataSet => {
         masterPromises.push(createDataSet(knex, dataSet));
       });
-      // console.log('PROMISES:', masterPromises)
       return Promise.all(masterPromises);
     })
     .catch(error => console.log('Error seeding MASTER data:', error));

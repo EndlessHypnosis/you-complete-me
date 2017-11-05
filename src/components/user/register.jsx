@@ -15,7 +15,35 @@ class UserRegister extends Component {
 
   initializeUserInDataBase(data) {
     console.log('REGISTER USER DATA:', data);
-    this.props.history.push('/');
+    // data.payload.email
+    // data.payload.uid
+
+    console.log('EMAIL:', data.payload.email);
+    console.log('UID:', data.payload.uid);
+    
+
+    //TODO: move to action
+    fetch('http://localhost:3100/api/v1/users', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ firebase_uid: data.payload.uid, email: data.payload.email })
+    })
+      .then(data => data.json())
+      .then(response => {
+        if (response.status == 201) {
+          console.log('User created in postgres');
+          // send user to get more info
+          this.props.history.push('/collectinfo');
+        }
+        if (response.status == 422) {
+          console.log(response.error);
+        }
+      })
+      .catch(error => console.log('Error Creating User', error));
+
   }
 
   onFormSubmit(event) {
