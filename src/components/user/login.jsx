@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loginUser } from '../../actions/firebase_actions';
 import { addUser } from '../../actions/index';
-
 import { fetchPGUser } from '../../utils/local_api';
 
 
@@ -26,7 +25,7 @@ class UserLogin extends Component {
         console.log('WHAT IS USER:', user);
         this.props.addUser(user);
         // uncomment this:
-        // this.props.history.push('/dashboard');
+        this.props.history.push('/dashboard');
         
       })
   }

@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router-dom';
 import { connect } from "react-redux";
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import requireAuth from '../utils/authenticated';
 // import FireBaseUtils from '../utils/firebase';
 // import TasksIndex from '../components/tasks/tasks_index';
@@ -13,6 +14,11 @@ import UserProfile from './user/profile';
 import Dashboard from './dashboard';
 // FIXME: remove these
 import * as Blueprint from "@blueprintjs/core";
+import { addUser } from '../actions/index';
+import { fetchPGUser } from '../utils/local_api';
+import { fetchUser } from "../actions/firebase_actions";
+
+
 // import sassStyles from './Second.module.scss';
 
 // import ResetPassword from '../components/user/reset_password';
@@ -26,6 +32,8 @@ import * as Blueprint from "@blueprintjs/core";
 class Main extends Component {
   constructor(props) {
     super(props);
+    this.props.fetchUser();
+    this.fetchPGuser();
     this.onSkillLevelChange = this.onSkillLevelChange.bind(this);
     this.onFormCollectInfoSubmit = this.onFormCollectInfoSubmit.bind(this);
     this.state = {
@@ -34,6 +42,36 @@ class Main extends Component {
       skillLevel: '',
     };
   }
+
+
+  fetchPGuser() {
+
+    if (this.props.currentUser && this.props.currentUser.uid) {
+      fetchPGUser(this.props.currentUser.uid)
+        .then(user => {
+          console.log('WHAT IS USER:', user);
+          this.props.addUser(user);
+          // uncomment this:
+          // this.props.history.push('/dashboard');
+        })
+    }
+
+  }
+
+  // componentDidMount() {
+    
+  //   if (this.props.currentUser && this.props.currentUser.uid) {
+  //     fetchPGUser(this.props.currentUser.uid)
+  //       .then(user => {
+  //         console.log('WHAT IS USER:', user);
+  //         this.props.addUser(user);
+  //         // uncomment this:
+  //         // this.props.history.push('/dashboard');
+  //       })
+  //   }
+
+  // }
+
 
   onFormCollectInfoSubmit(event) {
     event.preventDefault();
@@ -243,10 +281,17 @@ class Main extends Component {
   }
 }
 
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchUser, addUser }, dispatch);
+}
+
+
 function mapStateToProps(mall) {
   return {
-    currentUser: mall.currentUser
+    currentUser: mall.currentUser,
+    PGUser: mall.PGUser
   };
 }
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

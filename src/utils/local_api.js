@@ -6,13 +6,10 @@ export const fetchPGUser = (uid) => {
       // console.log('WHAT IS USER A:', users[0]);
 
       return users[0];
-    })
-}
+    });
+};
 
-// export const fetchAllFeedback = () => {
-//   return fetch(`http://localhost:3100/api/v1/feedback`)
-//     .then(results => results.json())
-//     .then(feedback => {
-//       return cleanMovieData(movies.results)
-//     })
-// }
+export const fetchAllFeedback = (id) => {
+  return fetch(`http://localhost:3100/api/v1/feedback/${id}`)
+    .then(results => results.json());
+};

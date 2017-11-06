@@ -8,6 +8,9 @@ git fetch <remote> <sourceBranch>:<destinationBranch>
 git fetch origin master:master
 
 
+jedi1@jedi1.com
+jedi1jedi1
+
 
 for topics, maybe just let the jedi use a checklist to chose all topics they can mentor
 then for any apprentice, make them chose any number of topics to filter down mentors
@@ -20,6 +23,14 @@ Skill Levels
 Padawan
 --------------Jedi Knight
 Jedi Master
+
+
+===========
+TO DO
+===========
+- add eslint
+- add server side testing
+
 
 
 
