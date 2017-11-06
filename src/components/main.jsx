@@ -15,7 +15,7 @@ import Dashboard from './dashboard';
 // FIXME: remove these
 import * as Blueprint from "@blueprintjs/core";
 import { addUser } from '../actions/index';
-import { fetchPGUser } from '../utils/local_api';
+import { getPGUser } from '../utils/local_api';
 import { fetchUser } from "../actions/firebase_actions";
 
 
@@ -47,7 +47,7 @@ class Main extends Component {
   fetchPGuser() {
 
     if (this.props.currentUser && this.props.currentUser.uid) {
-      fetchPGUser(this.props.currentUser.uid)
+      getPGUser(this.props.currentUser.uid)
         .then(user => {
           console.log('WHAT IS USER:', user);
           this.props.addUser(user);
@@ -61,7 +61,7 @@ class Main extends Component {
   // componentDidMount() {
     
   //   if (this.props.currentUser && this.props.currentUser.uid) {
-  //     fetchPGUser(this.props.currentUser.uid)
+  //     getPGUser(this.props.currentUser.uid)
   //       .then(user => {
   //         console.log('WHAT IS USER:', user);
   //         this.props.addUser(user);

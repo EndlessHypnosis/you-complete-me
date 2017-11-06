@@ -6,9 +6,16 @@ export const addUser = (payload) => {
   }
 }
 
-export const fetchFeedback = (payload) => {
+export const storeFeedback = (payload) => {
   return {
-    type: 'FETCH_FEEDBACK',
+    type: 'STORE_FEEDBACK',
+    payload: payload
+  }
+}
+
+export const storeTraining = (payload) => {
+  return {
+    type: 'STORE_TRAINING',
     payload: payload
   }
 }

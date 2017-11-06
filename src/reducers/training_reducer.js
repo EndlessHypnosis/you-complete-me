@@ -1,11 +1,11 @@
 
-const feedback = (state = [], action) => {
+const training = (state = [], action) => {
   switch (action.type) {
-    case 'STORE_FEEDBACK':
+    case 'STORE_TRAINING':
       return action.payload;
     default:
       return state;
   }
 }
 
-export default feedback;
+export default training;

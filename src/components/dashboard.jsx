@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchFeedback } from '../actions/index';
-import { fetchAllFeedback } from '../utils/local_api';
+import { storeFeedback, storeTraining } from '../actions/index';
+import { getFeedback, getTraining } from '../utils/local_api';
 import Feedback from './feedback';
 
 class Dashboard extends Component {
@@ -18,11 +18,14 @@ class Dashboard extends Component {
   componentDidMount() {
 
     if (this.props.PGUser && this.props.PGUser.id) {
-      console.log('IT GOT HIT');
-      
-      fetchAllFeedback(this.props.PGUser.id)
+      getFeedback(this.props.PGUser.id)
         .then(feedback => {
-          this.props.fetchFeedback(feedback);
+          this.props.storeFeedback(feedback);
+        })
+
+      getTraining(this.props.PGUser.id)
+        .then(training => {
+          this.props.storeTraining(training);
         })
     }
 
@@ -68,7 +71,7 @@ class Dashboard extends Component {
         </div>
         <div className='pt-card pt-elevation-1'>
           <h3>Feedback</h3>
-          <h5>Recent feedback sent to you</h5>
+          <h5>Recent feedback sent by your Jedi Masters</h5>
           { feedbackList }
         </div>
         <div className='pt-card pt-elevation-1'>
@@ -83,7 +86,8 @@ class Dashboard extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    fetchFeedback
+    storeFeedback,
+    storeTraining
   }, dispatch);
 }
 

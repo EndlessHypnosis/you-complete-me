@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loginUser } from '../../actions/firebase_actions';
 import { addUser } from '../../actions/index';
-import { fetchPGUser } from '../../utils/local_api';
+import { getPGUser } from '../../utils/local_api';
 
 
 class UserLogin extends Component {
@@ -17,10 +17,10 @@ class UserLogin extends Component {
     };
   }
 
-  getPGUser(uid) {
+  fetchPGUser(uid) {
     console.log('WHAT IS UID:');
     
-    fetchPGUser(uid)
+    getPGUser(uid)
       .then(user => {
         console.log('WHAT IS USER:', user);
         this.props.addUser(user);
@@ -41,7 +41,7 @@ class UserLogin extends Component {
         this.setState({ message: data.payload.errorMessage });
       } else {
         console.log('JUST LOGGED IN:', data.payload);
-        this.getPGUser(data.payload.uid);
+        this.fetchPGUser(data.payload.uid);
         // where do you want to push on successful login?
         // this.props.history.push('/dashboard')
       }
@@ -62,6 +62,12 @@ class UserLogin extends Component {
           
           <div className='pt-card pt-elevation-0'>
             <h3>Login</h3>
+            <div className='pt-callout'>
+              Jedi Email:jedi1@jedi1.com
+              Jedi Pass:jedi1jedi1
+              Padawan Email:
+              Padawan Pass:
+            </div>
             <p>
               <label className='pt-label'>
                 Email Address:

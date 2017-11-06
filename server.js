@@ -29,11 +29,13 @@ app.use((req, res, next) => {
 
 
 
-//now we can set the route path & initialize the API
 router.get('/', (req, res) => {
-  res.json({ message: 'API Initialized!' });
+  res.json({ ERROR: 'SHOULD NOT RENDER!' });
+  // This route should serve static assets.
 });
+
 //Use our router configuration when we call /api
+//FIXME: could refactor the app.xyz endpoints with this
 app.use('/api', router);
 
 
@@ -68,7 +70,6 @@ app.get('/api/v1/users/:id', (request, response) => {
       response.status(500).json({ error });
     });
 });
-
 
 app.post('/api/v1/users', (request, response) => {
   const { firebase_uid, email } = request.body;
@@ -137,6 +138,25 @@ app.get('/api/v1/feedback/:id', (request, response) => {
         });
       }
       response.status(200).json(feedback);
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
+// GET /training
+app.get('/api/v1/training/:id', (request, response) => {
+  database('training')
+    .where('appprentice_user_id', request.params.id)
+    .orWhere('mentor_user_id', request.params.id)
+    .select()
+    .then(training => {
+      if (!training.length) {
+        return response.status(404).json({
+          error: 'Could not find any Training'
+        });
+      }
+      response.status(200).json(training);
     })
     .catch(error => {
       response.status(500).json({ error });
