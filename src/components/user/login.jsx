@@ -53,6 +53,17 @@ class UserLogin extends Component {
   render() {
     return (
       <div>
+        <div className='pt-callout'>
+          Jedi Email:jedi1@jedi1.com
+          Jedi Pass:jedi1jedi1
+          Padawan Email:
+          Padawan Pass:
+        </div>
+        <button className='pt-button pt-small pt-intent-primary' onClick={() => {
+          this.refs.email.value = 'jedi1@jedi1.com';
+          this.refs.password.value = 'jedi1jedi1';
+        }}>prefill mentor</button>
+
         <form id="frmLogin" role="form" onSubmit={this.onFormSubmit}>
           {this.state.message !== '' &&
             <p>
@@ -62,12 +73,6 @@ class UserLogin extends Component {
           
           <div className='pt-card pt-elevation-0'>
             <h3>Login</h3>
-            <div className='pt-callout'>
-              Jedi Email:jedi1@jedi1.com
-              Jedi Pass:jedi1jedi1
-              Padawan Email:
-              Padawan Pass:
-            </div>
             <p>
               <label className='pt-label'>
                 Email Address:

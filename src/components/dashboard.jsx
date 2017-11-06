@@ -17,7 +17,7 @@ class Dashboard extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidMount() {
 
     if (this.props.PGUser && this.props.PGUser.id) {
       getFeedback(this.props.PGUser.id)
@@ -74,6 +74,7 @@ class Dashboard extends Component {
         <div className='pt-card pt-elevation-1'>
           <h3>Schedule</h3>
           <h5>Upcomming scheduled training sessions</h5>
+          { scheduleList }
         </div>
         <div className='pt-card pt-elevation-1'>
           <h3>Feedback</h3>
