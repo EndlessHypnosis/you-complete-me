@@ -23,7 +23,7 @@ button:focus {
 
 body {
   font-family: sans-serif;
-  background-color: #596A76;
+  background-color: #2a3741;
   color: rgb(205, 205, 205);
 }
 
@@ -36,7 +36,10 @@ body {
 }
 
 
-
+.pt-intro-secondary button {
+  margin-left: 4px;
+  margin-right: 4px;
+}
 
 
 
@@ -70,13 +73,13 @@ body {
 
 .holygrail-header {
   min-width: 1045px;
-  min-height: 50px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
 }
 
 .holygrail-header h1 {
-  margin: 70px auto;
+  margin: 10px auto;
   font-size: 30px;
 }
 
@@ -89,8 +92,12 @@ body {
   flex: 1;
 }
 
-.holygrail-left, .holygrail-right {
-  flex: 0 0 12em;
+.holygrail-left {
+  flex: 0 0 10em;
+}
+
+.holygrail-right {
+  flex: 0 0 2em;
 }
 
 .holygrail-left {
@@ -99,14 +106,12 @@ body {
 
 .holygrail-footer {
   min-width: 1045px;
-  min-height: 50px;
-
-
+  min-height: 100px;
   display: flex;
   flex-direction: column;
 }
 
 .footer-span {
-  padding-top: 190px;
+  padding-top: 10px;
   padding-left: 20px;
 }
