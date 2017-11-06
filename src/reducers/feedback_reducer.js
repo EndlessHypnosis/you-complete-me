@@ -1,5 +1,5 @@
 
-const feedback = (state = null, action) => {
+const feedback = (state = [], action) => {
   switch (action.type) {
     case 'FETCH_FEEDBACK':
       return action.payload;

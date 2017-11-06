@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchFeedback } from '../actions/index';
+import { fetchAllFeedback } from '../utils/local_api';
 import Feedback from './feedback';
 
 class Dashboard extends Component {
@@ -10,25 +11,26 @@ class Dashboard extends Component {
     super(props);
     // this.onFormSubmit = this.onFormSubmit.bind(this);
     this.state = {
-      message: '',
-      feedbackArray: []
+      message: ''
     };
   }
 
   componentDidMount() {
-    this.props.fetchFeedback()
-    .then(results => results.payload.json())
-    .then(feedback => {
-      console.log('FEEDBACK:', feedback);
-      this.setState({
-        feedbackArray: feedback
-      })
-    })
+
+    if (this.props.PGUser && this.props.PGUser.id) {
+      console.log('IT GOT HIT');
+      
+      fetchAllFeedback(this.props.PGUser.id)
+        .then(feedback => {
+          this.props.fetchFeedback(feedback);
+        })
+    }
+
   }
 
   render() {
 
-    const feedbackList = this.state.feedbackArray.map(feedback =>
+    const feedbackList = this.props.feedback.map(feedback =>
       <Feedback key={feedback.id} feedback={feedback} />
     )
 
@@ -66,11 +68,8 @@ class Dashboard extends Component {
         </div>
         <div className='pt-card pt-elevation-1'>
           <h3>Feedback</h3>
-          <h5>Upcomming scheduled training sessions</h5>
+          <h5>Recent feedback sent to you</h5>
           { feedbackList }
-
-
-
         </div>
         <div className='pt-card pt-elevation-1'>
           <h3>Training</h3>
@@ -91,6 +90,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(mall) {
   return {
     currentUser: mall.currentUser,
+    PGUser: mall.PGUser,
     feedback: mall.feedback
   };
 }

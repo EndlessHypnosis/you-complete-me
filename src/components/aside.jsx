@@ -62,8 +62,9 @@ const notificationStyle = {
 class Aside extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchUser();
+    // this.props.fetchUser();
   }
+
 
 
   renderUserMenu() {

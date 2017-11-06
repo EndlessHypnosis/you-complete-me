@@ -53,7 +53,9 @@ const isInt = (value) => {
 
 // GET /users/:id
 app.get('/api/v1/users/:id', (request, response) => {
-  database('users').where('firebase_uid', request.params.id).select()
+  database('users')
+  .where('firebase_uid', request.params.id)
+  .select()
     .then(users => {
       if (!users.length) {
         return response.status(404).json({
@@ -124,8 +126,10 @@ app.patch('/api/v1/users/:id', (request, response) => {
 
 
 // GET /feedback
-app.get('/api/v1/feedback', (request, response) => {
-  database('feedback').select()
+app.get('/api/v1/feedback/:id', (request, response) => {
+  database('feedback')
+    .where('to_user_id', request.params.id)
+    .select()
     .then(feedback => {
       if (!feedback.length) {
         return response.status(404).json({

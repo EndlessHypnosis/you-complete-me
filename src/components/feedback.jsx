@@ -29,7 +29,8 @@ class Feedback extends Component {
 
     return (
       <div>
-        Feedback ID: {this.props.feedback.id}
+        Date: {this.props.feedback.updated_at}
+        Feedback: {this.props.feedback.message}
       </div>
     );
   }
