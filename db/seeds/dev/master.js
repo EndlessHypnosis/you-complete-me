@@ -48,7 +48,7 @@ let masterData = [
       length_in_minutes: '60',
       location: 'slack me',
       topics: ['JavaScript'],
-      status: 'in_progress'
+      status: 'scheduled'
     },
     {
       scheduled_for_date: '2017-11-04 19:17:40',
