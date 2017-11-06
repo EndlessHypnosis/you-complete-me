@@ -144,19 +144,22 @@ app.get('/api/v1/feedback/:id', (request, response) => {
     });
 });
 
-// GET /training
-app.get('/api/v1/training/:id', (request, response) => {
+// GET /schedules
+app.get('/api/v1/schedules/:id', (request, response) => {
   database('training')
     .where('appprentice_user_id', request.params.id)
     .orWhere('mentor_user_id', request.params.id)
+    .whereNot('status', 'open')
     .select()
-    .then(training => {
-      if (!training.length) {
+    .then(schedules => {
+      if (!schedules.length) {
         return response.status(404).json({
-          error: 'Could not find any Training'
+          error: 'Could not find any Schedules'
         });
       }
-      response.status(200).json(training);
+      console.log('SCHEDULES RETURNED:', schedules);
+      
+      response.status(200).json(schedules);
     })
     .catch(error => {
       response.status(500).json({ error });

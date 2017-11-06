@@ -1,11 +1,11 @@
 
-const training = (state = [], action) => {
+const schedule = (state = [], action) => {
   switch (action.type) {
-    case 'STORE_TRAINING':
+    case 'STORE_SCHEDULES':
       return action.payload;
     default:
       return state;
   }
 }
 
-export default training;
+export default schedule;

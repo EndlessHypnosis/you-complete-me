@@ -14,7 +14,7 @@ export const getFeedback = (id) => {
     .then(results => results.json());
 };
 
-export const getTraining = (id) => {
-  return fetch(`http://localhost:3100/api/v1/training/${id}`)
+export const getSchedules = (id) => {
+  return fetch(`http://localhost:3100/api/v1/schedules/${id}`)
     .then(results => results.json());
 };

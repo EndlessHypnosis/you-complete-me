@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { storeFeedback, storeTraining } from '../actions/index';
-import { getFeedback, getTraining } from '../utils/local_api';
+import { storeFeedback, storeSchedules } from '../actions/index';
+import { getFeedback, getSchedules } from '../utils/local_api';
 import Schedule from './schedule';
 import Feedback from './feedback';
 
@@ -25,9 +25,9 @@ class Dashboard extends Component {
           this.props.storeFeedback(feedback);
         })
 
-      getTraining(this.props.PGUser.id)
-        .then(training => {
-          this.props.storeTraining(training);
+      getSchedules(this.props.PGUser.id)
+        .then(schedules => {
+          this.props.storeSchedules(schedules);
         })
     }
 
@@ -35,8 +35,8 @@ class Dashboard extends Component {
 
   render() {
 
-    const scheduleList = this.props.training.map(training =>
-      <Schedule key={`pt-schedule-${training.id}`} training={training} />
+    const scheduleList = this.props.schedule.map(schedule =>
+      <Schedule key={`pt-schedule-${schedule.id}`} schedule={schedule} />
     )
 
     const feedbackList = this.props.feedback.map(feedback =>
@@ -73,7 +73,7 @@ class Dashboard extends Component {
         </div>
         <div className='pt-card pt-elevation-1'>
           <h3>Schedule</h3>
-          <h5>Upcomming scheduled training sessions</h5>
+          <h5>Upcomming and recent training sessions</h5>
           { scheduleList }
         </div>
         <div className='pt-card pt-elevation-1'>
@@ -94,7 +94,7 @@ class Dashboard extends Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     storeFeedback,
-    storeTraining
+    storeSchedules
   }, dispatch);
 }
 
@@ -103,7 +103,7 @@ function mapStateToProps(mall) {
     currentUser: mall.currentUser,
     PGUser: mall.PGUser,
     feedback: mall.feedback,
-    training: mall.training
+    schedule: mall.schedule
   };
 }
 

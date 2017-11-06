@@ -29,8 +29,8 @@ class Schedule extends Component {
 
     return (
       <div>
-        Status: {this.props.training.status}
-        Location: {this.props.training.location}
+        Status: {this.props.schedule.status}
+        Location: {this.props.schedule.location}
       </div>
     );
   }

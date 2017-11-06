@@ -13,9 +13,9 @@ export const storeFeedback = (payload) => {
   }
 }
 
-export const storeTraining = (payload) => {
+export const storeSchedules = (payload) => {
   return {
-    type: 'STORE_TRAINING',
+    type: 'STORE_SCHEDULES',
     payload: payload
   }
 }
