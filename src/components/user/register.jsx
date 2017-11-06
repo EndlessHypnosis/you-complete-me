@@ -3,6 +3,8 @@ import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { registerUser } from '../../actions/firebase_actions';
+import { getPGUser } from '../../utils/local_api';
+import { addUser } from '../../actions/index';
 
 class UserRegister extends Component {
   constructor(props) {
@@ -12,6 +14,16 @@ class UserRegister extends Component {
       message: '',
     };
   }
+
+
+  fetchPGUser(uid) {
+    getPGUser(uid)
+      .then(user => {
+        this.props.addUser(user);
+        this.props.history.push('/collectinfo');
+      })
+  }
+
 
   initializeUserInDataBase(data) {
     console.log('REGISTER USER DATA:', data);
@@ -35,8 +47,10 @@ class UserRegister extends Component {
       .then(response => {
         if (response.status == 201) {
           console.log('User created in postgres');
+          // set PGUser to newly registered user becuase of auto login
+          this.fetchPGUser(data.payload.uid);
           // send user to get more info
-          this.props.history.push('/collectinfo');
+          // this.props.history.push('/collectinfo');
         }
         if (response.status == 422) {
           console.log(response.error);
@@ -114,11 +128,14 @@ class UserRegister extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ registerUser }, dispatch);
+  return bindActionCreators({ registerUser, addUser }, dispatch);
 }
 
-function mapStateToProps(state) {
-  return { currentUser: state.currentUser };
+function mapStateToProps(mall) {
+  return {
+    currentUser: mall.currentUser,
+    PGUser: mall.PGUser
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserRegister);

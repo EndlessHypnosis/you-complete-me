@@ -18,3 +18,8 @@ export const getSchedules = (id) => {
   return fetch(`http://localhost:3100/api/v1/schedules/${id}`)
     .then(results => results.json());
 };
+
+export const getAllTraining = () => {
+  return fetch(`http://localhost:3100/api/v1/training`)
+    .then(results => results.json());
+};

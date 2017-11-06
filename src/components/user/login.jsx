@@ -18,15 +18,10 @@ class UserLogin extends Component {
   }
 
   fetchPGUser(uid) {
-    console.log('WHAT IS UID:');
-    
     getPGUser(uid)
       .then(user => {
-        console.log('WHAT IS USER:', user);
         this.props.addUser(user);
-        // uncomment this:
         this.props.history.push('/dashboard');
-        
       })
   }
 
@@ -40,7 +35,6 @@ class UserLogin extends Component {
       if (data.payload.errorCode) {
         this.setState({ message: data.payload.errorMessage });
       } else {
-        console.log('JUST LOGGED IN:', data.payload);
         this.fetchPGUser(data.payload.uid);
         // where do you want to push on successful login?
         // this.props.history.push('/dashboard')
@@ -54,15 +48,15 @@ class UserLogin extends Component {
     return (
       <div>
         <div className='pt-callout'>
-          Jedi Email:jedi1@jedi1.com
-          Jedi Pass:jedi1jedi1
-          Padawan Email:
-          Padawan Pass:
+          <button className='pt-button pt-small pt-intent-primary' onClick={() => {
+            this.refs.email.value = 'jedi1@jedi1.com';
+            this.refs.password.value = 'jedi1jedi1';
+          }}>prefill mentor</button>
+          <button className='pt-button pt-small pt-intent-primary' onClick={() => {
+            this.refs.email.value = 'padawan1@padawan1.com';
+            this.refs.password.value = 'padawan1';
+          }}>prefill padawan</button>
         </div>
-        <button className='pt-button pt-small pt-intent-primary' onClick={() => {
-          this.refs.email.value = 'jedi1@jedi1.com';
-          this.refs.password.value = 'jedi1jedi1';
-        }}>prefill mentor</button>
 
         <form id="frmLogin" role="form" onSubmit={this.onFormSubmit}>
           {this.state.message !== '' &&

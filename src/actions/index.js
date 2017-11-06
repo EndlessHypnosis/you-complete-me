@@ -19,3 +19,10 @@ export const storeSchedules = (payload) => {
     payload: payload
   }
 }
+
+export const storeTraining = (payload) => {
+  return {
+    type: 'STORE_TRAINING',
+    payload: payload
+  }
+}
