@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { storeFeedback, storeTraining } from '../actions/index';
 import { getFeedback, getTraining } from '../utils/local_api';
+import Schedule from './schedule';
 import Feedback from './feedback';
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class Dashboard extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidUpdate(prevProps, prevState) {
 
     if (this.props.PGUser && this.props.PGUser.id) {
       getFeedback(this.props.PGUser.id)
@@ -33,8 +35,12 @@ class Dashboard extends Component {
 
   render() {
 
+    const scheduleList = this.props.training.map(training =>
+      <Schedule key={`pt-schedule-${training.id}`} training={training} />
+    )
+
     const feedbackList = this.props.feedback.map(feedback =>
-      <Feedback key={feedback.id} feedback={feedback} />
+      <Feedback key={`pt-feedback-${feedback.id}`} feedback={feedback} />
     )
 
     // const feedbackCompArray = Object.keys(this.state.feedbackArray)
@@ -95,7 +101,8 @@ function mapStateToProps(mall) {
   return {
     currentUser: mall.currentUser,
     PGUser: mall.PGUser,
-    feedback: mall.feedback
+    feedback: mall.feedback,
+    training: mall.training
   };
 }
 
