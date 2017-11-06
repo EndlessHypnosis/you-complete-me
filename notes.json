@@ -30,7 +30,8 @@ TO DO
 ===========
 - add eslint
 - add server side testing
-
+- bookshelf.js?
+- sass styles
 
 
 
@@ -59,9 +60,10 @@ Tables:
     appprentice_user_id: (foreign key to users table)
     mentor_user_id: (foreign key to users table)
     scheduled_for_date:
+    length_in_minutes:
     location:
     topics: (json array of 5 topics or all?) (foreign key to topics table)
-    status: (scheduled/cancelled/in_progress/feedback/success/fail)
+    status: (open/scheduled/cancelled/in_progress/feedback/success/fail)
       (
         feedback is when we ask each user if the training actually happened
         and to send feedback...but feedback is not required to indicate success/fail.

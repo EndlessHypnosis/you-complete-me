@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchFeedback } from '../actions/index';
-import { fetchAllFeedback } from '../utils/local_api';
+import { storeFeedback, storeSchedules } from '../actions/index';
+import { getFeedback, getSchedules } from '../utils/local_api';
+import Schedule from './schedule';
 import Feedback from './feedback';
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -18,11 +20,14 @@ class Dashboard extends Component {
   componentDidMount() {
 
     if (this.props.PGUser && this.props.PGUser.id) {
-      console.log('IT GOT HIT');
-      
-      fetchAllFeedback(this.props.PGUser.id)
+      getFeedback(this.props.PGUser.id)
         .then(feedback => {
-          this.props.fetchFeedback(feedback);
+          this.props.storeFeedback(feedback);
+        })
+
+      getSchedules(this.props.PGUser.id)
+        .then(schedules => {
+          this.props.storeSchedules(schedules);
         })
     }
 
@@ -30,8 +35,12 @@ class Dashboard extends Component {
 
   render() {
 
+    const scheduleList = this.props.schedule.map(schedule =>
+      <Schedule key={`pt-schedule-${schedule.id}`} schedule={schedule} />
+    )
+
     const feedbackList = this.props.feedback.map(feedback =>
-      <Feedback key={feedback.id} feedback={feedback} />
+      <Feedback key={`pt-feedback-${feedback.id}`} feedback={feedback} />
     )
 
     // const feedbackCompArray = Object.keys(this.state.feedbackArray)
@@ -64,11 +73,12 @@ class Dashboard extends Component {
         </div>
         <div className='pt-card pt-elevation-1'>
           <h3>Schedule</h3>
-          <h5>Upcomming scheduled training sessions</h5>
+          <h5>Upcomming and recent training sessions</h5>
+          { scheduleList }
         </div>
         <div className='pt-card pt-elevation-1'>
           <h3>Feedback</h3>
-          <h5>Recent feedback sent to you</h5>
+          <h5>Recent feedback sent by your Jedi Masters</h5>
           { feedbackList }
         </div>
         <div className='pt-card pt-elevation-1'>
@@ -83,7 +93,8 @@ class Dashboard extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    fetchFeedback
+    storeFeedback,
+    storeSchedules
   }, dispatch);
 }
 
@@ -91,7 +102,8 @@ function mapStateToProps(mall) {
   return {
     currentUser: mall.currentUser,
     PGUser: mall.PGUser,
-    feedback: mall.feedback
+    feedback: mall.feedback,
+    schedule: mall.schedule
   };
 }
 

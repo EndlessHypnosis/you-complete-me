@@ -25,6 +25,7 @@ exports.up = function(knex, Promise) {
       table.integer('mentor_user_id').unsigned();
       table.foreign('mentor_user_id').references('users.id');
       table.dateTime('scheduled_for_date');
+      table.integer('length_in_minutes');
       table.string('location');
       table.json('topics');
       table.string('status');

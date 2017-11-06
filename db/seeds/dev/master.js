@@ -31,21 +31,45 @@ let masterData = [
   training: [
     {
       scheduled_for_date: '2017-11-04 19:17:40',
+      length_in_minutes: '120',
       location: 'meet outside of mod 1 classroom',
       topics: ['CSS', 'HTML'],
       status: 'success'
     },
     {
       scheduled_for_date: '2017-11-04 19:17:40',
+      length_in_minutes: '30',
       location: 'meet in study room 1',
       topics: ['CSS', 'HTML', 'JavaScript'],
       status: 'fail'
     },
     {
       scheduled_for_date: '2017-11-04 19:17:40',
+      length_in_minutes: '60',
       location: 'slack me',
       topics: ['JavaScript'],
-      status: 'in_progress'
+      status: 'scheduled'
+    },
+    {
+      scheduled_for_date: '2017-11-04 19:17:40',
+      length_in_minutes: '90',
+      location: 'tbd',
+      topics: ['JavaScript', 'HTML'],
+      status: 'open'
+    },
+    {
+      scheduled_for_date: '2017-11-04 19:17:40',
+      length_in_minutes: '60',
+      location: 'tbd',
+      topics: ['CSS'],
+      status: 'open'
+    },
+    {
+      scheduled_for_date: '2017-11-04 19:17:40',
+      length_in_minutes: '30',
+      location: 'tbd',
+      topics: ['JavaScript', 'CSS', 'HTML'],
+      status: 'open'
     }
   ],
 
@@ -105,13 +129,26 @@ const createDataSet = (knex, dataSet) => {
           let trainingPayload;
 
           dataSet.training.forEach(session => {
-            // add appprentice_user_id, mentor_user_id columns
-            trainingPayload = Object.assign({}, session,
-              {
-                appprentice_user_id: apprenticeId,
-                mentor_user_id: mentorId
-              }
-            );
+
+            if (session.status === 'open') {
+              // training hasn't been claimed
+              // add mentor_user_id
+              trainingPayload = Object.assign({}, session,
+                {
+                  mentor_user_id: mentorId
+                }
+              );
+            } else {
+              // training has been claimed and has 1 of many statuses
+              // add appprentice_user_id, mentor_user_id
+              trainingPayload = Object.assign({}, session,
+                {
+                  appprentice_user_id: apprenticeId,
+                  mentor_user_id: mentorId
+                }
+              );
+            }
+
             // need to stringify the array so that postreSQL
             // doesn't think it's a data type array (it's really json)
             trainingPayload.topics = JSON.stringify(trainingPayload.topics);

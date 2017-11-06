@@ -1,5 +1,5 @@
 
-export const fetchPGUser = (uid) => {
+export const getPGUser = (uid) => {
   return fetch(`http://localhost:3100/api/v1/users/${uid}`)
     .then(results => results.json())
     .then(users => {
@@ -9,7 +9,12 @@ export const fetchPGUser = (uid) => {
     });
 };
 
-export const fetchAllFeedback = (id) => {
+export const getFeedback = (id) => {
   return fetch(`http://localhost:3100/api/v1/feedback/${id}`)
+    .then(results => results.json());
+};
+
+export const getSchedules = (id) => {
+  return fetch(`http://localhost:3100/api/v1/schedules/${id}`)
     .then(results => results.json());
 };
