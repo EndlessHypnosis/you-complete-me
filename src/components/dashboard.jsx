@@ -69,20 +69,34 @@ class Dashboard extends Component {
     return (
       <div>
         <h2>Dashboard</h2>
-        <div className='pt-card pt-elevation-0'>
-          <p>
-            Hello there young Padawan. Fear not, for you are on your path of becoming a Jedi Master.
-            As a Padawan, you will be matched only with Jedi Masters for your training.
-          </p>
-          <p className='pt-intro-secondary'>
-            Once you are ready to help train others, you can graduate to become a Jedi Master!
-            Head over to your
-            <button className='pt-button pt-small pt-intent-primary' onClick={() => {
-              this.props.history.push('/profile');
-            }}>profile</button>
-            to start the graduation process!
-          </p>
-        </div>
+
+
+
+        {this.props.PGUser.skill_level === 'Jedi Master'
+          ? <div className='pt-card pt-elevation-0'>
+              <p>
+                Hello Master Jedi. We're excited to welcome you to the group of teachers/educators/mentors for our young Padawans.
+              </p>
+              <p>
+                But fear not, we know you still have more to learn yourself. Therefore, you are able to continue scheduling training for yourself,
+                which will be with fellow Jedi Masters. (If you'd like to receive training from a Padawan, encourage them to Graduate!)
+              </p>
+            </div>
+          : <div className='pt-card pt-elevation-0'>
+              <p>
+                Hello there young Padawan. We're excited to help you on your path of becoming a Jedi Master.
+                As a Padawan, you will be matched only with Jedi Masters for your training.
+              </p>
+              <p className='pt-intro-secondary'>
+                Once you are ready to help train others, you can graduate to become a Jedi Master!
+                Head over to your
+                <button className='pt-button pt-small pt-intent-primary' onClick={() => {
+                  this.props.history.push('/profile');
+                }}>profile</button>
+                to start the graduation process!
+              </p>
+            </div>
+        }
         <div className='pt-card pt-elevation-1'>
           <h3>Schedule</h3>
           <h5>Upcomming and recent training sessions</h5>

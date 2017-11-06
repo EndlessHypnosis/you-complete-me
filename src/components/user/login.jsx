@@ -21,7 +21,6 @@ class UserLogin extends Component {
     getPGUser(uid)
       .then(user => {
         this.props.addUser(user);
-        // uncomment this:
         this.props.history.push('/dashboard');
       })
   }
@@ -49,15 +48,15 @@ class UserLogin extends Component {
     return (
       <div>
         <div className='pt-callout'>
-          Jedi Email:jedi1@jedi1.com
-          Jedi Pass:jedi1jedi1
-          Padawan Email:
-          Padawan Pass:
+          <button className='pt-button pt-small pt-intent-primary' onClick={() => {
+            this.refs.email.value = 'jedi1@jedi1.com';
+            this.refs.password.value = 'jedi1jedi1';
+          }}>prefill mentor</button>
+          <button className='pt-button pt-small pt-intent-primary' onClick={() => {
+            this.refs.email.value = 'padawan1@padawan1.com';
+            this.refs.password.value = 'padawan1';
+          }}>prefill padawan</button>
         </div>
-        <button className='pt-button pt-small pt-intent-primary' onClick={() => {
-          this.refs.email.value = 'jedi1@jedi1.com';
-          this.refs.password.value = 'jedi1jedi1';
-        }}>prefill mentor</button>
 
         <form id="frmLogin" role="form" onSubmit={this.onFormSubmit}>
           {this.state.message !== '' &&

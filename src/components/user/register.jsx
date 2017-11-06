@@ -20,8 +20,7 @@ class UserRegister extends Component {
     getPGUser(uid)
       .then(user => {
         this.props.addUser(user);
-        // uncomment this:
-        this.props.history.push('/dashboard');
+        this.props.history.push('/collectinfo');
       })
   }
 
@@ -51,7 +50,7 @@ class UserRegister extends Component {
           // set PGUser to newly registered user becuase of auto login
           this.fetchPGUser(data.payload.uid);
           // send user to get more info
-          this.props.history.push('/collectinfo');
+          // this.props.history.push('/collectinfo');
         }
         if (response.status == 422) {
           console.log(response.error);
