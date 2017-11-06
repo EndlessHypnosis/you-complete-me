@@ -37,10 +37,6 @@ router.get('/', (req, res) => {
 app.use('/api', router);
 
 
-app.get('/apb', (req, res) => {
-  res.json({ message: 'APB Initialized!' });
-});
-
 //require('dotenv').config();
 
 //const { cleanBreweryData, fetchBreweries } = require('./public/scripts/breweryDB');
@@ -53,6 +49,24 @@ const isInt = (value) => {
     parseInt(Number(value)) == value &&
     !isNaN(parseInt(value, 10));
 };
+
+
+// GET /users/:id
+app.get('/api/v1/users/:id', (request, response) => {
+  database('users').where('firebase_uid', request.params.id).select()
+    .then(users => {
+      if (!users.length) {
+        return response.status(404).json({
+          error: 'Could not find any Users'
+        });
+      }
+      response.status(200).json(users);
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
 
 app.post('/api/v1/users', (request, response) => {
   const { firebase_uid, email } = request.body;

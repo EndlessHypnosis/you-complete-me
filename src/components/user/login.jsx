@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loginUser } from '../../actions/firebase_actions';
+import { fetchPGUser } from '../../utils/local_api';
 
 
 class UserLogin extends Component {
@@ -15,6 +16,18 @@ class UserLogin extends Component {
     };
   }
 
+  getPGUser(uid) {
+    console.log('WHAT IS UID:');
+    
+    fetchPGUser(uid)
+      .then(user => {
+        console.log('WHAT IS USER B:', user);
+        this.props.history.push('/dashboard')
+        
+      })
+  }
+
+
   onFormSubmit(event) {
     event.preventDefault();
 
@@ -24,8 +37,10 @@ class UserLogin extends Component {
       if (data.payload.errorCode) {
         this.setState({ message: data.payload.errorMessage });
       } else {
+        console.log('JUST LOGGED IN:', data.payload);
+        this.getPGUser(data.payload.uid);
         // where do you want to push on successful login?
-        this.props.history.push('/dashboard')
+        // this.props.history.push('/dashboard')
       }
     }
     );

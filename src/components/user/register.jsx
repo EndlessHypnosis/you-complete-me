@@ -18,8 +18,8 @@ class UserRegister extends Component {
     // data.payload.email
     // data.payload.uid
 
-    console.log('EMAIL:', data.payload.email);
-    console.log('UID:', data.payload.uid);
+    // console.log('EMAIL:', data.payload.email);
+    // console.log('UID:', data.payload.uid);
     
 
     //TODO: move to action

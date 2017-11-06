@@ -130,14 +130,25 @@ const createTraining = (knex, trainingPayload, dataSet) => {
       let feedbackPayload;
 
       dataSet.feedback.forEach(reply => {
-        // add from_user_id, to_user_id, training_id columns
-        feedbackPayload = Object.assign({}, reply,
-          {
-            from_user_id: trainingPayload.appprentice_user_id,
-            to_user_id: trainingPayload.mentor_user_id,
-            training_id: trainingIds[0]
-          }
-        );
+
+        if (reply.from_user_skill_level === 'Padawan') {
+          feedbackPayload = Object.assign({}, reply,
+            {
+              from_user_id: trainingPayload.appprentice_user_id,
+              to_user_id: trainingPayload.mentor_user_id,
+              training_id: trainingIds[0]
+            }
+          );
+        } else {
+          feedbackPayload = Object.assign({}, reply,
+            {
+              from_user_id: trainingPayload.mentor_user_id,
+              to_user_id: trainingPayload.appprentice_user_id,
+              training_id: trainingIds[0]
+            }
+          );
+        }
+
         feedbackPromises.push(createFeedback(knex, feedbackPayload));
       });
       return Promise.all(feedbackPromises);
