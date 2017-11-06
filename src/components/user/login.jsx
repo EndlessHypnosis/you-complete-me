@@ -18,15 +18,11 @@ class UserLogin extends Component {
   }
 
   fetchPGUser(uid) {
-    console.log('WHAT IS UID:');
-    
     getPGUser(uid)
       .then(user => {
-        console.log('WHAT IS USER:', user);
         this.props.addUser(user);
         // uncomment this:
         this.props.history.push('/dashboard');
-        
       })
   }
 
@@ -40,7 +36,6 @@ class UserLogin extends Component {
       if (data.payload.errorCode) {
         this.setState({ message: data.payload.errorMessage });
       } else {
-        console.log('JUST LOGGED IN:', data.payload);
         this.fetchPGUser(data.payload.uid);
         // where do you want to push on successful login?
         // this.props.history.push('/dashboard')

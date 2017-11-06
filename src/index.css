@@ -24,7 +24,10 @@ button:focus {
 body {
   font-family: sans-serif;
   background-color: #2a3741;
-  color: rgb(205, 205, 205);
+}
+
+.pt-dark {
+  color: #d0d0d0;
 }
 
 .pt-text-muted {

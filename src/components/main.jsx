@@ -45,17 +45,12 @@ class Main extends Component {
 
 
   fetchPGuser() {
-
     if (this.props.currentUser && this.props.currentUser.uid) {
       getPGUser(this.props.currentUser.uid)
         .then(user => {
-          console.log('WHAT IS USER:', user);
           this.props.addUser(user);
-          // uncomment this:
-          // this.props.history.push('/dashboard');
         })
     }
-
   }
 
   // componentDidMount() {

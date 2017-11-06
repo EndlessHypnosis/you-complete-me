@@ -132,11 +132,11 @@ app.get('/api/v1/feedback/:id', (request, response) => {
     .where('to_user_id', request.params.id)
     .select()
     .then(feedback => {
-      if (!feedback.length) {
-        return response.status(404).json({
-          error: 'Could not find any Feedback'
-        });
-      }
+      // if (!feedback.length) {
+      //   return response.status(404).json({
+      //     error: 'Could not find any Feedback'
+      //   });
+      // }
       response.status(200).json(feedback);
     })
     .catch(error => {
@@ -152,14 +152,31 @@ app.get('/api/v1/schedules/:id', (request, response) => {
     .whereNot('status', 'open')
     .select()
     .then(schedules => {
-      if (!schedules.length) {
-        return response.status(404).json({
-          error: 'Could not find any Schedules'
-        });
-      }
-      console.log('SCHEDULES RETURNED:', schedules);
+      // if (!schedules.length) {
+      //   return response.status(404).json({
+      //     error: 'Could not find any Schedules'
+      //   });
+      // }
       
       response.status(200).json(schedules);
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
+// GET /training
+app.get('/api/v1/training', (request, response) => {
+  database('training')
+    .where('status', 'open')
+    .select()
+    .then(training => {
+      // if (!training.length) {
+      //   return response.status(404).json({
+      //     error: 'Could not find any Available Training'
+      //   });
+      // }
+      response.status(200).json(training);
     })
     .catch(error => {
       response.status(500).json({ error });
