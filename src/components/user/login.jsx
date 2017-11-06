@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loginUser } from '../../actions/firebase_actions';
+import { addUser } from '../../actions/index';
+
 import { fetchPGUser } from '../../utils/local_api';
 
 
@@ -21,8 +23,10 @@ class UserLogin extends Component {
     
     fetchPGUser(uid)
       .then(user => {
-        console.log('WHAT IS USER B:', user);
-        this.props.history.push('/dashboard')
+        console.log('WHAT IS USER:', user);
+        this.props.addUser(user);
+        // uncomment this:
+        // this.props.history.push('/dashboard');
         
       })
   }
@@ -95,11 +99,14 @@ class UserLogin extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ loginUser }, dispatch);
+  return bindActionCreators({ loginUser, addUser }, dispatch);
 }
 
 function mapStateToProps(mall) {
-  return { currentUser: mall.currentUser };
+  return {
+    currentUser: mall.currentUser,
+    PGUser: mall.PGUser
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);

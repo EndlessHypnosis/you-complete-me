@@ -1,9 +1,8 @@
 
-export const fetchUser = (uid) => {
-  const request = fetch(`http://localhost:3100/api/v1/users/${uid}`);
+export const addUser = (payload) => {
   return {
-    type: 'FETCH_USER',
-    payload: request
+    type: 'ADD_USER',
+    payload: payload
   }
 }
 
