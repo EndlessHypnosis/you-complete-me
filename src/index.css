@@ -30,6 +30,21 @@ body {
   color: #d0d0d0;
 }
 
+.pt-dark .pt-datepicker .DayPicker-Day.DayPicker-Day--selected {
+  background-color: rgb(57, 109, 78);
+  outline: 0;
+}
+
+.pt-dark .pt-datepicker .DayPicker-Day.DayPicker-Day--selected:focus {
+  outline: 0;
+}
+
+
+
+.pt-dark .pt-datepicker .DayPicker-Day.DayPicker-Day--selected:hover {
+  background-color: rgb(40, 77, 54);
+}
+
 .pt-text-muted {
   margin-left: 5px;
 }

@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import { fetchFeedback } from '../actions/index';
+import { DatePicker } from "@blueprintjs/datetime";
 
 class Booking extends Component {
   constructor(props) {
@@ -95,11 +96,38 @@ class Booking extends Component {
           
             <div className="pt-form-group pt-callout">
               <label className="pt-label" htmlFor="jm-date-input">
-                Date & Time of Training
+                Date of Training
                         <span className="pt-text-muted">( Pick what works for your schedule, you can always adjust this later )</span>
               </label>
               <div className="pt-form-content">
-                Date and time selector
+                <DatePicker/>
+              </div>
+            </div>
+
+            <div className="pt-form-group pt-callout">
+              <label className="pt-label">
+                Time of Training
+                        <span className="pt-text-muted">( in 24 hour format )</span>
+              </label>
+              <div className="pt-form-content">
+                <input
+                  id="jm-time-hour-input"
+                  onChange={(e) => { this.setState({ timeHourInput: e.target.value }); }}
+                  name="jmtimehourinput"
+                  className="pt-input"
+                  style={{ width: '50px' }}
+                  placeholder="hour"
+                  type="text"
+                  value={this.state.timeHourInput} />
+                <input
+                  id="jm-time-minutes-input"
+                  onChange={(e) => { this.setState({ timeMinutesInput: e.target.value }); }}
+                  name="jmtimeminutesinput"
+                  className="pt-input"
+                  style={{ width: '50px' }}
+                  placeholder="mins"
+                  type="text"
+                  value={this.state.timeMinutesInput} />
               </div>
             </div>
 
