@@ -12,6 +12,7 @@ import UserLogin from './user/login';
 import UserRegister from './user/register';
 import UserProfile from './user/profile';
 import Dashboard from './dashboard';
+import Booking from './booking';
 // FIXME: remove these
 import * as Blueprint from "@blueprintjs/core";
 import { addUser } from '../actions/index';
@@ -145,6 +146,8 @@ class Main extends Component {
           <Route path="/profile" component={UserProfile} onEnter={requireAuth} />
 
           <Route path="/dashboard" component={Dashboard} onEnter={requireAuth} />
+
+          <Route path="/booking" component={Booking} onEnter={requireAuth} />
 
           <Route path='/collectinfo' render={(props) => {
             return (

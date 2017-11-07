@@ -173,17 +173,17 @@ app.get('/api/v1/schedules/:id', (request, response) => {
 });
 
 // GET /training
-app.get('/api/v1/trainingOLD', (request, response) => {
-  database('training')
-    .where('status', 'open')
-    .select()
-    .then(training => {
-      response.status(200).json(training);
-    })
-    .catch(error => {
-      response.status(500).json({ error });
-    });
-});
+// app.get('/api/v1/trainingOLD', (request, response) => {
+//   database('training')
+//     .where('status', 'open')
+//     .select()
+//     .then(training => {
+//       response.status(200).json(training);
+//     })
+//     .catch(error => {
+//       response.status(500).json({ error });
+//     });
+// });
 
 app.get('/api/v1/training', (request, response) => {
   new Training().where('status', 'open').fetchAll()

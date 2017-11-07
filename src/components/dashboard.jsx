@@ -73,14 +73,24 @@ class Dashboard extends Component {
 
 
         {this.props.PGUser.skill_level === 'Jedi Master'
-          ? <div className='pt-card pt-elevation-0'>
-              <p>
-                Hello Master Jedi. We're excited to welcome you to the group of teachers/educators/mentors for our young Padawans.
-              </p>
-              <p>
-                But fear not, we know you still have more to learn yourself. Therefore, you are able to continue scheduling training for yourself,
-                which will be with fellow Jedi Masters. (If you'd like to receive training from a Padawan, encourage them to Graduate!)
-              </p>
+          ? 
+            <div>
+              <div className='pt-callout'>
+                Click
+                <button onClick={() => {
+                  this.props.history.push('/bookmark');
+                }} className='pt-button pt-intent-primary'>here</button>
+                to create an training session with a Padawan or fellow Jedi Master
+              </div>
+              <div className='pt-card pt-elevation-0'>
+                <p>
+                  Hello Master Jedi. We're excited to welcome you to the group of teachers/educators/mentors for our young Padawans.
+                </p>
+                <p>
+                  But fear not, we know you still have more to learn yourself. Therefore, you are able to continue scheduling training for yourself,
+                  which will be with fellow Jedi Masters. (If you'd like to receive training from a Padawan, encourage them to Graduate!)
+                </p>
+              </div>
             </div>
           : <div className='pt-card pt-elevation-0'>
               <p>
