@@ -195,6 +195,39 @@ app.get('/api/v1/training', (request, response) => {
   })
 })
 
+app.post('/api/v1/training', (request, response) => {
+  const {
+    mentor_user_id,
+    scheduled_for_date,
+    length_in_minutes
+  } = request.body;
+
+  let booking = new Training();
+  booking.set('mentor_user_id', mentor_user_id);
+  booking.set('scheduled_for_date', scheduled_for_date);
+  booking.set('length_in_minutes', length_in_minutes);
+  booking.set('location', 'tbd');
+  booking.set('status', 'open');
+
+  booking.save().then(booking => {
+    console.log('BOOKING SAVED:', booking);
+  })
+
+  // database('training')
+  //   .update(request.body, '*')
+  //   .then(users => {
+  //     if (!users[0]) {
+  //       return response.status(422).json({
+  //         error: 'Could not update user. Unexpected error'
+  //       });
+  //     }
+  //     response.status(200).json(Object.assign({ status: 200 }, users[0]));
+  //   })
+  //   .catch(error => {
+  //     response.status(500).json(Object.assign({ status: 500 }, { error }));
+  //   });
+});
+
 
 app.listen(app.get('port'), () => {
   /* eslint-disable no-alert, no-console */

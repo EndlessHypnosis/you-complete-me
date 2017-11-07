@@ -23,3 +23,19 @@ export const getAllTraining = () => {
   return fetch(`http://localhost:3100/api/v1/training`)
     .then(results => results.json());
 };
+
+export const saveBooking = (payload) => {
+  fetch(`http://localhost:3100/api/v1/bookings`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      mentor_user_id: payload.mentor_user_id,
+      scheduled_for_date: payload.scheduled_for_date,
+      length_in_minutes: payload.length_in_minutes
+    })
+  })
+  .then(data => data.json())
+}

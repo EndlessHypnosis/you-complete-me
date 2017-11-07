@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import { fetchFeedback } from '../actions/index';
 import { DatePicker } from "@blueprintjs/datetime";
+import { saveBooking } from '../utils/local_api';
+
 
 class Booking extends Component {
   constructor(props) {
@@ -12,6 +14,16 @@ class Booking extends Component {
     this.state = {
       lengthInput: ''
     };
+  }
+
+
+  onFormCreateBookingSubmit(event) {
+    event.preventDefault();
+
+
+
+    saveBooking();
+
   }
 
   // componentDidMount() {
@@ -97,7 +109,6 @@ class Booking extends Component {
             <div className="pt-form-group pt-callout">
               <label className="pt-label" htmlFor="jm-date-input">
                 Date of Training
-                        <span className="pt-text-muted">( Pick what works for your schedule, you can always adjust this later )</span>
               </label>
               <div className="pt-form-content">
                 <DatePicker/>
