@@ -211,7 +211,11 @@ app.post('/api/v1/training', (request, response) => {
 
   booking.save().then(booking => {
     console.log('BOOKING SAVED:', booking);
+    response.status(201).json(Object.assign({ status: 201 }, booking));
   })
+  .catch(error => {
+    response.status(500).json(Object.assign({ status: 500 }, { error }));
+  });
 
   // database('training')
   //   .update(request.body, '*')

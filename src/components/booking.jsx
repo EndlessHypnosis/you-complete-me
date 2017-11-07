@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Route } from 'react-router';
 // import { bindActionCreators } from 'redux';
 // import { fetchFeedback } from '../actions/index';
 import { DatePicker } from "@blueprintjs/datetime";
 import { saveBooking } from '../utils/local_api';
-
+const moment = require('moment');
 
 class Booking extends Component {
   constructor(props) {
     super(props);
-    // this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onFormCreateBookingSubmit = this.onFormCreateBookingSubmit.bind(this);
     this.state = {
-      lengthInput: ''
+      lengthInput: '',
+      timeHourInput: '',
+      timeMinutesInput: '',
+      pickedDate: null,
+      booking: null
     };
   }
 
@@ -20,9 +25,29 @@ class Booking extends Component {
   onFormCreateBookingSubmit(event) {
     event.preventDefault();
 
+    // FIXME: this math isn't adding up correctly
+    let bookingDate = new Date(this.state.pickedDate);
+    bookingDate = moment(bookingDate).subtract(1, 'd');
+    bookingDate = moment(bookingDate).add(this.state.timeHourInput, 'h').toDate();
+    bookingDate = moment(bookingDate).add(this.state.timeMinutesInput, 'm').toDate();
 
 
-    saveBooking();
+    let bookingPayload = {
+      mentor_user_id: this.props.PGUser.id,
+      scheduled_for_date: bookingDate,
+      length_in_minutes: this.state.lengthInput
+    }
+
+    // console.log('NEW BOOKING:', bookingPayload);
+
+    saveBooking(bookingPayload)
+    .then(booking => {
+      console.log('BOOK SUCCESSFULLY CREATED:', booking);
+      this.setState({ booking }, () => {
+        this.props.history.push('/booking/saved');
+      });
+    })
+
 
   }
 
@@ -39,64 +64,29 @@ class Booking extends Component {
 
   render() {
 
-
-    // <div className="pt-form-group pt-callout pt-intent-primary">
-    //   <label className="pt-label" htmlFor="pt-grade-input">
-    //     Grade/Mod or Dev Level
-    //                     <span className="pt-text-muted">( if in school, what grade, else junior/mid/senior )</span>
-    //   </label>
-    //   <div className="pt-form-content">
-    //     <input
-    //       id="pt-grade-input"
-    //       onChange={(e) => { this.setState({ grade: e.target.value }); }}
-    //       name="ptgradeinput"
-    //       className="pt-input"
-    //       style={{ width: '200px' }}
-    //       placeholder="Experience Level"
-    //       type="text"
-    //       value={this.state.grade} />
-    //     <div className="pt-form-helper-text">This can be adjusted in your profile anytime!</div>
-    //   </div>
-    // </div>
-
-    //   <div className="pt-form-group pt-callout">
-    //     <h5>
-    //       Start your Training as a Padawan or advance to Jedi Master?
-    //                   </h5>
-    //     <p>
-    //       This choice will determine if you will start your training as a Jedi Master (teacher/mentor)
-    //                     or as a Padawan (student/apprentice). If you are un-sure of what to choose, think about your skill
-    //                     level with things like HTML, JavaScript, CSS, MVC Frameworks.
-    //                     If you feel fairly comfortable with one or more of these areas,
-    //                     you're welcome to join the Jedi Masters group.
-
-    //                     If you're here to train on these (and many other) areas, we recommend starting as a Padawan. Don't worry,
-    //                     you can easily graduate to become a Jedi Master later on :)
-    //                   </p>
-    //     <label className='pt-control pt-radio pt-large'>
-    //       <input
-    //         type='radio'
-    //         name='radio-start-skill-level'
-    //         value='Padawan'
-    //         onChange={this.onSkillLevelChange} />
-    //       <span className='pt-control-indicator'></span>
-    //       Start My Training at Padawan Level
-    //                   </label>
-    //     <label className='pt-control pt-radio pt-large'>
-    //       <input
-    //         type='radio'
-    //         name='radio-start-skill-level'
-    //         value='Jedi Master'
-    //         onChange={this.onSkillLevelChange} />
-    //       <span className='pt-control-indicator'></span>
-    //       Advance to Jedi Master Level
-    //                   </label>
-    //   </div>
-
-
     return (
       <div>
-        <h2>Create New Booking</h2>
+
+        <Route path='/booking/saved' render={(props) => {
+          console.log('WHAST IS PORROPSPSSS:', props);
+          
+          return (
+            <div>
+              <div className='pt-callout pt-intent-success'>
+                <h4>Booking Successfully Created</h4>
+                Length: {this.state.booking.attributes.length_in_minutes }
+              </div>
+            </div>
+          );
+        }} />
+
+        <h2>
+          <button className='pt-button pt-icon-caret-left pt-intent-success'
+            onClick={() => {
+              this.props.history.push('/dashboard');
+            }}>Back to Dashboard</button>
+          Create New Booking
+        </h2>
         <p>We're so pleased to see you offering your services to our young Padawans or to your fellow Jedi Masters</p>
         <p>You can use the form below to create an open training session</p>
 
@@ -111,7 +101,10 @@ class Booking extends Component {
                 Date of Training
               </label>
               <div className="pt-form-content">
-                <DatePicker/>
+                <DatePicker
+                  onChange={(e) => { 
+                    this.setState({ pickedDate: e }); }}
+                  value={this.state.pickedDate} />
               </div>
             </div>
 
@@ -185,7 +178,8 @@ class Booking extends Component {
 
 function mapStateToProps(mall) {
   return {
-    currentUser: mall.currentUser
+    currentUser: mall.currentUser,
+    PGUser: mall.PGUser,
   };
 }
 

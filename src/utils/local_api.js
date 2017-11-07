@@ -25,7 +25,7 @@ export const getAllTraining = () => {
 };
 
 export const saveBooking = (payload) => {
-  fetch(`http://localhost:3100/api/v1/bookings`, {
+  return fetch(`http://localhost:3100/api/v1/training`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json, text/plain, */*',
@@ -37,5 +37,5 @@ export const saveBooking = (payload) => {
       length_in_minutes: payload.length_in_minutes
     })
   })
-  .then(data => data.json())
+  .then(results => results.json());
 }
