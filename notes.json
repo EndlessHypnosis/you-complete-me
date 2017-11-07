@@ -30,10 +30,10 @@ TO DO
 ===========
 - heroku deployment
 - make the feedback more random
-- add eslint
-- add server side TESTING
+!- add eslint
+!- add server side TESTING
 - bookshelf.js?
-- sass styles
+!- sass styles
 - notifications?
     /collect info alert
 

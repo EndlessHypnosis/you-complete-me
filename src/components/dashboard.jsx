@@ -78,8 +78,8 @@ class Dashboard extends Component {
               <div className='pt-callout'>
                 Click
                 <button onClick={() => {
-                  this.props.history.push('/bookmark');
-                }} className='pt-button pt-intent-primary'>here</button>
+                  this.props.history.push('/booking');
+                }} className='pt-button pt-small'>here</button>
                 to create an training session with a Padawan or fellow Jedi Master
               </div>
               <div className='pt-card pt-elevation-0'>
