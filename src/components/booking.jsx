@@ -114,7 +114,7 @@ class Booking extends Component {
                   id="jm-time-hour-input"
                   onChange={(e) => { this.setState({ timeHourInput: e.target.value }); }}
                   name="jmtimehourinput"
-                  className="pt-input"
+                  className="pt-input pt-input-time-hour"
                   style={{ width: '50px' }}
                   placeholder="hour"
                   type="text"

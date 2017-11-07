@@ -30,6 +30,10 @@ body {
   color: #d0d0d0;
 }
 
+.pt-input-time-hour {
+  margin-right: 5px;
+}
+
 .pt-dark .pt-datepicker .DayPicker-Day.DayPicker-Day--selected {
   background-color: rgb(57, 109, 78);
   outline: 0;
