@@ -23,9 +23,11 @@ class UserProfile extends Component {
       if (data.payload.errorCode) {
         this.setState({ message: data.payload.errorMessage });
       } else {
-        this.setState({
-          message: 'Update successful',
-        });
+        this.props.history.push('/');
+
+        // this.setState({
+        //   message: 'Update successful',
+        // });
       }
     }
     );
@@ -40,9 +42,9 @@ class UserProfile extends Component {
       <div>
         <form id="frmProfile" role="form" onSubmit={this.onFormSubmit}>
           {this.state.message !== '' &&
-            <p>
+            <div className='pt-callout pt-intent-success'>
               {this.state.message}
-            </p>
+            </div>
           }
           
           <div className='pt-card pt-elevation-0'>

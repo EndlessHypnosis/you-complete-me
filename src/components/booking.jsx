@@ -68,7 +68,6 @@ class Booking extends Component {
       <div>
 
         <Route path='/booking/saved' render={(props) => {
-          console.log('WHAST IS PORROPSPSSS:', props);
           
           return (
             <div>

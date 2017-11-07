@@ -69,22 +69,22 @@ class Dashboard extends Component {
     return (
       <div>
         <h2>Dashboard</h2>
-
-
-
         {this.props.PGUser.skill_level === 'Jedi Master'
           ? 
             <div>
-              <div className='pt-callout'>
-                Click
-                <button onClick={() => {
-                  this.props.history.push('/booking');
-                }} className='pt-button pt-small'>here</button>
-                to create an training session with a Padawan or fellow Jedi Master
+              <div className='pt-callout pt-create-booking-callout'>
+                <h5>
+                  Click
+                  <button onClick={() => {
+                    this.props.history.push('/booking');
+                  }} className='pt-button pt-small pt-intent-primary'>here</button>
+                  to create an training session with a Padawan or fellow Jedi Master
+                </h5>
               </div>
               <div className='pt-card pt-elevation-0'>
+                <h4>Hello Master Jedi</h4>
                 <p>
-                  Hello Master Jedi. We're excited to welcome you to the group of teachers/educators/mentors for our young Padawans.
+                  We're excited to welcome you to the group of teachers/educators/mentors for our young Padawans.
                 </p>
                 <p>
                   But fear not, we know you still have more to learn yourself. Therefore, you are able to continue scheduling training for yourself,
@@ -93,8 +93,11 @@ class Dashboard extends Component {
               </div>
             </div>
           : <div className='pt-card pt-elevation-0'>
+            <h4>Hello there young Padawan</h4>
               <p>
-                Hello there young Padawan. We're excited to help you on your path of becoming a Jedi Master.
+                We're excited to help you on your path of becoming a Jedi Master.
+              </p>
+              <p>
                 As a Padawan, you will be matched only with Jedi Masters for your training.
               </p>
               <p className='pt-intro-secondary'>

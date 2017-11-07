@@ -29,6 +29,7 @@ Jedi Master
 TO DO
 ===========
 - heroku deployment
+!- styling (logout)(remove border)
 - make the feedback more random
 !- add eslint
 !- add server side TESTING
