@@ -18,6 +18,7 @@ import UserLogout from './components/user/logout';
 
 import '../node_modules/normalize.css/normalize.css';
 import '../node_modules/@blueprintjs/core/dist/blueprint.css';
+import '../node_modules/@blueprintjs/datetime/dist/blueprint-datetime.css';
 import './styles/ionicons.css';
 import './index.css';
 import './styles/main.module.scss';

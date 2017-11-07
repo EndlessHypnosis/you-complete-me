@@ -14,6 +14,7 @@ const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 
+const bookshelf = require('bookshelf')(database);
 
 //To prevent errors from Cross Origin Resource Sharing, we will set 
 //our headers to allow CORS with middleware like so:
@@ -22,7 +23,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT, DELETE, PATCH');
   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-  //and remove cacheing so we get the most recent comments
+  //and remove cacheing so we get the most recent data
   res.setHeader('Cache-Control', 'no-cache');
   next();
 });
@@ -51,6 +52,12 @@ const isInt = (value) => {
     parseInt(Number(value)) == value &&
     !isNaN(parseInt(value, 10));
 };
+
+// BOOKSHELF MODELS
+
+let Training = bookshelf.Model.extend({
+  tableName: 'training'
+})
 
 
 // GET /users/:id
@@ -166,21 +173,63 @@ app.get('/api/v1/schedules/:id', (request, response) => {
 });
 
 // GET /training
+// app.get('/api/v1/trainingOLD', (request, response) => {
+//   database('training')
+//     .where('status', 'open')
+//     .select()
+//     .then(training => {
+//       response.status(200).json(training);
+//     })
+//     .catch(error => {
+//       response.status(500).json({ error });
+//     });
+// });
+
 app.get('/api/v1/training', (request, response) => {
-  database('training')
-    .where('status', 'open')
-    .select()
-    .then(training => {
-      // if (!training.length) {
-      //   return response.status(404).json({
-      //     error: 'Could not find any Available Training'
-      //   });
-      // }
-      response.status(200).json(training);
-    })
-    .catch(error => {
-      response.status(500).json({ error });
-    });
+  new Training().where('status', 'open').fetchAll()
+  .then(trainings => {
+    response.status(200).json(trainings);
+  })
+  .catch(error => {
+    response.status(500).json({ error })
+  })
+})
+
+app.post('/api/v1/training', (request, response) => {
+  const {
+    mentor_user_id,
+    scheduled_for_date,
+    length_in_minutes
+  } = request.body;
+
+  let booking = new Training();
+  booking.set('mentor_user_id', mentor_user_id);
+  booking.set('scheduled_for_date', scheduled_for_date);
+  booking.set('length_in_minutes', length_in_minutes);
+  booking.set('location', 'tbd');
+  booking.set('status', 'open');
+
+  booking.save().then(booking => {
+    console.log('BOOKING SAVED:', booking);
+    response.status(201).json(Object.assign({ status: 201 }, booking));
+  })
+  .catch(error => {
+    response.status(500).json(Object.assign({ status: 500 }, { error }));
+  });
+
+  // database('training')
+  //   .update(request.body, '*')
+  //   .then(users => {
+  //     if (!users[0]) {
+  //       return response.status(422).json({
+  //         error: 'Could not update user. Unexpected error'
+  //       });
+  //     }
+  //     response.status(200).json(Object.assign({ status: 200 }, users[0]));
+  //   })
+  //   .catch(error => {
+  //     response.status(500).json(Object.assign({ status: 500 }, { error }));
+  //   });
 });
 
 
