@@ -277,6 +277,63 @@ describe('API Routes', () => {
 
   });
 
+  describe('GET /api/v1/schedules/:id', () => {
+    it('should get all schedules relevant to a mentor', done => {
+
+      let mentor = {
+        firebase_uid: 'A3g4bbXDgwggGwcsvwDF7S6XkJG2',
+        email: 'jedi1@jedi1.com',
+        slack_id: 'jedi1',
+        grade: 'Mod 4',
+        skill_level: 'Jedi Master',
+        training_as_padawan_with_jedi_attempted: '0',
+        training_as_padawan_with_jedi_success: '0',
+        training_as_jedi_with_jedi_attempted: '0',
+        training_as_jedi_with_jedi_success: '0',
+        training_as_jedi_with_padawan_attempted: '3',
+        training_as_jedi_with_padawan_success: '1'
+      };
+      let mentorPGid;
+
+      chai.request(server)
+        .get(`/api/v1/users/${mentor.firebase_uid}`)
+        .end((error, response) => {
+          response.body[0].firebase_uid.should.equal(mentor.firebase_uid);
+          mentorPGid = response.body[0].id;
+          // get schedules
+          chai.request(server)
+            .get(`/api/v1/schedules/${mentorPGid}`)
+            .end((error, response) => {
+              response.should.have.status(200);
+              response.should.be.json;
+              response.body.should.be.a('array');
+              response.body.length.should.equal(3);
+              
+              response.body[0].should.have.property('appprentice_user_id');
+              response.body[0].should.have.property('mentor_user_id');
+              response.body[0].should.have.property('scheduled_for_date');
+              response.body[0].should.have.property('length_in_minutes');
+              response.body[0].should.have.property('location');
+              response.body.filter(item => {
+                return (item.location === 'tbd');
+              }).length.should.equal(0);
+              done();
+            });
+        });
+    });
+
+    it('should return no feedback for a user that doesnt exist', done => {
+      chai.request(server)
+        .get('/api/v1/feedback/1')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.body.should.have.length(0);
+          done();
+        });
+    });
+
+  });
+
 
 
   describe('GET /api/v1/topics', () => {
