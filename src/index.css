@@ -57,6 +57,18 @@ button:focus {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 .pt-control-indicator {
   outline: 0;
 }
@@ -112,8 +124,8 @@ button:focus {
   margin: 20px 0;
 }
 
-.pt-intro-secondary {
-
+.pt-icon-caret-left {
+  margin-right: 10px;
 }
 
 .pt-intro-secondary button,

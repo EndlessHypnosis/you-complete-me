@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import { fetchFeedback } from '../actions/index';
+const moment = require('moment');
 
 class Training extends Component {
   constructor(props) {
@@ -27,12 +28,16 @@ class Training extends Component {
 
   render() {
 
+    let goodDate = moment(this.props.training.scheduled_for_date).format('MMMM Do YYYY, hh:mm');
+
     return (
-      <div>
-        Status: {this.props.training.status}
-        Location: {this.props.training.location}
+      <div className='pt-callout pt-intent-primary schedule-card'>
+        <p><strong>Date:</strong> {goodDate}</p>
+        <p><strong>Duration:</strong> {this.props.training.length_in_minutes} mins</p>
       </div>
     );
+
+
   }
 
 }
