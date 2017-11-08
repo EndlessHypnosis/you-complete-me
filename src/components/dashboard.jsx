@@ -125,7 +125,7 @@ class Dashboard extends Component {
         <div className='pt-card pt-elevation-1'>
           <h3>Training</h3>
           <h5>Seek out a Jedi Master for training</h5>
-          <div className='schedule-wrapper'>
+          <div className='schedule-wrapper variant-training'>
             { trainingList }
           </div>
         </div>

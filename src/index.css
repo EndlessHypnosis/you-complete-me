@@ -47,7 +47,13 @@ button:focus {
   width: 28%
 }
 
+.variant-training {
+  flex-wrap: wrap;
+}
 
+.feedback-card {
+  margin: 10px 20px 10px 10px;
+}
 
 
 
