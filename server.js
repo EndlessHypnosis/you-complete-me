@@ -16,36 +16,22 @@ const database = require('knex')(configuration);
 
 const bookshelf = require('bookshelf')(database);
 
-//To prevent errors from Cross Origin Resource Sharing, we will set 
-//our headers to allow CORS with middleware like so:
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT, DELETE, PATCH');
   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-  //and remove cacheing so we get the most recent data
   res.setHeader('Cache-Control', 'no-cache');
   next();
 });
-
-
 
 router.get('/', (req, res) => {
   res.json({ ERROR: 'SHOULD NOT RENDER!' });
   // This route should serve static assets.
 });
 
-//Use our router configuration when we call /api
-//FIXME: could refactor the app.xyz endpoints with this
+//FIXME: could refactor the app.xyz endpoints by leveraging router
 app.use('/api', router);
-
-
-//require('dotenv').config();
-
-//const { cleanBreweryData, fetchBreweries } = require('./public/scripts/breweryDB');
-
-// const jwt = require('jsonwebtoken');
-// app.set('secretKey', process.env.JWT_SECRET);
 
 const isInt = (value) => {
   return !isNaN(value) &&
@@ -54,15 +40,13 @@ const isInt = (value) => {
 };
 
 // BOOKSHELF MODELS
-
 let Training = bookshelf.Model.extend({
   tableName: 'training'
-})
+});
 
 let Topics = bookshelf.Model.extend({
   tableName: 'topics'
-})
-
+});
 
 app.get('/api/v1/users/:id', (request, response) => {
   database('users')
@@ -91,7 +75,7 @@ app.post('/api/v1/users', (request, response) => {
         status: 422,
         error: 'User not Created. Invalid request parameters'
       });
-  }
+  };
 
   database('users').insert({
     firebase_uid,
@@ -140,11 +124,6 @@ app.get('/api/v1/feedback/:id', (request, response) => {
     .where('to_user_id', request.params.id)
     .select()
     .then(feedback => {
-      // if (!feedback.length) {
-      //   return response.status(404).json({
-      //     error: 'Could not find any Feedback'
-      //   });
-      // }
       response.status(200).json(feedback);
     })
     .catch(error => {
@@ -159,12 +138,6 @@ app.get('/api/v1/schedules/:id', (request, response) => {
     .whereNot('status', 'open')
     .select()
     .then(schedules => {
-      // if (!schedules.length) {
-      //   return response.status(404).json({
-      //     error: 'Could not find any Schedules'
-      //   });
-      // }
-      
       response.status(200).json(schedules);
     })
     .catch(error => {
@@ -173,7 +146,6 @@ app.get('/api/v1/schedules/:id', (request, response) => {
 });
 
 app.get('/api/v1/topics', (request, response) => {
-  
   new Topics().fetchAll()
     .then(topics => {
       response.status(200).json(topics);
@@ -200,7 +172,6 @@ app.post('/api/v1/training', (request, response) => {
     length_in_minutes
   } = request.body;
 
-
   if (!mentor_user_id || !scheduled_for_date || !length_in_minutes) {
     return response
       .status(422)
@@ -209,7 +180,6 @@ app.post('/api/v1/training', (request, response) => {
         error: 'Training not Created. Invalid request parameters'
       });
   }
-
 
   let booking = new Training();
   booking.set('mentor_user_id', mentor_user_id);
@@ -222,31 +192,12 @@ app.post('/api/v1/training', (request, response) => {
     response.status(201).json(Object.assign({ status: 201 }, booking));
   })
   .catch(error => {
-    console.log('WHAT IS THIS', error);
-    
     response.status(500).json(Object.assign({ status: 500 }, { error }));
   });
-
-  // database('training')
-  //   .update(request.body, '*')
-  //   .then(users => {
-  //     if (!users[0]) {
-  //       return response.status(422).json({
-  //         error: 'Could not update user. Unexpected error'
-  //       });
-  //     }
-  //     response.status(200).json(Object.assign({ status: 200 }, users[0]));
-  //   })
-  //   .catch(error => {
-  //     response.status(500).json(Object.assign({ status: 500 }, { error }));
-  //   });
 });
 
-
 app.listen(app.get('port'), () => {
-  /* eslint-disable no-alert, no-console */
   console.log(`Your API server is running on ${app.get('port')}.`);
-  /* eslint-enable no-alert, no-console */
 });
 
 module.exports = app;

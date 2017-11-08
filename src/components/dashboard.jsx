@@ -21,7 +21,6 @@ class Dashboard extends Component {
   componentDidMount() {
 
     if (this.props.PGUser && this.props.PGUser.id) {
-      console.log('DID MOUNT IN DASHBOARD:', this.props.PGUser);
       
       getFeedback(this.props.PGUser.id)
         .then(feedback => {

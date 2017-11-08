@@ -55,21 +55,6 @@ class Main extends Component {
     }
   }
 
-  // componentDidMount() {
-    
-  //   if (this.props.currentUser && this.props.currentUser.uid) {
-  //     getPGUser(this.props.currentUser.uid)
-  //       .then(user => {
-  //         console.log('WHAT IS USER:', user);
-  //         this.props.addUser(user);
-  //         // uncomment this:
-  //         // this.props.history.push('/dashboard');
-  //       })
-  //   }
-
-  // }
-
-
   onFormCollectInfoSubmit(event) {
     event.preventDefault();
 
@@ -93,8 +78,6 @@ class Main extends Component {
       .then(data => data.json())
       .then(response => {
         if (response.status == 200) {
-          console.log('User info updated');
-          // send user to get more info
           this.props.history.push('/dashboard');
         }
         if (response.status == 422) {
@@ -108,7 +91,6 @@ class Main extends Component {
   }
 
   onSkillLevelChange(e) {
-    console.log('EEE:', e);
     if (e.target.checked) {
       this.setState({ skillLevel: e.target.value });
     }

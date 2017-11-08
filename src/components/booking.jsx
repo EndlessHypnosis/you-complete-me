@@ -38,11 +38,9 @@ class Booking extends Component {
       length_in_minutes: this.state.lengthInput
     }
 
-    // console.log('NEW BOOKING:', bookingPayload);
 
     saveBooking(bookingPayload)
     .then(booking => {
-      console.log('BOOK SUCCESSFULLY CREATED:', booking);
       this.setState({ booking }, () => {
         this.props.history.push('/booking/saved');
       });
@@ -50,17 +48,6 @@ class Booking extends Component {
 
 
   }
-
-  // componentDidMount() {
-  //   this.props.fetchFeedback()
-  //     .then(results => results.payload.json())
-  //     .then(feedback => {
-  //       console.log('FEEDBACK:', feedback);
-  //       this.setState({
-  //         feedbackArray: feedback
-  //       })
-  //     })
-  // }
 
   render() {
 

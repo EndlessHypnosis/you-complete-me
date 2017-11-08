@@ -8,23 +8,7 @@ const moment = require('moment');
 class Feedback extends Component {
   constructor(props) {
     super(props);
-    // this.onFormSubmit = this.onFormSubmit.bind(this);
-    // this.state = {
-    //   message: '',
-    //   feedbackArray: []
-    // };
   }
-
-  // componentDidMount() {
-  //   this.props.fetchFeedback()
-  //     .then(results => results.payload.json())
-  //     .then(feedback => {
-  //       console.log('FEEDBACK:', feedback);
-  //       this.setState({
-  //         feedbackArray: feedback
-  //       })
-  //     })
-  // }
 
   render() {
     let dateReceived = moment(this.props.feedback.updated_at).format('MMMM Do YYYY, hh:mm');

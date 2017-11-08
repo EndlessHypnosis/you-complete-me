@@ -26,15 +26,6 @@ class UserRegister extends Component {
 
 
   initializeUserInDataBase(data) {
-    console.log('REGISTER USER DATA:', data);
-    // data.payload.email
-    // data.payload.uid
-
-    // console.log('EMAIL:', data.payload.email);
-    // console.log('UID:', data.payload.uid);
-    
-
-    //TODO: move to action
     fetch('http://localhost:3100/api/v1/users', {
       method: 'POST',
       headers: {
@@ -46,7 +37,6 @@ class UserRegister extends Component {
       .then(data => data.json())
       .then(response => {
         if (response.status == 201) {
-          console.log('User created in postgres');
           // set PGUser to newly registered user becuase of auto login
           this.fetchPGUser(data.payload.uid);
           // send user to get more info

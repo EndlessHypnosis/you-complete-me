@@ -90,7 +90,6 @@ const FireBaseUtils = {
    */
   loginUser: user => firebaseAuth.signInWithEmailAndPassword(user.email, user.password)
     .then(userInfo => {
-      console.log('FIREBASE LOGIN: ', userInfo)
       return userInfo;
     })
     .catch(error => ({
