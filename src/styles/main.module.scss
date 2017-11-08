@@ -1,24 +1,16 @@
 
 // Palette color codes */
 // Palette URL: http://paletton.com/#uid=b3v0a2S0kaKiE5esq8en4cdcojGbC */
-
-// Feel free to copy&paste color codes to your application */
-
-
-// As hex codes */
-
 $color-primary-0: #41535F;	// Main Primary color */
 $color-primary-1: #7B8891;
 $color-primary-2: #596A76;
 $color-primary-3: #28363F;
 $color-primary-4: #192E3B;
-
 $color-secondary-1-0: #4A4B67;	// Main Secondary color (1) */
 $color-secondary-1-1: #87889D;
 $color-secondary-1-2: #646580;
 $color-secondary-1-3: #2E2F45;
 $color-secondary-1-4: #1E2040;
-
 $color-secondary-2-0: #456757;	//Main Secondary color (2) */
 $color-secondary-2-1: #849E91;
 $color-secondary-2-2: #5F8070;
@@ -26,7 +18,31 @@ $color-secondary-2-3: #2A4538;
 $color-secondary-2-4: #19402D;
 
 
+.pt-dark .pt-datepicker {
+  background-color: #2E2F45;
+  border-radius: 0;
+}
 
+.pt-input-time-hour {
+  margin-right: 5px;
+}
+
+.DayPicker-Day.DayPicker-Day--selected {
+  background-color: rgb(57, 109, 78);
+  outline: 0;
+}
+
+.DayPicker-Day.DayPicker-Day--selected:focus {
+  outline: 0;
+}
+
+.DayPicker-Day.DayPicker-Day--selected:hover {
+  background-color: rgb(40, 77, 54);
+}
+
+.pt-text-muted {
+  margin-left: 5px;
+}
 
 .pt-input {
   border: none;

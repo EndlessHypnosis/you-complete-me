@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { fetchFeedback } from '../actions/index';
 const moment = require('moment');
 
 class Training extends Component {
@@ -19,7 +17,6 @@ class Training extends Component {
       </div>
     );
   }
-  
 }
 
 function mapStateToProps(mall) {

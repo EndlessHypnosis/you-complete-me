@@ -18,6 +18,111 @@ button:focus {
   outline: 0;
 }
 
+.app-core {
+  font-size: 16px;
+  display: flex;
+  width: 100vw;
+}
+
+.app-wrapper {
+  min-width: 1045px;
+  max-width: 1045px;
+  min-height: 100vh;
+  margin: 30px auto;
+  background-color: #243731;
+  
+  box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
+
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.holygrail-header {
+  min-width: 1045px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.holygrail-header h1 {
+  margin: 10px auto;
+  font-size: 30px;
+  text-decoration: underline;
+  text-shadow: 2px 2px 6px #2c2c2c;
+}
+
+.holygrail-body {
+  display: flex;
+  flex: 1;
+}
+
+.holygrail-content {
+  flex: 1;
+}
+
+.holygrail-left {
+  flex: 0 0 10em;
+}
+
+.holygrail-right {
+  flex: 0 0 2em;
+}
+
+.holygrail-left {
+  order: -1;
+}
+
+.holygrail-footer {
+  min-width: 1045px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-span {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.aside-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aside-wrapper button {
+  width: 75px;
+  margin-bottom: 10px;
+}
+
+#formCollectInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#formCollectInfo div {
+  width: 65%;
+}
+
+#frmLogin, #formCreateBooking, #frmRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#frmRegister div,
+#frmLogin div {
+  width: 50%;
+}
+
+#formCreateBooking>div {
+  width: 60%;
+}
+
 .prefill-jedi {
   margin-right: 10px;
 }
@@ -34,7 +139,6 @@ button:focus {
   display: flex;
   flex-direction: column;
 }
-
 
 .schedule-card:last-child {
   margin-right: 0;
@@ -56,64 +160,14 @@ button:focus {
   margin: 10px 20px 10px 10px;
 }
 
-.aside-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.aside-wrapper button {
-  width: 75px;
-  margin-bottom: 10px;
-}
-
-
-
-
-
-#formCollectInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#formCollectInfo div {
-  width: 65%;
-}
-
-
-
-#frmLogin, #formCreateBooking, #frmRegister {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#frmRegister div,
-#frmLogin div {
-  width: 50%;
-}
-
-#formCreateBooking>div {
-  width: 60%;
-}
-
 .pt-date-picker-custom {
   width: 230px;
 }
-
-
-
-
-
-
-
 
 .pt-label-bigger {
   font-size: 18px;
   font-weight: bold;
 }
-
 
 .pt-control-indicator {
   outline: 0;
@@ -178,78 +232,4 @@ button:focus {
 .pt-create-booking-callout button {
   margin-left: 4px;
   margin-right: 4px;
-}
-
-
-
-
-
-.app-core {
-  font-size: 16px;
-  display: flex;
-  width: 100vw;
-}
-
-.app-wrapper {
-  min-width: 1045px;
-  max-width: 1045px;
-  min-height: 100vh;
-  margin: 30px auto;
-  background-color: #243731;
-  
-  box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
-  -moz-box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
-  -webkit-box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
-
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-}
-
-
-.holygrail-header {
-  min-width: 1045px;
-  min-height: 100px;
-  display: flex;
-  flex-direction: column;
-}
-
-.holygrail-header h1 {
-  margin: 10px auto;
-  font-size: 30px;
-  text-decoration: underline;
-  text-shadow: 2px 2px 6px #2c2c2c;
-}
-
-.holygrail-body {
-  display: flex;
-  flex: 1;
-}
-
-.holygrail-content {
-  flex: 1;
-}
-
-.holygrail-left {
-  flex: 0 0 10em;
-}
-
-.holygrail-right {
-  flex: 0 0 2em;
-}
-
-.holygrail-left {
-  order: -1;
-}
-
-.holygrail-footer {
-  min-width: 1045px;
-  min-height: 100px;
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-span {
-  padding-top: 10px;
-  padding-left: 20px;
 }

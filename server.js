@@ -33,6 +33,7 @@ router.get('/', (req, res) => {
 //FIXME: could refactor the app.xyz endpoints by leveraging router
 app.use('/api', router);
 
+
 const isInt = (value) => {
   return !isNaN(value) &&
     parseInt(Number(value)) == value &&

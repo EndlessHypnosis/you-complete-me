@@ -15,7 +15,6 @@ class UserRegister extends Component {
     };
   }
 
-
   fetchPGUser(uid) {
     getPGUser(uid)
       .then(user => {
@@ -23,7 +22,6 @@ class UserRegister extends Component {
         this.props.history.push('/collectinfo');
       })
   }
-
 
   initializeUserInDataBase(data) {
     fetch('http://localhost:3100/api/v1/users', {
@@ -39,20 +37,16 @@ class UserRegister extends Component {
         if (response.status == 201) {
           // set PGUser to newly registered user becuase of auto login
           this.fetchPGUser(data.payload.uid);
-          // send user to get more info
-          // this.props.history.push('/collectinfo');
         }
         if (response.status == 422) {
           console.log(response.error);
         }
       })
       .catch(error => console.log('Error Creating User', error));
-
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-
     const email = this.refs.email.value;
     const password = this.refs.password.value;
     this.props.registerUser({ email, password }).then((data) => {
@@ -60,13 +54,10 @@ class UserRegister extends Component {
         this.setState({ message: data.payload.errorMessage })
           ;
       } else {
-
         // Initialize anything else for the user (maybe in postgres)
         this.initializeUserInDataBase(data);
-
       }
-    }
-    );
+    });
   }
 
   render() {
@@ -78,8 +69,6 @@ class UserRegister extends Component {
               {this.state.message}
             </p>
           }
-
-          
           <div className='pt-card pt-elevation-0'>
           <h3>Register</h3>
             <p>
@@ -93,7 +82,6 @@ class UserRegister extends Component {
                 />
               </label>
             </p>
-
             <p>
               <label className='pt-label'>
                 Password:
@@ -109,12 +97,10 @@ class UserRegister extends Component {
               <button type="submit" className='pt-button pt-intent-primary'>Register</button>
             </p>
           </div>
-
         </form>
       </div>
     );
   }
-
 }
 
 function mapDispatchToProps(dispatch) {

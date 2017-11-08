@@ -7,14 +7,14 @@ import Notifications, { success } from 'react-notification-system-redux';
 
 
 const notificationStyle = {
-  NotificationItem: { // Override the notification item
-    DefaultStyle: { // Applied to every notification, regardless of the notification level
+  NotificationItem: { 
+    DefaultStyle: { 
       margin: '10px 5px 2px 1px',
       borderRadius: '12px',
       fontSize: '18px',
     },
 
-    success: { // Applied only to the success notification item
+    success: { 
       color: '#000000',
       fontSize: '20px',
       backgroundColor: '#ffffff',
@@ -53,34 +53,22 @@ const notificationStyle = {
   }
 }
 
-
-
-// TO-DO:
-// when changing display name in profile,
-// it doesn't update till you get back to root
-
 class Aside extends Component {
   constructor(props) {
     super(props);
-    // this.props.fetchUser();
   }
-
-
 
   renderUserMenu() {
     // if current user exists and user id exists than make user navigation
     if (this.props.currentUser && this.props.currentUser.uid) {
       return (
         <div className='aside-wrapper'>
-
           <button onClick={() => {
             this.props.history.push('/');
           }} className='pt-button pt-intent-primary'>Home</button>
-
           <button onClick={() => {
             this.props.history.push('/profile');
           }} className='pt-button'>Profile</button>
-
           <button onClick={() => {
             this.props.logoutUser().then(data => {
               this.props.fetchUser().then(data => {
@@ -88,25 +76,20 @@ class Aside extends Component {
               })
             });
           }} className='pt-button'>Logout</button>
-
         </div>
       );
     } else {
       return (
         <div className='aside-wrapper'>
-
           <button onClick={() => {
             this.props.history.push('/');
           }} className='pt-button pt-intent-primary'>Home</button>
-
           <button onClick={() => {
             this.props.history.push('/login');
           }} className='pt-button'>Login</button>
-
           <button onClick={() => {
             this.props.history.push('/register');
           }} className='pt-button'>Register</button>
-
         </div>
       );
     }
@@ -115,9 +98,7 @@ class Aside extends Component {
   render() {
     return (
       <div>
-
         {this.renderUserMenu()}
-
         <Notifications notifications={this.props.notifications}
           style={notificationStyle}
         />

@@ -24,13 +24,8 @@ class UserProfile extends Component {
         this.setState({ message: data.payload.errorMessage });
       } else {
         this.props.history.push('/');
-
-        // this.setState({
-        //   message: 'Update successful',
-        // });
       }
-    }
-    );
+    });
   }
 
   render() {
@@ -46,7 +41,6 @@ class UserProfile extends Component {
               {this.state.message}
             </div>
           }
-          
           <div className='pt-card pt-elevation-0'>
             <h3>User Profile</h3>
             <p>
@@ -60,7 +54,6 @@ class UserProfile extends Component {
                 />
               </label>
             </p>
-
             <p>
               <label className='pt-label'>
                 Display name:
@@ -81,17 +74,14 @@ class UserProfile extends Component {
       </div>
     );
   }
-
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchUser, updateUser }, dispatch);
 }
 
-
 function mapStateToProps(state) {
   return { currentUser: state.currentUser };
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

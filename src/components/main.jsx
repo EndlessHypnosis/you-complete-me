@@ -4,32 +4,17 @@ import { connect } from "react-redux";
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import * as Blueprint from "@blueprintjs/core";
 import requireAuth from '../utils/authenticated';
-// import FireBaseUtils from '../utils/firebase';
-// import TasksIndex from '../components/tasks/tasks_index';
-// import SnorIndex from '../components/snor/snor_index';
 import UserLogin from './user/login';
 import UserRegister from './user/register';
 import UserProfile from './user/profile';
 import UserLogout from './user/logout';
 import Dashboard from './dashboard';
 import Booking from './booking';
-// FIXME: remove these
-import * as Blueprint from "@blueprintjs/core";
 import { addUser } from '../actions/index';
 import { getPGUser } from '../utils/local_api';
 import { fetchUser } from "../actions/firebase_actions";
-
-
-// import sassStyles from './Second.module.scss';
-
-// import ResetPassword from '../components/user/reset_password';
-
-// TODO:
-// - Need to move all firebase database references to
-//   probably class level properties? just something global
-
-// TODO: move /collectinfo to new component
 
 class Main extends Component {
   constructor(props) {
@@ -45,7 +30,6 @@ class Main extends Component {
     };
   }
 
-
   fetchPGuser() {
     if (this.props.currentUser && this.props.currentUser.uid) {
       getPGUser(this.props.currentUser.uid)
@@ -57,12 +41,10 @@ class Main extends Component {
 
   onFormCollectInfoSubmit(event) {
     event.preventDefault();
-
     if (this.state.skillLevel === '') {
       //TODO: change to notification
       alert('Please select Training Level first')
     } else {
-    //TODO: move to action
     fetch(`http://localhost:3100/api/v1/users/${this.props.currentUser.uid}`, {
       method: 'PATCH',
       headers: {
@@ -85,9 +67,7 @@ class Main extends Component {
         }
       })
       .catch(error => console.log('Error Creating User', error));
-
     }
-
   }
 
   onSkillLevelChange(e) {
@@ -97,7 +77,6 @@ class Main extends Component {
   }
 
   renderLoginCheck() {
-    // if current user exists and user id exists than make user navigation
     if (this.props.currentUser && this.props.currentUser.uid) {
       return (
         <div>
@@ -106,7 +85,7 @@ class Main extends Component {
                 Hello, {this.props.currentUser.displayName}
               </p>
             : <div className='pt-callout pt-intent-primary pt-intro-secondary'>
-                Display Name can bet set in
+                You can set your display name here:
                 <button className='pt-button pt-small pt-intent-primary' onClick={() => {
                   this.props.history.push('/profile');
                 }}>profile</button>
@@ -221,9 +200,6 @@ class Main extends Component {
               </div>
             );
           }} />
-
-
-
         </div>
       );
     }
@@ -244,28 +220,23 @@ class Main extends Component {
           <Route path="/login" component={UserLogin} />
           <Route path="/logout" component={UserLogout} />
           <Route path="/register" component={UserRegister} />
-
         </div>
       );
     }
   }
 
   render() {
-
     return (
       <div>
         {this.renderLoginCheck()}
       </div>
     );
-
   }
 }
-
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchUser, addUser }, dispatch);
 }
-
 
 function mapStateToProps(mall) {
   return {

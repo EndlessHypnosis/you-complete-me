@@ -8,63 +8,42 @@ import Schedule from './schedule';
 import Training from './training';
 import Feedback from './feedback';
 
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    // this.onFormSubmit = this.onFormSubmit.bind(this);
     this.state = {
       message: ''
     };
   }
 
   componentDidMount() {
-
     if (this.props.PGUser && this.props.PGUser.id) {
-      
       getFeedback(this.props.PGUser.id)
         .then(feedback => {
           this.props.storeFeedback(feedback);
         })
-
       getSchedules(this.props.PGUser.id)
         .then(schedules => {
           this.props.storeSchedules(schedules);
         })
-
       getAllTraining()
         .then(training => {
           this.props.storeTraining(training);
         })
     }
-
   }
 
   render() {
-
     const scheduleList = this.props.schedule.map(schedule =>
       <Schedule key={`pt-schedule-${schedule.id}`} schedule={schedule} />
     )
-    
     const feedbackList = this.props.feedback.map(feedback =>
       <Feedback key={`pt-feedback-${feedback.id}`} feedback={feedback} />
     )
-    
     const trainingList = this.props.training.map(training =>
       <Training key={`pt-training-${training.id}`} training={training} />
     )
     
-    // const feedbackCompArray = Object.keys(this.state.feedbackArray)
-    // .map(feedback => {
-    //   return <Feedback key={feedback}
-    //     details={this.state.feedbackArray[feedback]}
-    //     feedbackId={feedback}
-    //   />
-    // })
-
-
-
-
     return (
       <div>
         <h2>Dashboard</h2>
@@ -131,7 +110,6 @@ class Dashboard extends Component {
       </div>
     );
   }
-
 }
 
 function mapDispatchToProps(dispatch) {

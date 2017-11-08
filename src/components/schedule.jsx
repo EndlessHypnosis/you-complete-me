@@ -9,9 +9,7 @@ class Schedule extends Component {
   }
 
   render() {
-
     let goodDate = moment(this.props.schedule.scheduled_for_date).format('MMMM Do YYYY, hh:mm');
-    
     return (
       <div className='pt-callout pt-intent-primary schedule-card'>
         <p><strong>Schedule For:</strong> {goodDate}</p>
@@ -21,7 +19,6 @@ class Schedule extends Component {
       </div>
     );
   }
-
 }
 
 function mapStateToProps(mall) {
