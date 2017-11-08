@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
-// import { bindActionCreators } from 'redux';
-// import { fetchFeedback } from '../actions/index';
 import { DatePicker } from "@blueprintjs/datetime";
 import { saveBooking } from '../utils/local_api';
 const moment = require('moment');
@@ -21,54 +19,29 @@ class Booking extends Component {
     };
   }
 
-
   onFormCreateBookingSubmit(event) {
     event.preventDefault();
-
-    // FIXME: this math isn't adding up correctly
     let bookingDate = new Date(this.state.pickedDate);
     bookingDate = moment(bookingDate).subtract(1, 'd');
     bookingDate = moment(bookingDate).add(this.state.timeHourInput, 'h').toDate();
     bookingDate = moment(bookingDate).add(this.state.timeMinutesInput, 'm').toDate();
-
-
     let bookingPayload = {
       mentor_user_id: this.props.PGUser.id,
       scheduled_for_date: bookingDate,
       length_in_minutes: this.state.lengthInput
     }
-
-    // console.log('NEW BOOKING:', bookingPayload);
-
     saveBooking(bookingPayload)
     .then(booking => {
-      console.log('BOOK SUCCESSFULLY CREATED:', booking);
       this.setState({ booking }, () => {
         this.props.history.push('/booking/saved');
       });
     })
-
-
   }
 
-  // componentDidMount() {
-  //   this.props.fetchFeedback()
-  //     .then(results => results.payload.json())
-  //     .then(feedback => {
-  //       console.log('FEEDBACK:', feedback);
-  //       this.setState({
-  //         feedbackArray: feedback
-  //       })
-  //     })
-  // }
-
   render() {
-
     return (
       <div>
-
         <Route path='/booking/saved' render={(props) => {
-          
           return (
             <div>
               <div className='pt-callout pt-intent-success'>
@@ -80,7 +53,7 @@ class Booking extends Component {
         }} />
 
         <h2>
-          <button className='pt-button pt-icon-caret-left pt-intent-success'
+          <button className='pt-button pt-icon-caret-left pt-intent-primary'
             onClick={() => {
               this.props.history.push('/dashboard');
             }}>Back to Dashboard</button>
@@ -88,13 +61,8 @@ class Booking extends Component {
         </h2>
         <p>We're so pleased to see you offering your services to our young Padawans or to your fellow Jedi Masters</p>
         <p>You can use the form below to create an open training session</p>
-
-
         <div className='pt-card pt-elevation-1'>
-        
-        
           <form id="formCreateBooking" role="form" onSubmit={this.onFormCreateBookingSubmit}>
-          
             <div className="pt-form-group pt-callout">
               <label className="pt-label pt-label-bigger" htmlFor="jm-date-input">
                 Date of Training
@@ -106,11 +74,10 @@ class Booking extends Component {
                   value={this.state.pickedDate} />
               </div>
             </div>
-
             <div className="pt-form-group pt-callout">
               <label className="pt-label pt-label-bigger">
                 Time of Training
-                        <span className="pt-text-muted">( in 24 hour format )</span>
+                <span className="pt-text-muted">( in 24 hour format )</span>
               </label>
               <div className="pt-form-content">
                 <input
@@ -133,11 +100,10 @@ class Booking extends Component {
                   value={this.state.timeMinutesInput} />
               </div>
             </div>
-
             <div className="pt-form-group pt-callout">
               <label className="pt-label pt-label-bigger" htmlFor="jm-length-input">
                 Length of Training
-                        <span className="pt-text-muted">( in minutes, eg: 15, 30, 60, 90 )</span>
+                <span className="pt-text-muted">( in minutes, eg: 15, 30, 60, 90 )</span>
               </label>
               <div className="pt-form-content">
                 <input
@@ -152,28 +118,15 @@ class Booking extends Component {
               </div>
             </div>
 
-
             <button
               className="pt-button pt-intent-primary"
               type="submit">Save New Booking</button>
           </form>
-        
-        
         </div>
-
-
-
       </div>
     );
   }
-
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({
-//     fetchFeedback
-//   }, dispatch);
-// }
 
 function mapStateToProps(mall) {
   return {

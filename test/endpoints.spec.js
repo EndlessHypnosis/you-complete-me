@@ -22,7 +22,6 @@ describe('Static Content Routes', () => {
       });
   });
 
-
   it('should return a 404 for a route that does not exist', done => {
     chai.request(server)
       .get('/foo')
@@ -45,7 +44,6 @@ describe('API Routes', () => {
   describe('GET /api/v1/users/:id', () => {
 
     it('should return mentor user', done => {
-
       let mentor = {
         firebase_uid: 'A3g4bbXDgwggGwcsvwDF7S6XkJG2',
         email: 'jedi1@jedi1.com',
@@ -63,7 +61,6 @@ describe('API Routes', () => {
       chai.request(server)
         .get(`/api/v1/users/${mentor.firebase_uid}`)
         .end((error, response) => {
-
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('array');
@@ -80,7 +77,6 @@ describe('API Routes', () => {
     });
 
     it('should return apprentice user', done => {
-
       let apprentice = {
         firebase_uid: 'nXcCfHuZUacfx3ewzSdkDtipMzs1',
         email: 'padawan1@padawan1.com',
@@ -117,11 +113,8 @@ describe('API Routes', () => {
   describe('POST /api/v1/users', () => {
 
     it('should create a new user successfully', done => {
-
       let aaa_uid = 'El50ywd09XNC7O1MP3FlCcYJj692';
       let bbb_uid = 'DiC6RzLYrGVC33kIF31I5MLpROf2';
-
-
       chai.request(server)
         .get(`/api/v1/users/${aaa_uid}`)
         .end((error, response) => {
@@ -144,7 +137,6 @@ describe('API Routes', () => {
               response.body.should.have.property('email');
               response.body.email.should.equal('aaa@aaa.com');
               done();
-
             });
         });
     });
@@ -161,7 +153,6 @@ describe('API Routes', () => {
           done();
         });
     });
-
   });
 
   describe('PATCH /api/v1/users/:id', () => {
@@ -179,7 +170,6 @@ describe('API Routes', () => {
         training_as_jedi_with_padawan_attempted: '0',
         training_as_jedi_with_padawan_success: '0'
       }
-
       chai.request(server)
         .get(`/api/v1/users/${apprentice.firebase_uid}`)
         .end((error, response) => {
@@ -203,7 +193,6 @@ describe('API Routes', () => {
               response.body.should.have.property('grade');
               response.body.grade.should.equal('senior dev');
               done();
-
             });
         });
     });
@@ -221,12 +210,10 @@ describe('API Routes', () => {
           done();
         });
     });
-
   });
 
   describe('GET /api/v1/feedback/:id', () => {
     it('should get all feedback for a specific user', done => {
-
       let apprentice = {
         firebase_uid: 'nXcCfHuZUacfx3ewzSdkDtipMzs1',
         email: 'padawan1@padawan1.com',
@@ -241,7 +228,6 @@ describe('API Routes', () => {
         training_as_jedi_with_padawan_success: '0'
       };
       let apprenticePGid;
-
       chai.request(server)
         .get(`/api/v1/users/${apprentice.firebase_uid}`)
         .end((error, response) => {
@@ -274,12 +260,10 @@ describe('API Routes', () => {
           done();
         });
     });
-
   });
 
   describe('GET /api/v1/schedules/:id', () => {
     it('should get all schedules relevant to a mentor', done => {
-
       let mentor = {
         firebase_uid: 'A3g4bbXDgwggGwcsvwDF7S6XkJG2',
         email: 'jedi1@jedi1.com',
@@ -294,7 +278,6 @@ describe('API Routes', () => {
         training_as_jedi_with_padawan_success: '1'
       };
       let mentorPGid;
-
       chai.request(server)
         .get(`/api/v1/users/${mentor.firebase_uid}`)
         .end((error, response) => {
@@ -308,7 +291,6 @@ describe('API Routes', () => {
               response.should.be.json;
               response.body.should.be.a('array');
               response.body.length.should.equal(3);
-              
               response.body[0].should.have.property('appprentice_user_id');
               response.body[0].should.have.property('mentor_user_id');
               response.body[0].should.have.property('scheduled_for_date');
@@ -331,7 +313,6 @@ describe('API Routes', () => {
           done();
         });
     });
-
   });
 
   describe('GET /api/v1/topics', () => {
@@ -339,7 +320,6 @@ describe('API Routes', () => {
       chai.request(server)
         .get(`/api/v1/topics`)
         .end((error, response) => {
-          
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('array');
@@ -359,7 +339,6 @@ describe('API Routes', () => {
       chai.request(server)
         .get(`/api/v1/topics`)
         .end((error, response) => {
-          
           response.should.have.status(200);
           response.body.filter(item => {
             return (item.parent === mockData.parent
@@ -372,7 +351,6 @@ describe('API Routes', () => {
 
   describe('GET /api/v1/training', () => {
     it('should get all open training sessions', done => {
-
       chai.request(server)
         .get(`/api/v1/training`)
         .end((error, response) => {
@@ -385,13 +363,10 @@ describe('API Routes', () => {
           done();
         });
     });
-
   });
 
   describe('POST /api/v1/training', () => {
-
     it('should create a new training booking', done => {
-
       let mentor = {
         firebase_uid: 'A3g4bbXDgwggGwcsvwDF7S6XkJG2',
         email: 'jedi1@jedi1.com',
@@ -406,13 +381,11 @@ describe('API Routes', () => {
         training_as_jedi_with_padawan_success: '1'
       };
       let mentorPGid;
-
       chai.request(server)
         .get(`/api/v1/users/${mentor.firebase_uid}`)
         .end((error, response) => {
           response.body[0].firebase_uid.should.equal(mentor.firebase_uid);
           mentorPGid = response.body[0].id;
-          // get training to check current length
           // post training
           chai.request(server)
           .post('/api/v1/training')
@@ -432,7 +405,6 @@ describe('API Routes', () => {
             response.body.attributes.should.have.property('length_in_minutes');
             response.body.attributes.length_in_minutes.should.equal('120');
             done();
-
           });
         });
     });
@@ -450,9 +422,6 @@ describe('API Routes', () => {
           done();
         });
     });
-
   });
-
-
-
+  
 });

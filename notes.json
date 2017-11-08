@@ -33,17 +33,14 @@ Jedi Master
 TO DO
 ===========
 -[port issues] heroku deployment
-!- styling (logout)(remove border)
+-[done] styling (logout)(remove border)
 -[low priority] make the feedback more random
-!- add eslint
 -[done] add server side TESTING
 -[done] bookshelf.js
-!- sass styles
 -[not in mvp] notifications?
     /collect info alert
 !- readme.md
-!- format dates
-
+-[done] code refactor
 
 Database Structure
 --------------------
