@@ -186,7 +186,11 @@ const createTraining = (knex, trainingPayload, dataSet) => {
           );
         }
 
-        feedbackPromises.push(createFeedback(knex, feedbackPayload));
+        if (trainingPayload.appprentice_user_id) {
+          
+          feedbackPromises.push(createFeedback(knex, feedbackPayload));
+        }
+
       });
       return Promise.all(feedbackPromises);
     })

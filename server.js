@@ -59,8 +59,11 @@ let Training = bookshelf.Model.extend({
   tableName: 'training'
 })
 
+let Topics = bookshelf.Model.extend({
+  tableName: 'topics'
+})
 
-// GET /users/:id
+
 app.get('/api/v1/users/:id', (request, response) => {
   database('users')
   .where('firebase_uid', request.params.id)
@@ -81,14 +84,14 @@ app.get('/api/v1/users/:id', (request, response) => {
 app.post('/api/v1/users', (request, response) => {
   const { firebase_uid, email } = request.body;
 
-  // if (!orderTotal || !(orderTotal > 0.0)) {
-  //   return response
-  //     .status(422)
-  //     .json({
-  //       status: 422,
-  //       error: 'Order not saved. Invalid order total'
-  //     });
-  // }
+  if (!firebase_uid || !email) {
+    return response
+      .status(422)
+      .json({
+        status: 422,
+        error: 'User not Created. Invalid request parameters'
+      });
+  }
 
   database('users').insert({
     firebase_uid,
@@ -132,8 +135,6 @@ app.patch('/api/v1/users/:id', (request, response) => {
       });
 });
 
-
-// GET /feedback
 app.get('/api/v1/feedback/:id', (request, response) => {
   database('feedback')
     .where('to_user_id', request.params.id)
@@ -151,7 +152,6 @@ app.get('/api/v1/feedback/:id', (request, response) => {
     });
 });
 
-// GET /schedules
 app.get('/api/v1/schedules/:id', (request, response) => {
   database('training')
     .where('appprentice_user_id', request.params.id)
@@ -172,18 +172,16 @@ app.get('/api/v1/schedules/:id', (request, response) => {
     });
 });
 
-// GET /training
-// app.get('/api/v1/trainingOLD', (request, response) => {
-//   database('training')
-//     .where('status', 'open')
-//     .select()
-//     .then(training => {
-//       response.status(200).json(training);
-//     })
-//     .catch(error => {
-//       response.status(500).json({ error });
-//     });
-// });
+app.get('/api/v1/topics', (request, response) => {
+  
+  new Topics().fetchAll()
+    .then(topics => {
+      response.status(200).json(topics);
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
+})
 
 app.get('/api/v1/training', (request, response) => {
   new Training().where('status', 'open').fetchAll()
@@ -202,6 +200,17 @@ app.post('/api/v1/training', (request, response) => {
     length_in_minutes
   } = request.body;
 
+
+  if (!mentor_user_id || !scheduled_for_date || !length_in_minutes) {
+    return response
+      .status(422)
+      .json({
+        status: 422,
+        error: 'Training not Created. Invalid request parameters'
+      });
+  }
+
+
   let booking = new Training();
   booking.set('mentor_user_id', mentor_user_id);
   booking.set('scheduled_for_date', scheduled_for_date);
@@ -210,10 +219,11 @@ app.post('/api/v1/training', (request, response) => {
   booking.set('status', 'open');
 
   booking.save().then(booking => {
-    console.log('BOOKING SAVED:', booking);
     response.status(201).json(Object.assign({ status: 201 }, booking));
   })
   .catch(error => {
+    console.log('WHAT IS THIS', error);
+    
     response.status(500).json(Object.assign({ status: 500 }, { error }));
   });
 
