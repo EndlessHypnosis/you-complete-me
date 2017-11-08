@@ -165,9 +165,7 @@ describe('API Routes', () => {
   });
 
   describe('PATCH /api/v1/users/:id', () => {
-
     it('should create a new user successfully', done => {
-
       let apprentice = {
         firebase_uid: 'nXcCfHuZUacfx3ewzSdkDtipMzs1',
         email: 'padawan1@padawan1.com',
@@ -181,7 +179,6 @@ describe('API Routes', () => {
         training_as_jedi_with_padawan_attempted: '0',
         training_as_jedi_with_padawan_success: '0'
       }
-
 
       chai.request(server)
         .get(`/api/v1/users/${apprentice.firebase_uid}`)
@@ -226,6 +223,61 @@ describe('API Routes', () => {
     });
 
   });
+
+  describe('GET /api/v1/feedback/:id', () => {
+    it('should get all feedback for a specific user', done => {
+
+      let apprentice = {
+        firebase_uid: 'nXcCfHuZUacfx3ewzSdkDtipMzs1',
+        email: 'padawan1@padawan1.com',
+        slack_id: 'padawan1',
+        grade: 'Mod 1',
+        skill_level: 'Padawan',
+        training_as_padawan_with_jedi_attempted: '2',
+        training_as_padawan_with_jedi_success: '1',
+        training_as_jedi_with_jedi_attempted: '0',
+        training_as_jedi_with_jedi_success: '0',
+        training_as_jedi_with_padawan_attempted: '0',
+        training_as_jedi_with_padawan_success: '0'
+      };
+      let apprenticePGid;
+
+      chai.request(server)
+        .get(`/api/v1/users/${apprentice.firebase_uid}`)
+        .end((error, response) => {
+          response.body[0].firebase_uid.should.equal(apprentice.firebase_uid);
+          apprenticePGid = response.body[0].id;
+          // get feedback
+          chai.request(server)
+            .get(`/api/v1/feedback/${apprenticePGid}`)
+            .end((error, response) => {
+              response.should.have.status(200);
+              response.should.be.json;
+              response.body.should.be.a('array');
+              response.body.length.should.equal(3);
+              response.body[0].should.have.property('from_user_id');
+              response.body[0].should.have.property('from_user_skill_level');
+              response.body[0].should.have.property('to_user_id');
+              response.body[0].should.have.property('to_user_skill_level');
+              response.body[0].should.have.property('message');
+              done();
+            });
+        });
+    });
+
+    it('should return no feedback for a user that doesnt exist', done => {
+      chai.request(server)
+        .get('/api/v1/feedback/1')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.body.should.have.length(0);
+          done();
+        });
+    });
+
+  });
+
+
 
   describe('GET /api/v1/topics', () => {
     it('should return all topics', done => {

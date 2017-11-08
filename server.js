@@ -64,7 +64,6 @@ let Topics = bookshelf.Model.extend({
 })
 
 
-// GET /users/:id
 app.get('/api/v1/users/:id', (request, response) => {
   database('users')
   .where('firebase_uid', request.params.id)
@@ -136,8 +135,6 @@ app.patch('/api/v1/users/:id', (request, response) => {
       });
 });
 
-
-// GET /feedback
 app.get('/api/v1/feedback/:id', (request, response) => {
   database('feedback')
     .where('to_user_id', request.params.id)
@@ -155,7 +152,6 @@ app.get('/api/v1/feedback/:id', (request, response) => {
     });
 });
 
-// GET /schedules
 app.get('/api/v1/schedules/:id', (request, response) => {
   database('training')
     .where('appprentice_user_id', request.params.id)
@@ -175,20 +171,6 @@ app.get('/api/v1/schedules/:id', (request, response) => {
       response.status(500).json({ error });
     });
 });
-
-// GET /training
-// app.get('/api/v1/trainingOLD', (request, response) => {
-//   database('training')
-//     .where('status', 'open')
-//     .select()
-//     .then(training => {
-//       response.status(200).json(training);
-//     })
-//     .catch(error => {
-//       response.status(500).json({ error });
-//     });
-// });
-
 
 app.get('/api/v1/topics', (request, response) => {
   
