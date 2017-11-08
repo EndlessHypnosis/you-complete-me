@@ -11,6 +11,7 @@ import requireAuth from '../utils/authenticated';
 import UserLogin from './user/login';
 import UserRegister from './user/register';
 import UserProfile from './user/profile';
+import UserLogout from './user/logout';
 import Dashboard from './dashboard';
 import Booking from './booking';
 // FIXME: remove these
@@ -249,18 +250,17 @@ class Main extends Component {
         <div>
           <Route exact path="/" render={(props) => {
             return (
-              <div>
-
-                <p>No user signed in</p>
-
+              <div className='pt-callout'>
+                <h3>No user signed in</h3>
                 <p>
-                  This application requires you to register an account.
+                  This application currently offers no anonymous access.
+                  Please login or create a new account.
                 </p>
-
               </div>
             );
           }} />
           <Route path="/login" component={UserLogin} />
+          <Route path="/logout" component={UserLogout} />
           <Route path="/register" component={UserRegister} />
 
         </div>

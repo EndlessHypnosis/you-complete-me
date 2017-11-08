@@ -48,7 +48,7 @@ class UserLogin extends Component {
     return (
       <div>
         <div className='pt-callout'>
-          <button className='pt-button pt-small pt-intent-primary' onClick={() => {
+          <button className='pt-button pt-small pt-intent-primary prefill-jedi' onClick={() => {
             this.refs.email.value = 'jedi1@jedi1.com';
             this.refs.password.value = 'jedi1jedi1';
           }}>prefill mentor</button>

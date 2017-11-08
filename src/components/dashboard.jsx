@@ -111,17 +111,23 @@ class Dashboard extends Component {
         <div className='pt-card pt-elevation-1'>
           <h3>Schedule</h3>
           <h5>Upcomming and recent training sessions</h5>
-          { scheduleList }
+          <div className='schedule-wrapper'>
+            { scheduleList }
+          </div>
         </div>
         <div className='pt-card pt-elevation-1'>
           <h3>Feedback</h3>
           <h5>Recent feedback sent by your Jedi Masters</h5>
-          { feedbackList }
+          <div className='schedule-wrapper variant-feedback'>
+            { feedbackList }
+          </div>
         </div>
         <div className='pt-card pt-elevation-1'>
           <h3>Training</h3>
           <h5>Seek out a Jedi Master for training</h5>
-          { trainingList }
+          <div className='schedule-wrapper variant-training'>
+            { trainingList }
+          </div>
         </div>
       </div>
     );

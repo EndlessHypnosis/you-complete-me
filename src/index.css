@@ -7,7 +7,7 @@
 
 body {
   font-family: sans-serif;
-  background-color: #2a3741;
+  background-color: #bdbfbe;
 }
 
 h2 {
@@ -17,6 +17,103 @@ h2 {
 button:focus {
   outline: 0;
 }
+
+.prefill-jedi {
+  margin-right: 10px;
+}
+
+.schedule-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.schedule-card {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.schedule-card:last-child {
+  margin-right: 0;
+}
+
+.variant-feedback {
+  flex-wrap: wrap;
+}
+
+.variant-feedback div {
+  width: 28%
+}
+
+.variant-training {
+  flex-wrap: wrap;
+}
+
+.feedback-card {
+  margin: 10px 20px 10px 10px;
+}
+
+.aside-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aside-wrapper button {
+  width: 75px;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+#formCollectInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#formCollectInfo div {
+  width: 65%;
+}
+
+
+
+#frmLogin, #formCreateBooking, #frmRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#frmRegister div,
+#frmLogin div {
+  width: 50%;
+}
+
+#formCreateBooking>div {
+  width: 60%;
+}
+
+.pt-date-picker-custom {
+  width: 230px;
+}
+
+
+
+
+
+
+
+
+.pt-label-bigger {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 
 .pt-control-indicator {
   outline: 0;
@@ -56,8 +153,6 @@ button:focus {
   outline: 0;
 }
 
-
-
 .pt-dark .pt-datepicker .DayPicker-Day.DayPicker-Day--selected:hover {
   background-color: rgb(40, 77, 54);
 }
@@ -72,11 +167,11 @@ button:focus {
 
 .pt-elevation-0,
 .pt-elevation-1 {
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
-.pt-intro-secondary {
-
+.pt-icon-caret-left {
+  margin-right: 10px;
 }
 
 .pt-intro-secondary button,
@@ -84,10 +179,6 @@ button:focus {
   margin-left: 4px;
   margin-right: 4px;
 }
-
-
-
-
 
 
 
@@ -104,10 +195,11 @@ button:focus {
   max-width: 1045px;
   min-height: 100vh;
   margin: 30px auto;
+  background-color: #243731;
   
-  box-shadow: 0px 0px 10px 2px rgba(119, 119, 119, 0.8);
-  -moz-box-shadow: 0px 0px 10px 2px rgba(119, 119, 119, 0.8);
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(119, 119, 119, 0.8);
+  box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
 
   border-radius: 5px;
   display: flex;
@@ -125,6 +217,8 @@ button:focus {
 .holygrail-header h1 {
   margin: 10px auto;
   font-size: 30px;
+  text-decoration: underline;
+  text-shadow: 2px 2px 6px #2c2c2c;
 }
 
 .holygrail-body {

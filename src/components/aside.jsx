@@ -71,7 +71,11 @@ class Aside extends Component {
     // if current user exists and user id exists than make user navigation
     if (this.props.currentUser && this.props.currentUser.uid) {
       return (
-        <div>
+        <div className='aside-wrapper'>
+
+          <button onClick={() => {
+            this.props.history.push('/');
+          }} className='pt-button pt-intent-primary'>Home</button>
 
           <button onClick={() => {
             this.props.history.push('/profile');
@@ -89,7 +93,11 @@ class Aside extends Component {
       );
     } else {
       return (
-        <div>
+        <div className='aside-wrapper'>
+
+          <button onClick={() => {
+            this.props.history.push('/');
+          }} className='pt-button pt-intent-primary'>Home</button>
 
           <button onClick={() => {
             this.props.history.push('/login');
@@ -108,13 +116,8 @@ class Aside extends Component {
     return (
       <div>
 
-        
-
-        <button onClick={() => {
-          this.props.history.push('/dashboard');
-        }} className='pt-button pt-intent-primary'>Home</button>
-
         {this.renderUserMenu()}
+
         <Notifications notifications={this.props.notifications}
           style={notificationStyle}
         />

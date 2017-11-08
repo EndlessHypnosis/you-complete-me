@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import { fetchFeedback } from '../actions/index';
+const moment = require('moment');
 
 class Feedback extends Component {
   constructor(props) {
@@ -26,11 +27,12 @@ class Feedback extends Component {
   // }
 
   render() {
+    let dateReceived = moment(this.props.feedback.updated_at).format('MMMM Do YYYY, hh:mm');
 
     return (
-      <div>
-        Date: {this.props.feedback.updated_at}
-        Feedback: {this.props.feedback.message}
+      <div className='pt-callout feedback-card'>
+        <p><strong>Date: </strong>{dateReceived}</p>
+        <p><strong>Feedback: </strong>{this.props.feedback.message}</p>
       </div>
     );
   }
