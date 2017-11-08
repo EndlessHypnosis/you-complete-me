@@ -190,7 +190,7 @@ button:focus {
 }
 
 .pt-dark .pt-datepicker {
-  background-color: #2E2F45;
+  background-color: rgb(28, 28, 28);
   border-radius: 0;
 }
 

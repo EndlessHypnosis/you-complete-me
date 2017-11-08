@@ -53,7 +53,7 @@ class Booking extends Component {
         }} />
 
         <h2>
-          <button className='pt-button pt-icon-caret-left pt-intent-success'
+          <button className='pt-button pt-icon-caret-left pt-intent-primary'
             onClick={() => {
               this.props.history.push('/dashboard');
             }}>Back to Dashboard</button>

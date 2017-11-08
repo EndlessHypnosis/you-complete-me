@@ -37,11 +37,10 @@ TO DO
 -[low priority] make the feedback more random
 -[done] add server side TESTING
 -[done] bookshelf.js
-!- sass styles
 -[not in mvp] notifications?
     /collect info alert
 !- readme.md
-!- code refactor
+-[done] code refactor
 
 Database Structure
 --------------------

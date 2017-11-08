@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import * as Blueprint from "@blueprintjs/core";
 import requireAuth from '../utils/authenticated';
 import UserLogin from './user/login';
 import UserRegister from './user/register';
@@ -173,7 +172,7 @@ class Main extends Component {
                         If you're here to train on these (and many other) areas, we recommend starting as a Padawan. Don't worry,
                         you can easily graduate to become a Jedi Master later on :)
                       </p>
-                      <label className='pt-control pt-radio pt-large'>
+                      <label className='pt-control'>
                         <input 
                           type='radio'
                           name='radio-start-skill-level'
@@ -182,7 +181,7 @@ class Main extends Component {
                         <span className='pt-control-indicator'></span>
                         Start My Training at Padawan Level
                       </label>
-                      <label className='pt-control pt-radio pt-large'>
+                      <label className='pt-control'>
                         <input
                           type='radio'
                           name='radio-start-skill-level'
