@@ -18,6 +18,39 @@ button:focus {
   outline: 0;
 }
 
+.prefill-jedi {
+  margin-right: 10px;
+}
+
+.schedule-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.schedule-card {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.schedule-card:last-child {
+  margin-right: 0;
+}
+
+.variant-feedback {
+  flex-wrap: wrap;
+}
+
+.variant-feedback div {
+  width: 28%
+}
+
+
+
+
+
 .pt-control-indicator {
   outline: 0;
 }
@@ -55,8 +88,6 @@ button:focus {
 .pt-dark .pt-datepicker .DayPicker-Day.DayPicker-Day--selected:focus {
   outline: 0;
 }
-
-
 
 .pt-dark .pt-datepicker .DayPicker-Day.DayPicker-Day--selected:hover {
   background-color: rgb(40, 77, 54);
@@ -98,7 +129,26 @@ button:focus {
   width: 65%;
 }
 
+#frmRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+#frmRegister div {
+  width: 50%;
+}
+
+#frmLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#frmLogin div {
+  width: 50%;
+
+}
 
 
 

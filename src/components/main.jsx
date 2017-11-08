@@ -250,12 +250,12 @@ class Main extends Component {
         <div>
           <Route exact path="/" render={(props) => {
             return (
-              <div>
+              <div className='pt-callout'>
 
-                <p>No user signed in</p>
-
+                <h3>No user signed in</h3>
                 <p>
-                  This application requires you to register an account.
+                  This application currently offers no anonymous access.
+                  Please login or create a new account.
                 </p>
 
               </div>
