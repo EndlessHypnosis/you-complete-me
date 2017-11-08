@@ -1,13 +1,16 @@
 const express = require('express');
+
 const app = express();
 const router = express.Router();
 app.set('port', process.env.PORT || 3100);
 
 const bodyParser = require('body-parser');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const path = require('path');
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const environment = process.env.NODE_ENV || 'development';
@@ -30,62 +33,66 @@ router.get('/', (req, res) => {
   // This route should serve static assets.
 });
 
-//FIXME: could refactor the app.xyz endpoints by leveraging router
+// FIXME: could refactor the app.xyz endpoints by leveraging router
 app.use('/api', router);
 
-
+/* eslint-disable arrow-body-style */
 const isInt = (value) => {
+  /* eslint-enable arrow-body-style */
   return !isNaN(value) &&
-    parseInt(Number(value)) == value &&
+    parseInt(Number(value), 10) === value &&
     !isNaN(parseInt(value, 10));
 };
 
 // BOOKSHELF MODELS
-let Training = bookshelf.Model.extend({
-  tableName: 'training'
+const Training = bookshelf.Model.extend({
+  tableName: 'training',
 });
 
-let Topics = bookshelf.Model.extend({
-  tableName: 'topics'
+const Topics = bookshelf.Model.extend({
+  tableName: 'topics',
 });
 
 app.get('/api/v1/users/:id', (request, response) => {
   database('users')
-  .where('firebase_uid', request.params.id)
-  .select()
-    .then(users => {
+    .where('firebase_uid', request.params.id)
+    .select()
+    .then((users) => {
       if (!users.length) {
         return response.status(404).json({
-          error: 'Could not find any Users'
+          error: 'Could not find any Users',
         });
       }
-      response.status(200).json(users);
+      return response.status(200).json(users);
     })
-    .catch(error => {
+    .catch((error) => {
       response.status(500).json({ error });
     });
 });
 
+/* eslint-disable consistent-return */
 app.post('/api/v1/users', (request, response) => {
+  /* eslint-enable consistent-return */
   const { firebase_uid, email } = request.body;
-
+  /* eslint-disable camelcase */
   if (!firebase_uid || !email) {
+  /* eslint-enable camelcase */
     return response
       .status(422)
       .json({
         status: 422,
-        error: 'User not Created. Invalid request parameters'
+        error: 'User not Created. Invalid request parameters',
       });
-  };
+  }
 
   database('users').insert({
     firebase_uid,
-    email
+    email,
   }, '*')
-    .then(users => {
+    .then((users) => {
       response.status(201).json(Object.assign({ status: 201 }, users[0]));
     })
-    .catch(error => {
+    .catch((error) => {
       response.status(500).json(Object.assign({ status: 500 }, { error }));
     });
 });
@@ -101,33 +108,35 @@ app.patch('/api/v1/users/:id', (request, response) => {
     training_as_jedi_with_jedi_attempted,
     training_as_jedi_with_jedi_success,
     training_as_jedi_with_padawan_attempted,
-    training_as_jedi_with_padawan_success
+    training_as_jedi_with_padawan_success,
   } = request.body;
 
   database('users')
     .where('firebase_uid', request.params.id)
     .update(request.body, '*')
-      .then(users => {
-        if (!users[0]) {
-          return response.status(422).json({
-            error: 'Could not update user. Unexpected error'
-          });
-        }
-        response.status(200).json(Object.assign({ status: 200 }, users[0]));
-      })
-      .catch(error => {
-        response.status(500).json(Object.assign({ status: 500 }, { error }));
-      });
+    /* eslint-disable consistent-return */
+    .then((users) => {
+      /* eslint-enable consistent-return */
+      if (!users[0]) {
+        return response.status(422).json({
+          error: 'Could not update user. Unexpected error',
+        });
+      }
+      response.status(200).json(Object.assign({ status: 200 }, users[0]));
+    })
+    .catch((error) => {
+      response.status(500).json(Object.assign({ status: 500 }, { error }));
+    });
 });
 
 app.get('/api/v1/feedback/:id', (request, response) => {
   database('feedback')
     .where('to_user_id', request.params.id)
     .select()
-    .then(feedback => {
+    .then((feedback) => {
       response.status(200).json(feedback);
     })
-    .catch(error => {
+    .catch((error) => {
       response.status(500).json({ error });
     });
 });
@@ -138,67 +147,72 @@ app.get('/api/v1/schedules/:id', (request, response) => {
     .orWhere('mentor_user_id', request.params.id)
     .whereNot('status', 'open')
     .select()
-    .then(schedules => {
+    .then((schedules) => {
       response.status(200).json(schedules);
     })
-    .catch(error => {
+    .catch((error) => {
       response.status(500).json({ error });
     });
 });
 
 app.get('/api/v1/topics', (request, response) => {
   new Topics().fetchAll()
-    .then(topics => {
+    .then((topics) => {
       response.status(200).json(topics);
     })
-    .catch(error => {
-      response.status(500).json({ error })
-    })
-})
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
 
 app.get('/api/v1/training', (request, response) => {
   new Training().where('status', 'open').fetchAll()
-  .then(trainings => {
-    response.status(200).json(trainings);
-  })
-  .catch(error => {
-    response.status(500).json({ error })
-  })
-})
+    .then((trainings) => {
+      response.status(200).json(trainings);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
 
+/* eslint-disable consistent-return */
 app.post('/api/v1/training', (request, response) => {
+  /* eslint-enable consistent-return */
   const {
     mentor_user_id,
     scheduled_for_date,
-    length_in_minutes
+    length_in_minutes,
   } = request.body;
-
+  /* eslint-disable camelcase */
   if (!mentor_user_id || !scheduled_for_date || !length_in_minutes) {
+    /* eslint-enable camelcase */
     return response
       .status(422)
       .json({
         status: 422,
-        error: 'Training not Created. Invalid request parameters'
+        error: 'Training not Created. Invalid request parameters',
       });
   }
 
-  let booking = new Training();
+  const booking = new Training();
   booking.set('mentor_user_id', mentor_user_id);
   booking.set('scheduled_for_date', scheduled_for_date);
   booking.set('length_in_minutes', length_in_minutes);
   booking.set('location', 'tbd');
   booking.set('status', 'open');
 
-  booking.save().then(booking => {
-    response.status(201).json(Object.assign({ status: 201 }, booking));
+  booking.save().then((newBooking) => {
+    response.status(201).json(Object.assign({ status: 201 }, newBooking));
   })
-  .catch(error => {
-    response.status(500).json(Object.assign({ status: 500 }, { error }));
-  });
+    .catch((error) => {
+      response.status(500).json(Object.assign({ status: 500 }, { error }));
+    });
 });
 
 app.listen(app.get('port'), () => {
+  /* eslint-disable no-console */
   console.log(`Your API server is running on ${app.get('port')}.`);
+  /* eslint-enable no-console */
 });
 
 module.exports = app;
