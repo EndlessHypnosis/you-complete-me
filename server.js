@@ -200,6 +200,17 @@ app.post('/api/v1/training', (request, response) => {
     length_in_minutes
   } = request.body;
 
+
+  if (!mentor_user_id || !scheduled_for_date || !length_in_minutes) {
+    return response
+      .status(422)
+      .json({
+        status: 422,
+        error: 'Training not Created. Invalid request parameters'
+      });
+  }
+
+
   let booking = new Training();
   booking.set('mentor_user_id', mentor_user_id);
   booking.set('scheduled_for_date', scheduled_for_date);
@@ -208,10 +219,11 @@ app.post('/api/v1/training', (request, response) => {
   booking.set('status', 'open');
 
   booking.save().then(booking => {
-    console.log('BOOKING SAVED:', booking);
     response.status(201).json(Object.assign({ status: 201 }, booking));
   })
   .catch(error => {
+    console.log('WHAT IS THIS', error);
+    
     response.status(500).json(Object.assign({ status: 500 }, { error }));
   });
 
