@@ -42,6 +42,191 @@ describe('API Routes', () => {
       });
   });
 
+  describe('GET /api/v1/users/:id', () => {
+
+    it('should return mentor user', done => {
+
+      let mentor = {
+        firebase_uid: 'A3g4bbXDgwggGwcsvwDF7S6XkJG2',
+        email: 'jedi1@jedi1.com',
+        slack_id: 'jedi1',
+        grade: 'Mod 4',
+        skill_level: 'Jedi Master',
+        training_as_padawan_with_jedi_attempted: '0',
+        training_as_padawan_with_jedi_success: '0',
+        training_as_jedi_with_jedi_attempted: '0',
+        training_as_jedi_with_jedi_success: '0',
+        training_as_jedi_with_padawan_attempted: '3',
+        training_as_jedi_with_padawan_success: '1'
+      };
+
+      chai.request(server)
+        .get(`/api/v1/users/${mentor.firebase_uid}`)
+        .end((error, response) => {
+
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(1);
+          response.body[0].should.have.property('firebase_uid');
+          response.body[0].firebase_uid.should.equal(mentor.firebase_uid);
+          response.body[0].should.have.property('email');
+          response.body[0].email.should.equal(mentor.email);
+          response.body[0].should.have.property('slack_id');
+          response.body[0].should.have.property('grade');
+          response.body[0].should.have.property('skill_level');
+          done();
+        });
+    });
+
+    it('should return apprentice user', done => {
+
+      let apprentice = {
+        firebase_uid: 'nXcCfHuZUacfx3ewzSdkDtipMzs1',
+        email: 'padawan1@padawan1.com',
+        slack_id: 'padawan1',
+        grade: 'Mod 1',
+        skill_level: 'Padawan',
+        training_as_padawan_with_jedi_attempted: '2',
+        training_as_padawan_with_jedi_success: '1',
+        training_as_jedi_with_jedi_attempted: '0',
+        training_as_jedi_with_jedi_success: '0',
+        training_as_jedi_with_padawan_attempted: '0',
+        training_as_jedi_with_padawan_success: '0'
+      };
+
+      chai.request(server)
+        .get(`/api/v1/users/${apprentice.firebase_uid}`)
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(1);
+          response.body[0].should.have.property('firebase_uid');
+          response.body[0].firebase_uid.should.equal(apprentice.firebase_uid);
+          response.body[0].should.have.property('email');
+          response.body[0].email.should.equal(apprentice.email);
+          response.body[0].should.have.property('slack_id');
+          response.body[0].should.have.property('grade');
+          response.body[0].should.have.property('skill_level');
+          done();
+        });
+    });
+  });
+
+  describe('POST /api/v1/users', () => {
+
+    it('should create a new user successfully', done => {
+
+      let aaa_uid = 'El50ywd09XNC7O1MP3FlCcYJj692';
+      let bbb_uid = 'DiC6RzLYrGVC33kIF31I5MLpROf2';
+
+
+      chai.request(server)
+        .get(`/api/v1/users/${aaa_uid}`)
+        .end((error, response) => {
+          response.body.should.have.property('error');
+          response.body.error.should.equal('Could not find any Users');
+          // post new user
+          chai.request(server)
+            .post('/api/v1/users')
+            .send({
+              'firebase_uid': aaa_uid,
+              'email': 'aaa@aaa.com'
+            })
+            .end((error, response) => {
+              response.should.have.status(201);
+              response.should.be.json;
+              response.body.should.be.a('object');
+              response.body.should.have.property('id');
+              response.body.should.have.property('firebase_uid');
+              response.body.firebase_uid.should.equal(aaa_uid);
+              response.body.should.have.property('email');
+              response.body.email.should.equal('aaa@aaa.com');
+              done();
+
+            });
+        });
+    });
+
+    it('should error if the post is missing the total price', done => {
+      chai.request(server)
+        .post('/api/v1/users')
+        .send({
+          'nothing': 'nothing'
+        })
+        .end((error, response) => {
+          response.should.have.status(422);
+          response.body.should.have.property('error');
+          done();
+        });
+    });
+
+  });
+
+  describe('PATCH /api/v1/users/:id', () => {
+
+    it('should create a new user successfully', done => {
+
+      let apprentice = {
+        firebase_uid: 'nXcCfHuZUacfx3ewzSdkDtipMzs1',
+        email: 'padawan1@padawan1.com',
+        slack_id: 'padawan1',
+        grade: 'Mod 1',
+        skill_level: 'Padawan',
+        training_as_padawan_with_jedi_attempted: '2',
+        training_as_padawan_with_jedi_success: '1',
+        training_as_jedi_with_jedi_attempted: '0',
+        training_as_jedi_with_jedi_success: '0',
+        training_as_jedi_with_padawan_attempted: '0',
+        training_as_jedi_with_padawan_success: '0'
+      }
+
+
+      chai.request(server)
+        .get(`/api/v1/users/${apprentice.firebase_uid}`)
+        .end((error, response) => {
+          response.body[0].firebase_uid.should.equal(apprentice.firebase_uid);
+          // patch user
+          chai.request(server)
+            .patch(`/api/v1/users/${apprentice.firebase_uid}`)
+            .send({
+              'slack_id': 'my new slack',
+              'grade': 'senior dev'
+            })
+            .end((error, response) => {
+              response.should.have.status(200);
+              response.should.be.json;
+              response.body.should.be.a('object');
+              response.body.should.have.property('id');
+              response.body.should.have.property('firebase_uid');
+              response.body.firebase_uid.should.equal(apprentice.firebase_uid);
+              response.body.should.have.property('slack_id');
+              response.body.slack_id.should.equal('my new slack');
+              response.body.should.have.property('grade');
+              response.body.grade.should.equal('senior dev');
+              done();
+
+            });
+        });
+    });
+
+    it('should error if trying to patch a user that doesnt exist', done => {
+      chai.request(server)
+        .patch('/api/v1/users/invalid')
+        .send({
+          'slack_id': 'my new slack'
+        })
+        .end((error, response) => {
+          response.should.have.status(422);
+          response.body.should.have.property('error');
+          response.body.error.should.equal('Could not update user. Unexpected error');
+          done();
+        });
+    });
+
+  });
+
   describe('GET /api/v1/topics', () => {
     it('should return all topics', done => {
       chai.request(server)
@@ -70,12 +255,14 @@ describe('API Routes', () => {
           
           response.should.have.status(200);
           response.body.filter(item => {
-            return (item.parent === mockInventoryItem.parent
-            && item.name === mockInventoryItem.name);
+            return (item.parent === mockData.parent
+              && item.name === mockData.name);
           }).length.should.equal(1);
           done();
         });
     });
   });
+
+
 
 });

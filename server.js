@@ -85,14 +85,14 @@ app.get('/api/v1/users/:id', (request, response) => {
 app.post('/api/v1/users', (request, response) => {
   const { firebase_uid, email } = request.body;
 
-  // if (!orderTotal || !(orderTotal > 0.0)) {
-  //   return response
-  //     .status(422)
-  //     .json({
-  //       status: 422,
-  //       error: 'Order not saved. Invalid order total'
-  //     });
-  // }
+  if (!firebase_uid || !email) {
+    return response
+      .status(422)
+      .json({
+        status: 422,
+        error: 'User not Created. Invalid request parameters'
+      });
+  }
 
   database('users').insert({
     firebase_uid,
@@ -191,7 +191,6 @@ app.get('/api/v1/schedules/:id', (request, response) => {
 
 
 app.get('/api/v1/topics', (request, response) => {
-  console.log('HIT HIT HIT');
   
   new Topics().fetchAll()
     .then(topics => {
