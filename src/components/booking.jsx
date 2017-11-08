@@ -96,10 +96,10 @@ class Booking extends Component {
           <form id="formCreateBooking" role="form" onSubmit={this.onFormCreateBookingSubmit}>
           
             <div className="pt-form-group pt-callout">
-              <label className="pt-label" htmlFor="jm-date-input">
+              <label className="pt-label pt-label-bigger" htmlFor="jm-date-input">
                 Date of Training
               </label>
-              <div className="pt-form-content">
+              <div className="pt-form-content pt-date-picker-custom">
                 <DatePicker
                   onChange={(e) => { 
                     this.setState({ pickedDate: e }); }}
@@ -108,7 +108,7 @@ class Booking extends Component {
             </div>
 
             <div className="pt-form-group pt-callout">
-              <label className="pt-label">
+              <label className="pt-label pt-label-bigger">
                 Time of Training
                         <span className="pt-text-muted">( in 24 hour format )</span>
               </label>
@@ -135,7 +135,7 @@ class Booking extends Component {
             </div>
 
             <div className="pt-form-group pt-callout">
-              <label className="pt-label" htmlFor="jm-length-input">
+              <label className="pt-label pt-label-bigger" htmlFor="jm-length-input">
                 Length of Training
                         <span className="pt-text-muted">( in minutes, eg: 15, 30, 60, 90 )</span>
               </label>

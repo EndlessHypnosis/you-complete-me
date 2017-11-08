@@ -30,6 +30,7 @@ button:focus {
 
 .schedule-card {
   margin-right: 10px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -59,6 +60,36 @@ button:focus {
 
 
 
+#formCollectInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#formCollectInfo div {
+  width: 65%;
+}
+
+
+
+#frmLogin, #formCreateBooking, #frmRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#frmRegister div,
+#frmLogin div {
+  width: 50%;
+}
+
+#formCreateBooking>div {
+  width: 60%;
+}
+
+.pt-date-picker-custom {
+  width: 230px;
+}
 
 
 
@@ -67,6 +98,10 @@ button:focus {
 
 
 
+.pt-label-bigger {
+  font-size: 18px;
+  font-weight: bold;
+}
 
 
 .pt-control-indicator {
@@ -132,40 +167,6 @@ button:focus {
 .pt-create-booking-callout button {
   margin-left: 4px;
   margin-right: 4px;
-}
-
-
-
-
-#formCollectInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#formCollectInfo div {
-  width: 65%;
-}
-
-#frmRegister {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#frmRegister div {
-  width: 50%;
-}
-
-#frmLogin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#frmLogin div {
-  width: 50%;
-
 }
 
 
