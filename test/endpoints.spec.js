@@ -34,12 +34,12 @@ describe('Static Content Routes', () => {
 
 // Local Endpoint tests
 describe('API Routes', () => {
-  beforeEach(done => {
-    database.seed.run()
-      .then(() => {
-        done();
-      });
-  });
+  // beforeEach(done => {
+  //   database.seed.run()
+  //     .then(() => {
+  //       done();
+  //     });
+  // });
 
   describe('GET /api/v1/users/:id', () => {
 
