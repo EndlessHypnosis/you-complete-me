@@ -11,6 +11,7 @@ import requireAuth from '../utils/authenticated';
 import UserLogin from './user/login';
 import UserRegister from './user/register';
 import UserProfile from './user/profile';
+import UserLogout from './user/logout';
 import Dashboard from './dashboard';
 import Booking from './booking';
 // FIXME: remove these
@@ -261,6 +262,7 @@ class Main extends Component {
             );
           }} />
           <Route path="/login" component={UserLogin} />
+          <Route path="/logout" component={UserLogout} />
           <Route path="/register" component={UserRegister} />
 
         </div>

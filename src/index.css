@@ -7,7 +7,7 @@
 
 body {
   font-family: sans-serif;
-  background-color: #2a3741;
+  background-color: #bdbfbe;
 }
 
 h2 {
@@ -72,7 +72,7 @@ button:focus {
 
 .pt-elevation-0,
 .pt-elevation-1 {
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .pt-intro-secondary {
@@ -86,6 +86,17 @@ button:focus {
 }
 
 
+
+
+#formCollectInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#formCollectInfo div {
+  width: 65%;
+}
 
 
 
@@ -104,10 +115,11 @@ button:focus {
   max-width: 1045px;
   min-height: 100vh;
   margin: 30px auto;
+  background-color: #243731;
   
-  box-shadow: 0px 0px 10px 2px rgba(119, 119, 119, 0.8);
-  -moz-box-shadow: 0px 0px 10px 2px rgba(119, 119, 119, 0.8);
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(119, 119, 119, 0.8);
+  box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.8);
 
   border-radius: 5px;
   display: flex;
@@ -125,6 +137,8 @@ button:focus {
 .holygrail-header h1 {
   margin: 10px auto;
   font-size: 30px;
+  text-decoration: underline;
+  text-shadow: 2px 2px 6px #2c2c2c;
 }
 
 .holygrail-body {

@@ -32,14 +32,14 @@ Jedi Master
 ===========
 TO DO
 ===========
-- heroku deployment
+-[port issues] heroku deployment
 !- styling (logout)(remove border)
-- make the feedback more random
+-[low priority] make the feedback more random
 !- add eslint
-!- add server side TESTING
-- bookshelf.js?
+-[done] add server side TESTING
+-[done] bookshelf.js
 !- sass styles
-- notifications?
+-[not in mvp] notifications?
     /collect info alert
 !- readme.md
 !- format dates

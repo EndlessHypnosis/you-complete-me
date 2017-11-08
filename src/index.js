@@ -64,10 +64,10 @@ ReactDOM.render(
             </div>
 
             <div className='holygrail-right'>
-              <Route path="/logout" component={UserLogout} />
+              
             </div>
           </div>
-          <div className='holygrail-footer'><span className='footer-span'>Built by Nick Svetnicka for Turing</span></div>
+          <div className='holygrail-footer'><span className='footer-span'> </span></div>
         </div>
       </div>
     </ConnectedRouter>
