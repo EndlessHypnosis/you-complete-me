@@ -93,11 +93,9 @@ class Dashboard extends Component {
               </div>
             </div>
           : <div className='pt-card pt-elevation-0'>
-            <h4>Hello there young Padawan</h4>
+            <h4>Hello Padawan</h4>
               <p>
                 We're excited to help you on your path of becoming a Jedi Master.
-              </p>
-              <p>
                 As a Padawan, you will be matched only with Jedi Masters for your training.
               </p>
               <p className='pt-intro-secondary'>
