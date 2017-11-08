@@ -251,13 +251,11 @@ class Main extends Component {
           <Route exact path="/" render={(props) => {
             return (
               <div className='pt-callout'>
-
                 <h3>No user signed in</h3>
                 <p>
                   This application currently offers no anonymous access.
                   Please login or create a new account.
                 </p>
-
               </div>
             );
           }} />
