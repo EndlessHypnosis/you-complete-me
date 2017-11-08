@@ -59,6 +59,10 @@ let Training = bookshelf.Model.extend({
   tableName: 'training'
 })
 
+let Topics = bookshelf.Model.extend({
+  tableName: 'topics'
+})
+
 
 // GET /users/:id
 app.get('/api/v1/users/:id', (request, response) => {
@@ -184,6 +188,19 @@ app.get('/api/v1/schedules/:id', (request, response) => {
 //       response.status(500).json({ error });
 //     });
 // });
+
+
+app.get('/api/v1/topics', (request, response) => {
+  console.log('HIT HIT HIT');
+  
+  new Topics().fetchAll()
+    .then(topics => {
+      response.status(200).json(topics);
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
+})
 
 app.get('/api/v1/training', (request, response) => {
   new Training().where('status', 'open').fetchAll()
