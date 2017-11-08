@@ -37,6 +37,7 @@
     "mocha": "^4.0.1"
   },
   "scripts": {
+    "proxy": "http://localhost:3100",
     "start": "react-scripts start",
     "start-dev": "nf start -p 3000",
     "build": "react-scripts build",
