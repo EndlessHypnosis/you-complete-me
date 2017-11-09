@@ -47,7 +47,7 @@
     "start": "node server.js",
     "start-dev": "nf start -p 3000",
     "build": "react-scripts build",
-    "test": "NODE_ENV=test PORT=3002 mocha --exit",
+    "test": "NODE_ENV=test mocha --exit",
     "eject": "react-scripts eject",
     "eslint": "eslint server.js"
   }
