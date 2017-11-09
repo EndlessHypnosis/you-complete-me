@@ -1,5 +1,7 @@
 import firebase from 'firebase';
+/* eslint-disable */
 import { FIREBASE_CONFIG } from './firebase_config';
+/* eslint-enable */
 
 export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
 export const firebaseAuth = firebaseApp.auth();
