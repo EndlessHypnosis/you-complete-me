@@ -1,8 +1,8 @@
-
-exports.up = function(knex, Promise) {
+/* eslint-disable arrow-body-style */
+exports.up = (knex, Promise) => {
   return Promise.all([
 
-    knex.schema.createTable('users', table => {
+    knex.schema.createTable('users', (table) => {
       table.increments('id').primary();
       table.string('firebase_uid');
       table.string('email');
@@ -18,7 +18,7 @@ exports.up = function(knex, Promise) {
       table.timestamps(true, true);
     }),
 
-    knex.schema.createTable('training', table => {
+    knex.schema.createTable('training', (table) => {
       table.increments('id').primary();
       table.integer('appprentice_user_id').unsigned();
       table.foreign('appprentice_user_id').references('users.id');
@@ -32,7 +32,7 @@ exports.up = function(knex, Promise) {
       table.timestamps(true, true);
     }),
 
-    knex.schema.createTable('feedback', table => {
+    knex.schema.createTable('feedback', (table) => {
       table.increments('id').primary();
       table.integer('from_user_id').unsigned();
       table.foreign('from_user_id').references('users.id');
@@ -46,21 +46,22 @@ exports.up = function(knex, Promise) {
       table.timestamps(true, true);
     }),
 
-    knex.schema.createTable('topics', table => {
+    knex.schema.createTable('topics', (table) => {
       table.increments('id').primary();
       table.string('parent');
       table.string('name');
       table.timestamps(true, true);
-    })
+    }),
 
-  ])
+  ]);
 };
 
-exports.down = function(knex, Promise) {
+exports.down = (knex, Promise) => {
   return Promise.all([
     knex.schema.dropTable('topics'),
     knex.schema.dropTable('feedback'),
     knex.schema.dropTable('training'),
-    knex.schema.dropTable('users')
+    knex.schema.dropTable('users'),
   ]);
 };
+/* eslint-enable arrow-body-style */

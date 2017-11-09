@@ -17,3 +17,9 @@ deployment:
 test:
   pre:
     - eslint server.js
+    - eslint knexfile.js
+    - eslint test/
+    - eslint db/
+    - eslint src/actions/
+    - eslint src/reducers/
+    - eslint src/utils/

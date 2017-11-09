@@ -28,7 +28,9 @@ const FireBaseUtils = {
   }),
 
   loginUser: user => firebaseAuth.signInWithEmailAndPassword(user.email, user.password)
-    .then(userInfo => {
+  /* eslint-disable arrow-body-style */
+    .then((userInfo) => {
+      /* eslint-enable arrow-body-style */
       return userInfo;
     })
     .catch(error => ({
@@ -36,17 +38,18 @@ const FireBaseUtils = {
       errorMessage: error.message,
     })),
 
-  updateUserProfile: u => firebaseAuth.currentUser.updateProfile(u).then(() => firebaseAuth.currentUser, error => ({
-    errorCode: error.code,
-    errorMessage: error.message,
-  })),
+  updateUserProfile: u => firebaseAuth.currentUser.updateProfile(u)
+    .then(() => firebaseAuth.currentUser, error => ({
+      errorCode: error.code,
+      errorMessage: error.message,
+    })),
 
   randomString: (length) => {
-    var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var result = '';
-    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = '';
+    for (let i = length; i > 0; i - 1) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
-  }
+  },
 };
 
 export default FireBaseUtils;

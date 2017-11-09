@@ -3,10 +3,10 @@ import {
   LOGIN_FIREBASE_USER,
   FETCH_FIREBASE_USER,
   UPDATE_FIREBASE_USER,
-  LOGOUT_FIREBASE_USER
+  LOGOUT_FIREBASE_USER,
 } from '../actions/types';
 
-
+/* eslint-disable camelcase */
 const firebase_user = (state = null, action) => {
   switch (action.type) {
     case FETCH_FIREBASE_USER:
@@ -22,6 +22,7 @@ const firebase_user = (state = null, action) => {
     default:
       return state;
   }
-}
+};
 
 export default firebase_user;
+/* eslint-enable camelcase */

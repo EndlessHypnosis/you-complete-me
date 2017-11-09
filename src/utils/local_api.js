@@ -1,9 +1,9 @@
 
+/* eslint-disable arrow-body-style */
 export const getPGUser = (uid) => {
   return fetch(`http://localhost:3100/api/v1/users/${uid}`)
     .then(results => results.json())
-    .then(users => {
-
+    .then((users) => {
       return users[0];
     });
 };
@@ -19,22 +19,23 @@ export const getSchedules = (id) => {
 };
 
 export const getAllTraining = () => {
-  return fetch(`http://localhost:3100/api/v1/training`)
+  return fetch('http://localhost:3100/api/v1/training')
     .then(results => results.json());
 };
 
 export const saveBooking = (payload) => {
-  return fetch(`http://localhost:3100/api/v1/training`, {
+  return fetch('http://localhost:3100/api/v1/training', {
     method: 'POST',
     headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       mentor_user_id: payload.mentor_user_id,
       scheduled_for_date: payload.scheduled_for_date,
-      length_in_minutes: payload.length_in_minutes
-    })
+      length_in_minutes: payload.length_in_minutes,
+    }),
   })
-  .then(results => results.json());
-}
+    .then(results => results.json());
+};
+/* eslint-enable arrow-body-style */

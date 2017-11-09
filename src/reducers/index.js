@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   feedback: FeedbackReducer,
   schedule: ScheduleReducer,
   training: TrainingReducer,
-  notifications
+  notifications,
 });
 
 export default rootReducer;

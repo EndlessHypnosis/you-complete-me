@@ -49,6 +49,6 @@
     "build": "react-scripts build",
     "test": "NODE_ENV=test PORT=3001 mocha --exit",
     "eject": "react-scripts eject",
-    "eslint": "eslint server.js"
+    "eslint": "eslint server.js knexfile.js test/ db/ src/actions src/reducers src/utils"
   }
 }

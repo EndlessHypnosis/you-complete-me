@@ -1,119 +1,122 @@
 
 // Seed Data - Topics
 
-let topicData = [
+const topicData = [
   {
     parent: 'Programming Languages',
-    name: 'CSS'
+    name: 'CSS',
   },
   {
     parent: 'Programming Languages',
-    name: 'HTML'
+    name: 'HTML',
   },
   {
     parent: 'Programming Languages',
-    name: 'JavaScript'
+    name: 'JavaScript',
   },
   {
     parent: 'Programming Languages',
-    name: 'C#.NET'
+    name: 'C#.NET',
   },
   {
     parent: 'Programming Languages',
-    name: 'VB.NET'
+    name: 'VB.NET',
   },
   {
     parent: 'Programming Languages',
-    name: 'Ruby'
+    name: 'Ruby',
   },
   {
     parent: 'Programming Languages',
-    name: 'Python'
+    name: 'Python',
   },
   {
     parent: 'Programming Languages',
-    name: 'Java'
+    name: 'Java',
   },
   {
     parent: 'Programming Languages',
-    name: 'PHP'
+    name: 'PHP',
   },
   {
     parent: 'Programming Languages',
-    name: 'SQL'
+    name: 'SQL',
   },
   {
     parent: 'Programming Languages',
-    name: 'Rust'
+    name: 'Rust',
   },
   {
     parent: 'Programming Languages',
-    name: 'Golang'
+    name: 'Golang',
   },
   {
     parent: 'Databases',
-    name: 'MySQL'
+    name: 'MySQL',
   },
   {
     parent: 'Databases',
-    name: 'MongoDB'
+    name: 'MongoDB',
   },
   {
     parent: 'Databases',
-    name: 'Redis'
+    name: 'Redis',
   },
   {
     parent: 'Databases',
-    name: 'PostgreSQL'
+    name: 'PostgreSQL',
   },
   {
     parent: 'Task Runners/Package Managers',
-    name: 'Grunt'
+    name: 'Grunt',
   },
   {
     parent: 'Task Runners/Package Managers',
-    name: 'Gulp'
+    name: 'Gulp',
   },
   {
     parent: 'Task Runners/Package Managers',
-    name: 'npm'
+    name: 'npm',
   },
   {
     parent: 'Task Runners/Package Managers',
-    name: 'Bower'
+    name: 'Bower',
   },
   {
     parent: 'Task Runners/Package Managers',
-    name: 'Docker'
+    name: 'Docker',
   },
   {
     parent: 'Task Runners/Package Managers',
-    name: 'WebPack'
+    name: 'WebPack',
   },
   {
     parent: 'Task Runners/Package Managers',
-    name: 'Require.JS'
+    name: 'Require.JS',
   },
   {
     parent: 'Task Runners/Package Managers',
-    name: 'Browserify'
-  }  
+    name: 'Browserify',
+  },
 ];
 
 
+/* eslint-disable arrow-body-style */
 const createTopic = (knex, topic) => {
   return knex('topics').insert(topic);
 };
-
-exports.seed = function (knex, Promise) {
+exports.seed = (knex, Promise) => {
   // delete rows first
   return knex('topics').del()
     .then(() => {
-      let topicPromises = [];
-      topicData.forEach(topic => {
+      const topicPromises = [];
+      topicData.forEach((topic) => {
         topicPromises.push(createTopic(knex, topic));
       });
       return Promise.all(topicPromises);
     })
+    /* eslint-disable no-console */
     .catch(error => console.log('Error seeding TOPICS data:', error));
+  /* eslint-enable no-console */
 };
+/* eslint-enable arrow-body-style */

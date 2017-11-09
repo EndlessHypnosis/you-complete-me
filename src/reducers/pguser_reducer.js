@@ -6,6 +6,6 @@ const pguser = (state = {}, action) => {
     default:
       return state;
   }
-}
+};
 
 export default pguser;

@@ -1,28 +1,30 @@
 
+/* eslint-disable arrow-body-style */
 export const addUser = (payload) => {
   return {
     type: 'ADD_USER',
-    payload: payload
-  }
-}
+    payload,
+  };
+};
 
 export const storeFeedback = (payload) => {
   return {
     type: 'STORE_FEEDBACK',
-    payload: payload
-  }
-}
+    payload,
+  };
+};
 
 export const storeSchedules = (payload) => {
   return {
     type: 'STORE_SCHEDULES',
-    payload: payload
-  }
-}
+    payload,
+  };
+};
 
 export const storeTraining = (payload) => {
   return {
     type: 'STORE_TRAINING',
-    payload: payload
-  }
-}
+    payload,
+  };
+};
+/* eslint-enable arrow-body-style */

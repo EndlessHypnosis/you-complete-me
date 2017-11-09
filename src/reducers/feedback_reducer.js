@@ -6,6 +6,6 @@ const feedback = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 export default feedback;
